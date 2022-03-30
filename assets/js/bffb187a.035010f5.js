@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfed_doc=self.webpackChunkfed_doc||[]).push([[7338],{2180:function(e){e.exports=JSON.parse('{"permalink":"/FED-DOC/blog/tags/hello","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
