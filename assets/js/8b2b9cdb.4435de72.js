@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfed_doc=self.webpackChunkfed_doc||[]).push([[3291],{9887:function(s){s.exports=JSON.parse('{"allTagsPath":"/FED-DOC/blog/tags","name":"docusaurus","count":4,"permalink":"/FED-DOC/blog/tags/docusaurus"}')}}]);
