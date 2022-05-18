@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--如果多个规则与同一个元素匹配，而且有些声明互相冲突时，特殊性越大的越占优势-->
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 200px;
+				height: 200px;
+			}
+			
+			
+			div.test{
+					background: red!important;
+			}
+			div{
+				background: yellow!important;
+			}
+			
+			#test.test{
+				background: pink;
+			}
+			#test{
+				background: deeppink;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="test" class="test">
+			
+		</div>
+	</body>
+</html>

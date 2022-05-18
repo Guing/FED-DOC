@@ -1,0 +1,44 @@
+{
+  "name": "@black-cli/init",
+  "version": "0.0.3",
+  "description": "> TODO: description",
+  "author": "zhengguihong <649925003@qq.com>",
+  "homepage": "https://github.com/Guing/Doc#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@black-cli/command": "file:../../models/command",
+    "@black-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@black-cli/log": "file:../../utils/log",
+    "@black-cli/package": "file:../../models/package",
+    "@black-cli/request": "file:../../utils/request",
+    "@black-cli/utils": "file:../../utils/utils",
+    "commander": "^8.3.0",
+    "ejs": "^3.1.6",
+    "fs-extra": "^10.0.0",
+    "glob": "^7.2.0",
+    "inquirer": "^8.2.0",
+    "kebab-case": "^1.0.1",
+    "semver": "^7.3.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guing/Doc.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Guing/Doc/issues"
+  }
+}

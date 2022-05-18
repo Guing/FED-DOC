@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 在父元素上使用grid-template-areas命名 */
+        /* 在子元素上使用grid-area命名子元素 */
+        /* .main{
+            width:300px;
+            height:300px;
+            background:skyblue;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: 
+            "a1 a1 a2"
+            "a1 a1 a2"
+            "a3 a3 a3";
+        }
+        .main div{
+            background:pink;
+            border:1px black solid;
+            box-sizing: border-box;
+        }
+        .main div:nth-of-type(1){
+            grid-area: a1;
+        }
+        .main div:nth-of-type(2){
+            grid-area: a2;
+        }
+        .main div:nth-of-type(3){
+            grid-area: a3;
+        } */
+
+
+        /* 在第一个子元素命名a2使到了第二个子元素的位置，其他子元素则会继续填充元素的位置 */
+        /* .main{
+            width:300px;
+            height:300px;
+            background:skyblue;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: 
+            "a1 a2 a3";
+        }
+        .main div{
+            background:pink;
+            border:1px black solid;
+            box-sizing: border-box;
+        }
+        .main div:nth-of-type(1){
+            grid-area: a2;
+        } */
+
+
+        /* grid-template是grid-template-columns，grid-template-rows， grid-template-areas的缩写 */
+        /* 右边的1fr是行宽，下面的1fr是行高 */
+        /* .main{
+            width:300px;
+            height:300px;
+            background:skyblue;
+            display: grid;
+            grid-template: 
+            "a1 a1 a2" 1fr
+            "a1 a1 a2" 1fr 
+            "a3 a3 a3" 1fr
+            / 1fr 1fr 1fr;
+        }
+        .main div{
+            background:pink;
+            border:1px black solid;
+            box-sizing: border-box;
+        }
+        .main div:nth-of-type(1){
+            grid-area: a1;
+        }
+        .main div:nth-of-type(2){
+            grid-area: a2;
+        }
+        .main div:nth-of-type(3){
+            grid-area: a3;
+        } */
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</body>
+</html>

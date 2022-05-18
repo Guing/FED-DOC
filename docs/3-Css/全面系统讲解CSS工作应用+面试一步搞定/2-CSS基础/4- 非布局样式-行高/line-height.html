@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>line-height</title>
+    <style>
+        .cc1{
+            font-size:12px;
+        }
+        .cc2{
+            font-size:18px;
+            vertical-align: bottom;
+            
+        }
+        .cc3{
+            font-size:24px;
+        }
+    </style>
+</head>
+<body>
+    <div style="border:solid 1px red;">
+        <!-- 行高比字体大，会撑起整个div -->
+        <span style="background:blue;color:#fff;font-size:20px;line-height:60px;">
+            居中xfg&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        </span></div>
+    <div class="c1">
+        <!-- 行高会最大的字体撑起 -->
+        <span class="cc1">第一段</span>
+        <span class="cc2">第二段</span>
+        <span class="cc3">第三段</span>
+    </div>
+    <!-- 图片底部会有间隙，因为图片也是inline元素，默认的对齐方式是baseline，可以修改为vertical-align: bottom; -->
+    <div style="background:red">
+        <span>文字</span>
+        <img src="test.png"/>
+    </div>
+    <div>
+        <div style="float:left">
+            <span>第一段</span>
+        </div>
+        <div style="float:left">
+            <span>第二段</span>
+        </div>
+    </div>
+</body>
+</html>

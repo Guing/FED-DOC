@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        {{msg}}
+    </div>
+</body>
+<script src="../../dist/vue.js"></script>
+<script>
+    console.log(
+        new Vue({
+            el: "#box",
+            components: {
+                App: {
+                    name: 'App',
+                    beforeCreate() {
+                        console.log('child-beforeCreated');
+                    },
+                    created() {
+                        console.log('child-Created');
+                    },
+                    beforeUpdate() {
+                        console.log('child-beforeUpdate');
+                    },
+                    beforeMount() {
+                        console.log('child-beforeMount');
+                    },
+                    mounted() {
+                        console.log('child-mounted');
+                    },
+                    updated() {
+                        console.log('child-updated');
+                    },
+                    destroyed() {
+                        console.log('child-destroyed');
+                    },
+                    beforeDestroy() {
+                        console.log('child-beforeDestroy');
+                    },
+                    render: (h) => {
+                        return h('div', {}, 'hello');
+                    }
+                }
+            },
+            render: function (createElement) {
+                return createElement('App')
+            },
+            beforeCreate() {
+                console.log('parent-beforeCreated');
+            },
+            created() {
+                console.log('parent-Created');
+            },
+            beforeUpdate() {
+                console.log('parent-beforeUpdate');
+            },
+            beforeMount() {
+                console.log('parent-beforeMount');
+            },
+            mounted() {
+                console.log('parent-mounted');
+            },
+            updated() {
+                console.log('parent-updated');
+            },
+            destroyed() {
+                console.log('parent-destroyed');
+            },
+            beforeDestroy() {
+                console.log('parent-beforeDestroy');
+            },
+            data: {
+                message: 'Hello Vue!'
+            }
+        })
+    )
+
+</script>
+
+</html>

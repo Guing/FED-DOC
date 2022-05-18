@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+		<title>1013</title>
+		<!--
+			旋转和缩放在一起时，必须同时出现而且顺序必须一致才能触发过渡
+			绑定Dom2事件 需要考虑是否要解绑
+		-->
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+				width: 50px;
+				height: 50px;
+			}
+			#home{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 50px;
+				height: 50px;
+				background: url(img/home.png) no-repeat;
+				border-radius: 100%;
+				transition: 1s;
+			}
+			#menu_list{
+				height: 50px;
+			}
+			#menu_list img{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 42px;
+				height: 42px;
+				margin: 4px;
+				border-radius: 51%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="menu_list">
+				<img src="img/clos.png"/>
+				<img src="img/full.png"/>
+				<img src="img/open.png"/>
+				<img src="img/prev.png"/>
+				<img src="img/refresh.png"/>
+			</div>
+			<div id="home" class="home">
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var home = document.getElementById("home");
+		var imgs = document.getElementById("menu_list").getElementsByTagName("img");
+		var c=130;
+		var flag =true;
+		
+		function fn(){
+			this.style.transition=".1s ";
+			this.style.transform="scale(1) rotate(-720deg)";
+			this.style.opacity=1;
+			
+			this.removeEventListener("transitionend",fn);
+		}
+		
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].addEventListener("click",function(){
+				this.style.transition=".5s ";
+				this.style.transform="scale(2) rotate(-720deg)";
+				this.style.opacity=0.1;
+				
+				this.addEventListener("transitionend",fn)
+			})
+		}
+		
+		
+		
+		home.onclick=function(){
+			if(flag){
+				this.style.transform="scale(1) rotate(-720deg)";
+				
+				for(var i=0;i<imgs.length;i++){
+					imgs[i].style.transition=".5s "+(i*0.1)+"s ";
+					imgs[i].style.transform="scale(1) rotate(-720deg)";
+					imgs[i].style.left=-getPoint(c,i*90/(imgs.length-1)).x+"px";
+					imgs[i].style.top=-getPoint(c,i*90/(imgs.length-1)).y+"px";
+				}
+			}else{
+				this.style.transform="scale(1) rotate(0) ";
+				
+				for(var i=0;i<imgs.length;i++){
+					imgs[i].style.transition=".5s "+((imgs.length-1-i)*0.1)+"s ";
+					imgs[i].style.transform="scale(1) rotate(0)";
+					imgs[i].style.left=0;
+					imgs[i].style.top=0;
+				}
+			}
+			flag=!flag;
+		}
+		
+		//根据第三边和角度换算出坐标
+		//角度转弧度   角度*π/180 =弧度
+		function getPoint(c,deg){
+			var a = Math.round(Math.sin(deg*Math.PI/180)*c);
+			var b = Math.round(Math.cos(deg*Math.PI/180)*c);
+			return {x:a,y:b};
+		}
+		
+	</script>
+</html>

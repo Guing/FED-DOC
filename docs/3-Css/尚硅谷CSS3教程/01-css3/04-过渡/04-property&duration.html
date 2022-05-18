@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>transition-property</title>
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+div { 
+	width: 200px; 
+	height: 200px; 
+	margin: auto; 
+	background: pink;
+	transition-property:width,height;
+	transition-duration:3s,1s,7s;
+}
+div:hover { 
+	cursor: pointer; 
+	width: 600px; 
+	height: 600px;
+	transition-property:height;
+}
+</style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

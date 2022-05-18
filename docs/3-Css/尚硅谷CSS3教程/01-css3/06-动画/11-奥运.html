@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			@keyframes rotateY{
+				from{
+					transform:rotateY(0deg);
+				}
+				to{
+					transform:rotateY(360deg);
+				}
+			}
+		
+		
+		
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			#wrap{
+				height: 100%;
+				position: relative;
+				overflow: hidden;
+				perspective: 300px;
+			}
+			#logo {
+				position: absolute;
+				left: 35%;
+				top: 50%;
+				margin-top: -15%;
+				width: 30%;
+			} 
+			#logo img {
+				width: 100%;
+				display: block;
+				animation:rotateY 3s linear infinite;
+			}
+			#loading{
+				position: absolute;
+				left: 0;
+				top: 50%;
+				width: 100%;
+				font-size: 16px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="inner">
+				<div id="logo">
+					<img src="img/load/logo.png"/>
+				</div>
+				<p id="loading">已加载 0%</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/data.js"></script>
+	<script type="text/javascript">
+		
+		setLoding()
+		function setLoding(){
+			var logoText = document.querySelector('#loading');
+			var data = [];
+			var nub = 0;
+			for(var s in imgData) {
+				//console.log(imgData[s]);
+				data = data.concat(imgData[s]);
+			}
+			for(var i = 0; i < data.length; i++){
+				var img = new Image();
+				img.src = data[i];
+				img.onload = function(){
+					nub++;
+					//console.log(Math.floor(nub/data.length*100));
+					logoText.innerHTML = "已加载 "+(Math.floor(nub/data.length*100))+"%";
+				};
+			}
+		}
+		
+		
+	</script>
+</html>

@@ -1,0 +1,10 @@
+@charset "utf-8";
+.wrap{
+	border:1px solid #000; 
+	font:16px/28px "宋体";
+	color:#000; 
+	text-indent:2em; 
+	column-count:2; 
+	column-gap:20px; 
+	column-rule:1px solid #000;
+}

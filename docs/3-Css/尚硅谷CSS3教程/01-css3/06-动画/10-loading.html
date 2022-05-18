@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		@keyframes move{
+			0%{
+				top: 0;
+				/*transform: translateX(0px);*/
+			}
+			100%{
+				top: 10px;
+				/*transform: translateY(-10px);*/
+			}
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			width: 200px;
+			height: 100px;
+			background: gray;
+			font-size: 20px;
+			color: #fff;
+			text-align: center;
+			line-height: 100px;
+		}
+		#box span {
+			position: relative;
+			animation: .2s move linear infinite alternate; 
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			var span = document.querySelectorAll('#box span');
+			var arr=["red","yellow","pink","deeppink","green","blue","black"]
+			for(var i = 0; i < span.length; i++){
+				span[i].style.color=arr[i];
+				span[i].style.WebkitAnimation = span[i].style.animation = " .2s "+(i*50)+"ms move linear infinite alternate";
+			}
+		};
+	</script>
+</head>
+<body>
+<div id="box">
+	<span>L</span>
+	<span>o</span>
+	<span>a</span>
+	<span>d</span>
+	<span>i</span>
+	<span>n</span>
+	<span>g</span>
+</div>
+</body>
+</html>

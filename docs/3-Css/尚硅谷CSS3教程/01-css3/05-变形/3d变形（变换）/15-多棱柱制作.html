@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			padding: 100px;
+			border: 5px solid #000;
+			perspective: 1000px;
+			perspective-origin: center center;
+			margin: 100px auto;
+		}
+		#div {
+			position:  relative;
+			width: 100px;
+			height: 100px;
+			transform-style: preserve-3d;
+			/*transform-origin: center center 0px;*/
+			transition: 5s;
+		}
+		#box:hover #div {
+			transform: rotateY(-360deg);
+		}
+		#div span {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 98px;
+			height: 98px;
+			font: 50px/100px "宋体";
+			color: #fff;
+			text-align: center;
+			background: #ccc;
+			border: 1px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+	window.onload = function() {
+		var div = document.getElementById('div');
+		var html = "";
+		var width = 100;
+		var n = 10;
+		var deg = 360/n;
+		var center = -(Math.tan((180 - deg)/2*Math.PI/180)*(width/2)).toFixed(4);
+		div.style.transformOrigin = "center center "+center+"px";
+		for(var i = 0; i < n; i++){
+			html += '<span style="transform-origin: center center '+center+'px;transform: rotateY('+ deg*i +'deg); ">'+i+'</span>';
+		}
+		div.innerHTML = html;
+	};
+	</script>
+</head>
+<body>
+<div id="box">
+	<div id="div">
+	</div>
+</div>
+</body>
+</html>

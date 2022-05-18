@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <style>
+      .top {
+        padding: 5px 20px;
+        display: grid;
+        grid-template-rows: 20px 1fr 30px;
+        justify-content:start;
+        align-content: center;
+        gap: 10px 0;
+      }
+      .top-list{
+          display: grid;
+         
+          grid-template-areas: 
+          "a1 a2 a2"
+          "a3 a2 a2"
+          "a4 a4 a5"
+          "a6 a7 a7";
+      }
+      .top-list div:nth-child(1){
+          grid-area: a1;
+      }
+      .top-list div:nth-child(2){
+          grid-area: a2;
+      }
+      .top-list div:nth-child(3){
+          grid-area: a3;
+      }
+      .top-list div:nth-child(4){
+          grid-area: a4;
+      }
+      .top-list div:nth-child(5){
+          grid-area: a5;
+      }
+      .top-list div:nth-child(6){
+          grid-area: a6;
+      }
+      .top-list div:nth-child(7){
+          grid-area: a7;
+      }
+      
+      .top-page{
+          justify-self: end;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <div class="top-title">今日上榜</div>
+      <div class="top-list">
+        <div class="theme1">
+          <a href="#">
+            <h3>实时热点</h3>
+            <p>阿里第一颗芯</p>
+          </a>
+        </div>
+        <div class="theme2">
+          <a href="#">
+            <h3>实时热点</h3>
+            <p>阿里第一颗芯</p>
+          </a>
+        </div>
+        <div class="theme1">
+          <a href="#">
+            <h3>实时热点</h3>
+            <p>阿里第一颗芯</p>
+          </a>
+        </div>
+        <div class="theme1">
+          <a href="#">
+            <h3>实时热点</h3>
+            <p>阿里第一颗芯</p>
+          </a>
+        </div>
+        <div class="theme1">
+          <a href="#">
+            <h3>实时热点</h3>
+            <p>阿里第一颗芯</p>
+          </a>
+        </div>
+        <div class="theme3">
+          <a href="#">
+            <h3>实时热点</h3>
+            <p>阿里第一颗芯</p>
+          </a>
+        </div>
+        <div class="theme3">
+          <a href="#">
+            <h3>实时热点</h3>
+            <p>阿里第一颗芯</p>
+          </a>
+        </div>
+      </div>
+      <div class="top-page">
+        <span>1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+      </div>
+    </div>
+  </body>
+</html>

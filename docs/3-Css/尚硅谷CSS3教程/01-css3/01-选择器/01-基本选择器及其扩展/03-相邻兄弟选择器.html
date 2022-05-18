@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>相邻兄弟选择器</title>
+<!--
+	这被称为一个相邻兄弟选择器. 它只会匹配紧跟着的兄弟元素
+	
+	紧跟！！！！
+-->
+<style type="text/css">
+#wrap > #first + .inner {
+	color: #f00;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<div class="inner">inner</div>
+	<div id="first">first</div>
+	<div></div>
+	<div class="inner">inner</div>
+	<div class="inner">inner</div>
+	<div class="inner">inner</div>
+	<div class="inner">inner</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,572 @@
+{
+	"info": {
+		"_postman_id": "f32fa620-b020-4038-9bc0-687d57aefce0",
+		"name": "React旅游网api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "旅游路线",
+			"item": [
+				{
+					"name": "搜索旅游路线",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/touristRoutes?keyword=法国",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"touristRoutes"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "法国"
+								},
+								{
+									"key": "rating",
+									"value": "largerThan2",
+									"disabled": true
+								},
+								{
+									"key": "pagenumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pagesize",
+									"value": "50",
+									"disabled": true
+								},
+								{
+									"key": "orderby",
+									"value": "originalPrice",
+									"disabled": true
+								},
+								{
+									"key": "fields",
+									"value": "id, title",
+									"disabled": true
+								}
+							]
+						},
+						"description": "课程 5.1"
+					},
+					"response": []
+				},
+				{
+					"name": "获得旅游路线",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-icode",
+								"type": "text",
+								"value": "FB80558A73FA658E"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/touristRoutes/fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"touristRoutes",
+								"fb6d4f10-79ed-4aff-a915-4ce29dc9c7e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取旅游路线推荐列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/productCollections",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productCollections"
+							]
+						},
+						"description": "课程 5.1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "身份认证",
+			"item": [
+				{
+					"name": "login (JWT)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"alex1234@163.com\",\n\t\"password\": \"Fake123$\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://123.56.149.216:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"drdhehoendsoekhn@163.com\",\n\t\"password\": \"123456\",\n\t\"confirmPassword\": \"123456\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://123.56.149.216:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "购物车",
+			"item": [
+				{
+					"name": "获得当前用户购物车",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZWQ0NWI0Yi02M2ZkLTRlNDQtOWE1NC1lZDFkOTVmZjdlMWIiLCJ1c2VybmFtZSI6ImFsZXgxMjM0QDE2My5jb20iLCJuYmYiOjE2MTA4MzQyODMsImV4cCI6MTYxMDkyMDY4MywiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.qpYo_YUyqTottO7RRJLitvDym7HWquQwKlUks4NUiCk",
+								"type": "text"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/shoppingCart",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shoppingCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "批量删除商品",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZWQ0NWI0Yi02M2ZkLTRlNDQtOWE1NC1lZDFkOTVmZjdlMWIiLCJ1c2VybmFtZSI6ImFsZXgxMjM0QDE2My5jb20iLCJuYmYiOjE2MTI1NDA4NzEsImV4cCI6MTYxMjYyNzI3MSwiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.7vqcPWclP07qElJElm-9gGQifbe6iAAzYY5tJxaCoLA",
+								"type": "text"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/shoppingCart/items/(20, 21)",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shoppingCart",
+								"items",
+								"(20, 21)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除商品",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2JiZGU0NS1mNWM2LTQyNjMtYjE1Mi1mNjVhM2IyYmZiZGEiLCJuYmYiOjE1OTUzNTc4MTUsImV4cCI6MTU5NTQ0NDIxNSwiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.beZrLxuxWXWrHW2jCxKhekQod0nFINiPAlWiUHl9M4Y",
+								"type": "text"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/shoppingCart/items/2",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shoppingCart",
+								"items",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "添加商品",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZWQ0NWI0Yi02M2ZkLTRlNDQtOWE1NC1lZDFkOTVmZjdlMWIiLCJ1c2VybmFtZSI6ImFsZXgxMjM0QDE2My5jb20iLCJuYmYiOjE2MTA4MzQyODMsImV4cCI6MTYxMDkyMDY4MywiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.qpYo_YUyqTottO7RRJLitvDym7HWquQwKlUks4NUiCk"
+							},
+							{
+								"key": "x-icode",
+								"name": "Content-Type",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"touristRouteId\": \"39996f34-013c-4fc6-b1b3-0c1036c47110\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/shoppingCart/items",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shoppingCart",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "结算",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZWQ0NWI0Yi02M2ZkLTRlNDQtOWE1NC1lZDFkOTVmZjdlMWIiLCJ1c2VybmFtZSI6ImFsZXgxMjM0QDE2My5jb20iLCJuYmYiOjE2MTA4MzQyODMsImV4cCI6MTYxMDkyMDY4MywiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.qpYo_YUyqTottO7RRJLitvDym7HWquQwKlUks4NUiCk",
+								"type": "text"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/shoppingCart/checkout",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"shoppingCart",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "订单",
+			"item": [
+				{
+					"name": "获得订单历史记录",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZWQ0NWI0Yi02M2ZkLTRlNDQtOWE1NC1lZDFkOTVmZjdlMWIiLCJ1c2VybmFtZSI6ImFsZXgxMjM0QDE2My5jb20iLCJuYmYiOjE2MTA4MzQyODMsImV4cCI6MTYxMDkyMDY4MywiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.qpYo_YUyqTottO7RRJLitvDym7HWquQwKlUks4NUiCk",
+								"type": "text"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/orders?pagesize=5&pagenumber=1",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "pagesize",
+									"value": "5"
+								},
+								{
+									"key": "pagenumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获得订单详情",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZWQ0NWI0Yi02M2ZkLTRlNDQtOWE1NC1lZDFkOTVmZjdlMWIiLCJ1c2VybmFtZSI6ImFsZXgxMjM0QDE2My5jb20iLCJuYmYiOjE2MTA4MzQyODMsImV4cCI6MTYxMDkyMDY4MywiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.qpYo_YUyqTottO7RRJLitvDym7HWquQwKlUks4NUiCk",
+								"type": "text"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/orders/ed19c5c0-f696-4e12-af7d-ba81d6d7ec05",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"ed19c5c0-f696-4e12-af7d-ba81d6d7ec05"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "支付订单",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZWQ0NWI0Yi02M2ZkLTRlNDQtOWE1NC1lZDFkOTVmZjdlMWIiLCJ1c2VybmFtZSI6ImFsZXgxMjM0QDE2My5jb20iLCJuYmYiOjE2MTA4MzQyODMsImV4cCI6MTYxMDkyMDY4MywiaXNzIjoiZmFrZXhpZWNoZW5nLmNvbSIsImF1ZCI6ImZha2V4aWVjaGVuZy5jb20ifQ.qpYo_YUyqTottO7RRJLitvDym7HWquQwKlUks4NUiCk",
+								"type": "text"
+							},
+							{
+								"key": "x-icode",
+								"value": "FB80558A73FA658E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://123.56.149.216:8080/api/orders/ed19c5c0-f696-4e12-af7d-ba81d6d7ec05/placeOrder",
+							"protocol": "http",
+							"host": [
+								"123",
+								"56",
+								"149",
+								"216"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								"ed19c5c0-f696-4e12-af7d-ba81d6d7ec05",
+								"placeOrder"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

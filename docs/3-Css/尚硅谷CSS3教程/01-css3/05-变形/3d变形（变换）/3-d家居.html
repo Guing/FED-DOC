@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+			}
+			#wrap{
+				width: 100%;
+				height: 100%;
+				border: 1px solid;
+				-webkit-perspective: 300px;
+				perspective: 300px;
+				overflow: hidden;
+			}
+			#inner{
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				-webkit-transform: translateZ(200px);
+				transform: translateZ(200px);
+			}
+			#box{
+				/*position: relative;*/
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 512px;
+				height: 512px;
+				margin: -256px 0 0 -256px;
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				transition: 20s;
+				transform: rotateX(0deg);
+			}
+			#box div{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				-webkit-backface-visibility: hidden;
+				backface-visibility: hidden;
+				/*transition: 5s;*/
+			}
+			#box div:nth-of-type(1){
+				background: url(img/qian.png) no-repeat;
+				background-size: 100% 100%;
+				transform: rotateY(0deg) translateZ(-256px);
+			}
+			#box div:nth-of-type(2){
+				background: url(img/hou.png) no-repeat;
+				background-size: 100% 100%;
+				transform: rotateY(180deg) translateZ(-256px);
+			}
+			#box div:nth-of-type(3){
+				background: url(img/you.png) no-repeat;
+				background-size: 100% 100%;
+				transform: rotateY(270deg) translateZ(-256px);
+			}
+			#box div:nth-of-type(4){
+				background: url(img/zuo.png) no-repeat;
+				background-size: 100% 100%;
+				transform: rotateY(90deg) translateZ(-256px);
+			}
+			#box div:nth-of-type(5){
+				background: url(img/xia.png) no-repeat;
+				background-size: 100% 100%;
+				transform: rotateX(90deg) translateZ(-256px);
+			}
+			#box div:nth-of-type(6){
+				background: url(img/shang.png) no-repeat;
+				background-size: 100% 100%;
+				transform: rotateX(270deg) translateZ(-256px);
+			}
+			
+			
+			
+			/*#wrap:hover #box{
+				transform:translateZ(-256px) rotateY(360deg) ;
+			}*/
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="inner">
+				<div id="box">
+					<div>前</div>
+					<div>后</div>
+					<div>左</div>
+					<div>右</div>
+					<div>下</div>
+					<div>上</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.addEventListener("touchstart",function(ev){
+			ev=ev||event;
+			ev.preventDefault();
+		})
+		
+		window.onload=function(){
+			var box = document.querySelector("#box");
+			box.style.transform=" rotateY(360deg) ";
+		}
+	</script>
+</html>

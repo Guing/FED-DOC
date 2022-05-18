@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#test{
+				width: 100px;
+				height: 100px;
+				background: gray;
+				transition:2s;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div id="test">
+			
+		</div>
+	</body>
+	<script>
+		var testNode=document.getElementById("test");
+		
+		testNode.onclick = function(){
+			setTimeout(function(){
+				testNode.style.display="none";
+			},2000)
+			this.style.width = this.offsetWidth+100+"px";
+			this.style.background = "pink";
+		}
+		
+		
+		testNode.addEventListener("transitionend",function(){
+			alert("end");
+		})
+//		testNode.ontransitionend = function(){
+//			alert("end");
+//		}
+		
+		
+	</script>
+</html>

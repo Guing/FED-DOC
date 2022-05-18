@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				width: 800px;
+				height: 400px;
+				border: 1px solid;
+				margin: 0 auto;
+				padding: 30px;
+			}
+		
+			#test{
+				width: 100px;
+				height: 100px;
+				background: pink;
+				transition: 2s;
+				transform-origin: 100px 100px;
+			}
+			
+			body:hover #test{
+				transform: skew(30deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test">
+			test
+		</div>
+	</body>
+</html>

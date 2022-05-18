@@ -1,0 +1,34 @@
+{
+  "name": "@black-cli/cli",
+  "version": "0.0.3",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "black-cli": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@black-cli/exec": "file:../exec",
+    "@black-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@black-cli/init": "file:../../commands/init",
+    "@black-cli/log": "file:../../utils/log",
+    "commander": "^8.3.0",
+    "dotenv": "^14.2.0",
+    "import-local": "^3.1.0",
+    "inquirer": "^8.2.0",
+    "path-exists": "^5.0.0",
+    "root-check": "^2.0.0",
+    "semver": "^7.3.5",
+    "yargs": "^17.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8.9"
+  }
+}

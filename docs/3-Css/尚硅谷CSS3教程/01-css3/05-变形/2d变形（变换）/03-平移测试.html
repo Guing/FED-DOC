@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				margin: 100px 0;
+				width: 200px;
+				height: 200px;
+				background: pink;
+				transition: 3s;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<input type="button" name="test" id="test" value="测试" />
+		<input type="button" name="test" id="test2" value="测试2" />
+	</body>
+	<script>
+		var box =document.getElementById("box");
+		var test =document.getElementById("test");
+		var test2 =document.getElementById("test2");
+		test.onclick=function(){
+			box.style.transform ="translateX(100px)";
+		}
+		test2.onclick=function(){
+			box.style.transform ="translateX(0px)";
+		}
+	</script>
+</html>

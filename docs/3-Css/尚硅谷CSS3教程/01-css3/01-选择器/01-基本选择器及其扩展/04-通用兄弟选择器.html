@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>通用兄弟选择器</title>
+<!--
+	在使用 ~ 连接两个元素时,它会匹配第二个元素,
+		条件是
+			它必须跟(不一定是紧跟)在第一个元素之后,
+			且他们都有一个共同的父元素
+-->
+<style type="text/css">
+#wrap #first ~ div {
+	border: 1px solid;
+	/*color: pink;*/
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="first">first</div>
+	<p></p>
+	<div class="inner">inner <div>inner2</div></div>
+	<div class="inner">inner</div>
+	<div class="inner">inner</div>
+	<div class="inner">inner</div>
+</div>
+</body>
+</html>

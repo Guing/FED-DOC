@@ -1,0 +1,6 @@
+node_modules
+.idea
+.vscode
+core/**/node_modules
+utils/**/node_modules
+.DS_Store

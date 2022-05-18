@@ -1,0 +1,3 @@
+## editor-server
+- formidable
+	- 一个用于解析表单数据的 Node.js 模块，尤其是文件上传

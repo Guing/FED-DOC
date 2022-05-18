@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* grid-auto-flow 属性控制着自动布局算法怎样运作，精确指定在网格中被自动布局的元素怎样排列。
+         第一个参数：
+            row ：就是行产生隐式网格，按照通过逐行填充来排列元素，在必要时增加新行。 （默认）
+            column ：就是列产生隐式网格，按照通过逐行填充来排列元素，在必要时增加新行。
+         第二个参数：
+            dense ：指定是否紧密排列，如果第二个参数不指写，则会用稀疏排列。
+        */
+      /* grid-auto-rows 属性可以调节产生隐式网格的高度*/
+      /* grid-auto-columns 属性可以调节产生隐式网格的宽度*/
+      .main {
+        width: 300px;
+        height: 300px;
+        background: skyblue;
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px;
+        grid-auto-flow: row;
+        grid-auto-rows: 100px;
+
+        /* grid-template-columns: 100px;
+        grid-template-rows: 100px 100px 100px;
+        grid-auto-flow: column;
+        grid-auto-columns: 100px; */
+      }
+      .main div {
+        background: pink;
+        border: 1px black solid;
+        box-sizing: border-box;
+      }
+
+      .main2 {
+        width: 300px;
+        height: 300px;
+        background: skyblue;
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px;
+        grid-auto-flow: row dense; /* dense 紧密的 */
+        grid-auto-rows: 100px;
+      }
+      .main2 div {
+        background: pink;
+        border: 1px black solid;
+        box-sizing: border-box;
+      }
+      .main2 div:nth-of-type(1) {
+        grid-column-start: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </div>
+    <hr />
+    <div class="main2">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "black-cli",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

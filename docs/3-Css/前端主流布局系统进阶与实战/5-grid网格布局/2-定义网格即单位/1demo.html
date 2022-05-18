@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        width: 300px;
+        height: 300px;
+        background: skyblue;
+        display: grid;
+        /* 定义三行三列 */
+        /*列宽即为元素的宽度 */
+        /* 行高即为元素的高度 */
+        /* grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 50px 50px 50px; */
+
+        /* 可以设置百分比，50%即为父元素的宽度乘以百分之50  */
+        /* auto 则自适应剩下的大小 */
+        /* grid-template-columns: 50px 50% auto;
+            grid-template-rows: 50px 50px; */
+
+
+        /* fr 表示网格容器中可用空间的一等份 */
+        /* grid-template-columns: 150px 1fr 1fr;
+         grid-template-rows: 0.3fr 0.3fr; */
+      }
+      .main div {
+        background: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+  </body>
+</html>

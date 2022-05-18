@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>存在和值属性选择器</title>
+		<style type="text/css">
+			/*
+			 [attr~=val]：该选择器仅选择 attr 属性的值（以空格间隔出多个值）中有包含 val 值的所有元素，
+			    比如位于被空格分隔的多个类（class）中的一个类。
+			*/
+			[name~="atguigu"]{
+				background: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div name="atguigu_llc atguigu">李立超</div>
+		<div name="atguigu_xfz">晓飞张</div>
+		<div name="atguigu_bhj atguigu">白浩杰</div>
+		<div name="atguigu_sym">腿长1米8</div>
+		<div>佟刚</div>
+		<div>陈雷</div>
+		<div>李贺飞</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+<script src="../../dist/vue.js"></script>
+<script>
+    console.log(
+        new Vue({
+            el: "#box",
+
+            render(h) {
+                return h('div', {}, [
+                    h('div', {}, this.msg),
+                    h('button', { on: { click: this.handleClick } }, 'btn')
+                ])
+            },
+            data: {
+
+                msg: 'test'
+
+            },
+            created() {
+                this.$nextTick(() => {
+                    console.log(this.msg);
+                })
+                
+               setTimeout(()=>{
+                this.msg = 12;
+               },10000)
+            },
+            methods: {
+                handleClick() {
+                    this.$nextTick(() => {
+                        console.log(this.msg);
+                    })
+                    this.msg = 11;
+                    this.$nextTick(() => {
+                        console.log(this.msg);
+                    })
+                },
+                handleChange() {
+                    this.flag = !this.flag;
+                }
+            },
+        })
+    )
+
+</script>
+
+</html>

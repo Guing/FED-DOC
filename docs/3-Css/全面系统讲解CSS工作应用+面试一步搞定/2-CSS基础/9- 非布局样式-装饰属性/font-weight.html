@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fonts</title>
+    <style>
+        .weight{
+            font-weight: normal; /*400*/
+            font-weight: bold; /*700*/
+            font-weight: bolder; /*取决于父级或者继承下来的值，如果父级是100，则bolder可能是300，400*/
+            font-weight: lighter;/*取决于父级或者继承下来的值，如果父级是100，则bolder可能是300，400*/
+            /* 只能100到900，不能是150之类的 */
+            font-weight: 200;
+        }
+    </style>
+</head>
+<body class="body" id="body">
+    <div class="weight">你好 Hello World</div>
+</body>
+</html>

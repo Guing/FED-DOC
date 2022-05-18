@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style id="css" type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				position: relative;
+				width: 200px;
+				height: 200px;
+				border: 1px solid;
+				border-radius:50% ;
+				margin: 200px auto;
+			}
+			#wrap li{
+				position: absolute;
+				left: 99px;
+				top: 0;
+				width: 2px;
+				height: 4px;
+				background: black;
+				list-style: none;
+				transform-origin: center 100px;
+			}
+			/*#wrap li:nth-of-type(1){
+				transform: rotate(0);
+			}
+			#wrap li:nth-of-type(2){
+				transform: rotate(6deg);
+			}
+			#wrap li:nth-of-type(3){
+				transform: rotate(12deg);
+			}
+			#wrap li:nth-of-type(4){
+				transform: rotate(18deg);
+			}
+			#wrap li:nth-of-type(5){
+				transform: rotate(24deg);
+			}
+			#wrap li:nth-of-type(6){
+				transform: rotate(30deg);
+			}*/
+			#wrap li:nth-of-type(5n+1){
+				height: 6px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul id="list">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<div id="hour"></div>
+			<div id="min"></div>
+			<div id="sec"></div>
+			<div id="ioc"></div>
+		</div>
+	</body>
+	<script>
+		
+		var list =document.querySelector("#list");
+		var css = document.getElementById("css");
+		var text="";
+		var cssText ="";
+		for(var i=0;i<60;i++){
+			text +="<li></li>" 
+			cssText+="#wrap li:nth-of-type("+(i+1)+"){ transform: rotate("+i*6+"deg);}";
+		}
+		list.innerHTML=text;
+		css.innerHTML+=cssText;
+		
+		var hour =document.querySelector("#hour");
+		var min =document.querySelector("#min");
+		var sec =document.querySelector("#sec");
+		
+		
+	</script>
+</html>

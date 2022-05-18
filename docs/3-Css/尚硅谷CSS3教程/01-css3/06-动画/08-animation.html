@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			@keyframes rotateY{
+				from{
+					transform: rotateY(0deg);
+				}
+				to{
+					transform: rotateY(360deg);
+				}
+			}
+			
+			html,body{
+				height: 100%;
+			}
+			
+			#wrap{
+				height: 100%;
+				perspective: 300px;
+			}
+			
+			#inner{
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				margin: auto;
+				width: 100px;
+				height: 100px;
+				line-height: 100px;
+				background: pink;
+				border-radius: 100%;
+				text-align: center;
+				animation: rotateY 3s  infinite linear;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="inner">
+				inner
+			</div>
+		</div>
+	</body>
+</html>

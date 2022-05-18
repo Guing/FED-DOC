@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>基本选择器</title>
+<style type="text/css">
+/*通配符选择器*/
+* { margin: 0; padding: 0; border: none; }
+/*元素选择器*/
+body { background: #eee; }
+/*类选择器*/
+.list { list-style: square; }
+/*ID选择器*/
+#list { width: 500px; margin: 0 auto; }
+/*后代选择器*/
+.list li { margin-top: 10px; background: #abcdef; }
+/*选择器分组*/
+#list,.second{background: pink;}
+</style>
+</head>
+<body>
+<ul id="list" class="list">
+	<li class="first">1</li>
+	<li class="second">2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li>9</li>
+	<li>10</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				position: fixed;
+				right: 20px;
+				bottom: 20px;
+				width: 50px;
+				height: 50px;
+			}
+			#menuList{
+				position: relative;
+				width: 42px;
+				height: 42px;
+				margin: 4px;
+			}
+			#menuList img{
+				position: absolute;
+				left: 0;
+				top: 0;
+				border-radius:60% ;
+			}
+			#home{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 50px;
+				height: 50px;
+				background: url(img/home.png);
+				border-radius: 50%;
+				transition: 1s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="menuList">
+				<img src="img/clos.png"/>
+				<img src="img/full.png"/>
+				<img src="img/open.png"/>
+				<img src="img/prev.png"/>
+				<img src="img/refresh.png"/>
+			</div>
+			<div id="home">
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var home = document.querySelector("#home");
+		var imgs = document.querySelectorAll("#menuList img");
+		
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].onclick=function()
+			{
+				this.style.transition="0.5s linear";
+				this.style.transform="scale(2) rotate(-720deg)";
+				this.style.opacity=0.1;
+				this.addEventListener("transitionend",end);
+			};
+		}
+		function end(){
+			this.style.transition="0.1s";
+			this.style.transform="scale(1) rotate(-720deg)";
+			this.style.opacity=1;
+			this.removeEventListener("transitionend",end);
+		}
+		
+		
+		var flag = true;
+		var c=130;
+		home.onclick=function(){
+			if(flag){
+				this.style.transform ="rotate(-360deg)";
+				for(var i=0;i<imgs.length;i++){
+					imgs[i].style.transition="0.5s "+i*100+"ms";
+					imgs[i].style.left=getPoint(c,90/(imgs.length-1)*i).left+"px";
+					imgs[i].style.top=getPoint(c,90/(imgs.length-1)*i).top+"px";
+					imgs[i].style.transform="scale(1) rotate(-720deg)";
+				}
+			}else{
+				this.style.transform ="rotate(0deg)";
+				for(var i=0;i<imgs.length;i++){
+					imgs[i].style.transition="0.5s "+(imgs.length-1-i)*100+"ms";
+					imgs[i].style.left=0;
+					imgs[i].style.top=0;
+					imgs[i].style.transform="scale(1) rotate(0deg)";
+				}
+			}
+			flag=!flag;
+		}
+		
+		
+		function getPoint(c,deg){
+			var a=Math.round(Math.sin(deg/180*Math.PI)*c);
+			var b=Math.round(Math.cos(deg/180*Math.PI)*c);
+			
+			return{left:-a,top:-b};
+		}
+	</script>
+</html>

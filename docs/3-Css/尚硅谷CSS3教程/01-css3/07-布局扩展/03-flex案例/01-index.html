@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			.rows{
+				padding: 0 25px;
+				display: -webkit-box;
+				display: flex;
+			}
+			.rows div{
+				width: 0;
+				-webkit-box-flex:1;
+				flex:1 ;
+			}
+			.rows div a {
+				font-size: 22px;
+				color: #666;
+				text-align: center;
+				line-height: 50px;
+				display: block;
+			}
+			.rows div a:before{
+				content: "";
+				display: block;
+				margin: 0 auto;
+				width: 86px;
+				height: 85px;
+				background-size: 86px 85px;
+			}
+			.rows:nth-of-type(1) div:nth-of-type(1) a:before{
+				background-image: url(img/01.png);
+			}
+			.rows:nth-of-type(1) div:nth-of-type(2) a:before{
+				background-image: url(img/02.png);
+			}
+			.rows:nth-of-type(1) div:nth-of-type(3) a:before{
+				background-image: url(img/03.png);
+			}
+			.rows:nth-of-type(1) div:nth-of-type(4) a:before{
+				background-image: url(img/04.png);
+			}
+			.rows:nth-of-type(1) div:nth-of-type(5) a:before{
+				background-image: url(img/05.png);
+			}
+			.rows:nth-of-type(2) div:nth-of-type(1) a:before{
+				background-image: url(img/06.png);
+			}
+			.rows:nth-of-type(2) div:nth-of-type(2) a:before{
+				background-image: url(img/07.png);
+			}
+			.rows:nth-of-type(2) div:nth-of-type(3) a:before{
+				background-image: url(img/08.png);
+			}
+			.rows:nth-of-type(2) div:nth-of-type(4) a:before{
+				background-image: url(img/09.png);
+			}
+			.rows:nth-of-type(2) div:nth-of-type(5) a:before{
+				background-image: url(img/10.png);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rows">
+			<div>
+				<a href="javascript:;">天猫</a>
+			</div>
+			<div>
+				<a href="javascript:;">聚划算</a>
+			</div>
+			<div>
+				<a href="javascript:;">天猫国际</a>
+			</div>
+			<div>
+				<a href="javascript:;">外卖</a>
+			</div>
+			<div>
+				<a href="javascript:;">天猫超市</a>
+			</div>
+		</div>
+		<div class="rows">
+			<div>
+				<a href="javascript:;">天猫</a>
+			</div>
+			<div>
+				<a href="javascript:;">聚划算</a>
+			</div>
+			<div>
+				<a href="javascript:;">天猫国际</a>
+			</div>
+			<div>
+				<a href="javascript:;">外卖</a>
+			</div>
+			<div>
+				<a href="javascript:;">天猫超市</a>
+			</div>
+	</body>
+</html>

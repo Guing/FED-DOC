@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background: pink;
+        display: none;
+      }
+      .box1{
+          display: block;
+      }
+      @media screen and (min-width: 576px) {
+        .sm-box {
+          display: block;
+        }
+      }
+      @media screen and (min-width: 768px) {
+        .md-box {
+          display: block;
+        }
+      }
+      @media screen and (min-width: 992px) {
+        .lg-box {
+          display: block;
+        }
+      }
+      @media screen and (min-width: 1200px) {
+        .xl-box {
+          display: block;
+        }
+      }
+      @media screen and (min-width: 1400px) {
+        .xxl-box {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box box1">11111</div>
+    <div class="box sm-box">2222</div>
+    <div class="box md-box">3333</div>
+    <div class="box lg-box">4444</div>
+    <div class="box xl-box">5555</div>
+    <div class="box xxl-box">6666</div>
+  </body>
+</html>
