@@ -49,7 +49,7 @@ router.beforeEach((to, from, next) => {
   const { token, isLogin } = user
   const { requiredLogin, redirectAlreadyLogin, title } = to.meta
   if (title) {
-    document.title = title
+    (document as any).title = title
   }
   if (!isLogin) {
     if (token) {

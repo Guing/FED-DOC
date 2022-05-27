@@ -25,10 +25,10 @@
     "lodash": "^4.17.20",
     "qrcodejs2": "0.0.2",
     "uuid": "^8.3.0",
-    "vue": "^3.0.0-0",
+    "vue": "3.2.36",
     "vue-draggable-next": "^1.0.5",
-    "vue-router": "^4.0.0-beta.12",
-    "vuex": "^4.0.0-0"
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
@@ -61,7 +61,7 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
-    "typescript": "~3.9.3",
+    "typescript": "4.5.5",
     "vue-jest": "^5.0.0-alpha.5"
   }
 }
