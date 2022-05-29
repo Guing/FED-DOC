@@ -1,0 +1,22 @@
+## NPM包
+
+### editor-server
+
+- formidable
+	- 一个用于解析表单数据的 Node.js 模块，尤其是文件上传
+
+### editor
+
+- array-move      （18周4-3）
+  - 移动数组元素到不同的位置
+
+- vue Draggale  （18周4-5）
+  - 一个Vue的拖拉组件
+- CropperJs     （18周2-2）
+  - 一个图片裁剪库
+- hotkey.js (19周4-2)
+  - 一个快捷键的库
+
+## 工具
+
+https://regexr.com/ 一个非常强大的正则在线工具
