@@ -9,13 +9,16 @@
 
 - array-move      （18周4-3）
   - 移动数组元素到不同的位置
-
 - vue Draggale  （18周4-5）
   - 一个Vue的拖拉组件
 - CropperJs     （18周2-2）
   - 一个图片裁剪库
 - hotkey.js (19周4-2)
   - 一个快捷键的库
+- json server （20周3-1）
+  - 一个数据mock工具
+- async-validator (20周4-1)
+  - 一个异步检验库
 
 ## 工具
 
