@@ -9,16 +9,48 @@
 
 - array-move      （18周4-3）
   - 移动数组元素到不同的位置
+  
 - vue Draggale  （18周4-5）
   - 一个Vue的拖拉组件
+  
 - CropperJs     （18周2-2）
   - 一个图片裁剪库
+  
 - hotkey.js (19周4-2)
   - 一个快捷键的库
+  
 - json server （20周3-1）
   - 一个数据mock工具
+  
 - async-validator (20周4-1)
   - 一个异步检验库
+  
+- path-to-regexp （20周6-1）
+
+  - 将url路径和正则表达式互相转化的库，
+
+  - ```javascript
+    const keys = [];
+    const regexp = pathToRegexp("/foo/:bar", keys);
+    // regexp = /^\/foo(?:\/([^\/#\?]+?))[\/#\?]?$/i
+    // keys = [{ name: 'bar', prefix: '/', suffix: '', pattern: '[^\\/#\\?]+?', modifier: '' }]
+    
+    const fn = match("/user/:id", { decode: decodeURIComponent });
+    fn("/user/123"); //=> { path: '/user/123', index: 0, params: { id: '123' } }
+    fn("/invalid"); //=> false
+    fn("/user/caf%C3%A9"); //=> { path: '/user/caf%C3%A9', index: 0, params: { id: 'café' } }
+    
+    const tokens = parse("/route/:foo/(.*)");
+    console.log(tokens[0]);
+    //=> "/route"
+    
+    const toPath = compile("/user/:id", { encode: encodeURIComponent });
+    toPath({ id: 123 }); //=> "/user/123"
+    toPath({ id: "café" }); //=> "/user/caf%C3%A9"
+    toPath({ id: "/" }); //=> "/user/%2F"
+    ```
+
+  - 
 
 ## 工具
 
