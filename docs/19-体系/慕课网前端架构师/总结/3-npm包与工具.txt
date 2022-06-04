@@ -50,7 +50,19 @@
     toPath({ id: "/" }); //=> "/user/%2F"
     ```
 
-  - 
+- html2canvas (21周2-1)
+
+  - 将html的dom转化为canvas
+  
+- node-qrcode(21周4-2)
+
+  - 生成二维码
+
+- clipboard.js （21周5-1）
+
+  - 拷贝文本数据
+
+
 
 ## 工具
 
