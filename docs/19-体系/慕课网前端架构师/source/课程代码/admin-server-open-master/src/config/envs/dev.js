@@ -6,24 +6,27 @@
 module.exports = {
     // mongodb 连接配置
     mongodbConf: {
-        host: 'localhost',
+        host: 'blackfe.com',
         port: '27017',
-        dbName: 'testdb',
+        password: fs.readFileSync(path.resolve(userHome, '.black-cli', 'mongodb_pwd')).toString().trim(),
+        user: 'root',
+        dbName: 'editor-server',
     },
 
     // redis 连接配置
     redisConf: {
         port: '6379',
-        host: '127.0.0.1',
+        host: 'blackfe.com',
+        password: fs.readFileSync(path.resolve(userHome, '.black-cli', 'redis_pwd')).toString().trim()
     },
 
     // mysql 连接配置
     mysqlConf: {
-        host: 'localhost',
+        host: 'blackfe.com',
         user: 'root',
-        password: 'xxxx',
+        password: fs.readFileSync(path.resolve(userHome, '.black-cli', 'mysql_pwd')).toString().trim(),
         port: '3306',
-        database: 'testdb',
+        database: 'editor-server',
     },
 
     // cors origin
