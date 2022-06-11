@@ -24,6 +24,7 @@ async function findPublishWork(id, uuid) {
             // 缓存数据，和传入的 uuid 不匹配（可能传入的 uuid 是假的）
             work = null
         }
+        return work;
     }
 
     // 无缓存，访问数据库

@@ -21,8 +21,8 @@ if (process.env.NODE_ENV === 'development' || process.env.VUE_APP_IS_STAGING) {
   // 这里是本地的请求 URL
   // staging 也就是测试环境 URL
   baseBackendURL = 'http://blackfe.com:3000'
-  baseH5URL = 'http://blackfe.com:8082'
-  baseStaticURL = 'http://blackfe.com:8080'
+  baseH5URL = 'http://localhost:3001'
+  baseStaticURL = 'http://localhost:3001'
 } else {
   // 生产环境 URL
   baseBackendURL = 'https://api.imooc-lego.com'
