@@ -8,7 +8,7 @@ const { MYSQL_DB, MYSQL_HOST, MYSQL_PORT, MYSQL_PWD, MYSQL_USER } = require('./d
 // local
 const REDIS_PORT = 6379
 const REDIS_HOST = 'blackfe.com'
-const REDIS_PWD = fs.readFileSync(path.resolve(userHome, '.black-cli', 'redis_pwd')).toString().trim()
+const REDIS_PWD = fs.readFileSync(path.resolve(userHome, '.imooc-web', 'password')).toString().trim()
 
 // remote aliyun
 // const REDIS_PORT = 6379

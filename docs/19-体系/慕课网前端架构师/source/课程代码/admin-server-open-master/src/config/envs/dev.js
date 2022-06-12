@@ -2,13 +2,15 @@
  * @description dev 配置
  * @author 双越
  */
-
+const fs = require('fs')
+const path = require('path')
+const userHome = require('os').homedir();
 module.exports = {
     // mongodb 连接配置
     mongodbConf: {
         host: 'blackfe.com',
         port: '27017',
-        password: fs.readFileSync(path.resolve(userHome, '.black-cli', 'mongodb_pwd')).toString().trim(),
+        password: fs.readFileSync(path.resolve(userHome, '.imooc-web', 'password')).toString().trim(),
         user: 'root',
         dbName: 'editor-server',
     },
@@ -17,14 +19,14 @@ module.exports = {
     redisConf: {
         port: '6379',
         host: 'blackfe.com',
-        password: fs.readFileSync(path.resolve(userHome, '.black-cli', 'redis_pwd')).toString().trim()
+        password: fs.readFileSync(path.resolve(userHome, '.imooc-web', 'password')).toString().trim()
     },
 
     // mysql 连接配置
     mysqlConf: {
         host: 'blackfe.com',
         user: 'root',
-        password: fs.readFileSync(path.resolve(userHome, '.black-cli', 'mysql_pwd')).toString().trim(),
+        password: fs.readFileSync(path.resolve(userHome, '.imooc-web', 'password')).toString().trim(),
         port: '3306',
         database: 'editor-server',
     },
