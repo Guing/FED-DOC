@@ -1,0 +1,21 @@
+{
+  "name": "@dcli/commands",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Guing",
+  "description": "A business cli tool utils",
+  "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "type": "module",
+  "scripts": {},
+  "dependencies": {
+    "@dcli/utils": "link:..\\utils",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.4"
+  }
+}

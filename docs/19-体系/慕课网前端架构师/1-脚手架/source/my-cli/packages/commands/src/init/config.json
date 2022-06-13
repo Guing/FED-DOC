@@ -1,0 +1,14 @@
+{
+  "page": [
+    {
+      "name": "@dcli/template-component-vue2",
+      "desc": "vue2标准组件模板"
+    }
+  ],
+  "project": [
+    {
+      "name": "@dcli/template-project-vue2",
+      "desc": "vue2标准项目模板"
+    }
+  ]
+}

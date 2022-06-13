@@ -1,0 +1,14 @@
+{
+  "name": "@dcli/template-project-vue2",
+  "desc": "vue2标准项目模板",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
