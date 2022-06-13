@@ -2,9 +2,10 @@
 const fs = require('fs')
 const path = require('path')
 const userHome = require('user-home')
+const host = 'localhost';
 // Mondodb
 const mongodbPWD = fs.readFileSync(path.resolve(userHome, '.imooc-web', 'password')).toString().trim()
-const mongodbUrl = 'mongodb://root:'+mongodbPWD+'@blackfe.com:27017';
+const mongodbUrl = 'mongodb://root:'+mongodbPWD+'@'+host+':27017';
 const mongodbName = 'black-cli'
 
 /**
@@ -22,7 +23,7 @@ const OSS_COMPONENT_BUCKET ='cloudscope-component'
 /*
  * Mysql 
  */
-const MYSQL_HOST = 'blackfe.com'
+const MYSQL_HOST = host
 const MYSQL_PORT = 3306
 const MYSQL_USER = 'root'
 const MYSQL_PWD = fs.readFileSync(path.resolve(userHome, '.imooc-web', 'password')).toString().trim()

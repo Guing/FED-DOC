@@ -7,7 +7,7 @@ const userHome = require('user-home')
 const { MYSQL_DB, MYSQL_HOST, MYSQL_PORT, MYSQL_PWD, MYSQL_USER } = require('./db')
 // local
 const REDIS_PORT = 6379
-const REDIS_HOST = 'blackfe.com'
+const REDIS_HOST = 'localhost'
 const REDIS_PWD = fs.readFileSync(path.resolve(userHome, '.imooc-web', 'password')).toString().trim()
 
 // remote aliyun
