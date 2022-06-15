@@ -4,6 +4,21 @@
 
 - formidable
 	- 一个用于解析表单数据的 Node.js 模块，尤其是文件上传
+- release-it （26周3-4）
+  - 一个版本发布管理工具，可以自动生成Changelog日志，规范发布tag等
+- helmet (27周2-4)
+  - 一个优化http请求头库，可以帮忙网站更加安全
+
+- csurf(27周2-4)
+  - 防止跨站脚本工具
+
+- escape-html(27周2-4)
+  - 格式化html字符串，可以防止xss攻击
+
+- nodemailer（27周3-4）
+  - 发送邮件库
+
+
 
 ### editor
 
@@ -68,6 +83,11 @@
 - cross-env (22周2-3)
 
   - 跨平台设置环境变量
+
+## event-analytics-server
+
+- node-cron (24周3-4)
+  - node执行定时任务
 
 
 ## 工具
