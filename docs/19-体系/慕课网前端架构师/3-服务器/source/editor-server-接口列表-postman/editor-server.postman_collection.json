@@ -1,0 +1,733 @@
+{
+	"info": {
+		"_postman_id": "642188ad-4c64-4f1a-b285-0f41b63095b2",
+		"name": "editor-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7946839"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "生成短信验证码",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumber\": \"13432271711\",\r\n    \"isRemoteTest\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{users}}/genVeriCode",
+							"host": [
+								"{{host}}{{users}}"
+							],
+							"path": [
+								"genVeriCode"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "使用手机号登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "phoneNumber",
+									"value": "13432271711",
+									"type": "text"
+								},
+								{
+									"key": "veriCode",
+									"value": "5566",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{users}}/loginByPhoneNumber",
+							"host": [
+								"{{host}}{{users}}"
+							],
+							"path": [
+								"loginByPhoneNumber"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户信息",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "phoneNumber",
+									"value": "13432271733",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "veriCode",
+									"value": "6884",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{users}}/getUserInfo",
+							"host": [
+								"{{host}}{{users}}"
+							],
+							"path": [
+								"getUserInfo"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改用户信息",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nickName\": \"733\",\r\n    \"gender\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{users}}/updateUserInfo",
+							"host": [
+								"{{host}}{{users}}"
+							],
+							"path": [
+								"updateUserInfo"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "channel",
+			"item": [
+				{
+					"name": "创建渠道",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test\",\r\n    \"workId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{channel}}/",
+							"host": [
+								"{{host}}{{channel}}"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除渠道",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test\",\r\n    \"workId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{channel}}/1",
+							"host": [
+								"{{host}}{{channel}}"
+							],
+							"path": [
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新渠道名称",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test1\",\r\n    \"workId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{channel}}/updateName/2",
+							"host": [
+								"{{host}}{{channel}}"
+							],
+							"path": [
+								"updateName",
+								"2"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "根据一个作品的所有渠道",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test1\",\r\n    \"workId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{channel}}/getWorkChannels/1",
+							"host": [
+								"{{host}}{{channel}}"
+							],
+							"path": [
+								"getWorkChannels",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "works",
+			"item": [
+				{
+					"name": "创建空白作品",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "hello",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "wrold",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询单个作品",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{works}}/2",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改作品信息",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": " hello",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/1",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "复制作品",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": " hello",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/copy/1",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"copy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除作品",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": " hello",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/1",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "恢复删除",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": " hello",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/put-back/1",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"put-back",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "转赠作品",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": " hello",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/transfer/1/13432271711",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"transfer",
+								"1",
+								"13432271711"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布作品",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": " hello",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/publish/2",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"publish",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布为模板",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": " hello",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{works}}/publish-template/2",
+							"host": [
+								"{{host}}{{works}}"
+							],
+							"path": [
+								"publish-template",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "templates",
+			"item": [
+				{
+					"name": "获取公共模板",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "hello",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "wrold",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{templates}}/",
+							"host": [
+								"{{host}}{{templates}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询单个公共模板",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "hello",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "wrold",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{templates}}/1",
+							"host": [
+								"{{host}}{{templates}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "utils",
+			"item": [
+				{
+					"name": "上传图片",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "124",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/F:/Users/aguin/Pictures/d1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}{{utils}}/upload-img",
+							"host": [
+								"{{host}}{{utils}}"
+							],
+							"path": [
+								"upload-img"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiIxMzQzMjI3MTcxMSIsInBhc3N3b3JkIjoiYjFlZDQzNGNlMWFkOTMyOTFjYmY5ZTE2MWJlZjhlMGMiLCJwaG9uZU51bWJlciI6IjEzNDMyMjcxNzExIiwibmlja05hbWUiOiLkuZDpq5gxNzExIiwiZ2VuZGVyIjoiMCIsInBpY3R1cmUiOm51bGwsImNpdHkiOm51bGwsImxhdGVzdExvZ2luQXQiOiIyMDIyLTA0LTI2VDAzOjA5OjM3LjAwMFoiLCJpc0Zyb3plbiI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjItMDQtMjZUMDM6MDk6MzcuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMjItMDQtMjZUMDM6MDk6MzcuMDAwWiIsImlhdCI6MTY1MzU1Njc2OSwiZXhwIjoxNjUzNjQzMTY5fQ.sEduWCupfPYz5lrOkgSHYYa63hW0cTakg7_x5idry1M",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
