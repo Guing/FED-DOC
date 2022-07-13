@@ -1,3 +1,9 @@
+## 参考网址
+
+[https://gobomb.github.io/post/wireguard-notes/](https://gobomb.github.io/post/wireguard-notes/)
+[https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247486608&idx=1&sn=affd1ea0449ee10038229240d2254c4c&chksm=fbee4c5dcc99c54b824a6ea219f195c261c7cc006deca7b704ca8265d786b6744273100e8976&scene=21#wechat_redirect](https://mp.weixin.qq.com/s?__biz=MzU1MzY4NzQ1OA==&mid=2247486608&idx=1&sn=affd1ea0449ee10038229240d2254c4c&chksm=fbee4c5dcc99c54b824a6ea219f195c261c7cc006deca7b704ca8265d786b6744273100e8976&scene=21#wechat_redirect)
+[https://jishuin.proginn.com/p/763bfbd37d3a](https://jishuin.proginn.com/p/763bfbd37d3a)
+
 ## 服务器
 
 ### 设置网卡
@@ -9,7 +15,7 @@
   - `echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf`
   - `echo "net.ipv4.conf.all.proxy_arp = 1" >> /etc/sysctl.conf`
   - `sysctl -p /etc/sysctl.conf`
-- 添加内网的路由导向弹虚拟网卡`ip r add 192.168.1.0/24 via 10.6.6.1 dev wg0; `**（重启后失效）**
+- 添加内网的路由导向弹虚拟网卡`ip r add 192.168.1.0/24 via 10.6.6.1 dev wg0;`**（重启后失效）**
 - 在本节点的`PostUp`中添加以下脚本：
 
 ```bash
@@ -78,13 +84,16 @@ AllowedIPs = 10.6.6.2/32,192.168.1.0/24
 - 使用`wg-quick up wg0`
 - 使用`systemctl enable wg-quick@wg0`，添加开机启动
 - 在本节点的`PostUp`中添加以下脚本：
+
 ```bash
 echo "1" > /proc/sys/net/ipv4/ip_forward;
 iptables  -t filter  -A FORWARD -i wg0 -o wlan0 -j ACCEPT;
 iptables -t nat -A POSTROUTING -s 10.6.6.0/24 -o wlan0 -j MASQUERADE;
 iptables  -t filter  -A FORWARD  -i wlan0 -o wg0 -j ACCEPT
 ```
+
 - 在本节点的`PostDown`中添加以下脚本：
+
 ```bash
 iptables  -t filter  -D FORWARD -i wg0 -o wlan0 -j ACCEPT;
 iptables -t nat -D POSTROUTING -s 10.6.6.0/24 -o wlan0 -j MASQUERADE;
@@ -92,6 +101,7 @@ iptables  -t filter  -D FORWARD  -i wlan0 -o wg0 -j ACCEPT
 ```
 
 - 完整的`wg0.conf`
+
 ```bash
 [Interface]
 Address = fd9f:6666::1/128, 10.6.6.2/32
@@ -115,6 +125,7 @@ PersistentKeepalive = 25
 - 使用`systemctl enable wg-quick@wg0`，添加开机启动
 - 在对等的服务器节点添加：`AllowedIPs = 192.168.1.0/24`
 - 完整节点显示
+
 ```bash
 [Interface]
 PrivateKey = GIpECFx5/aMKDA3fIz5SJGTi1rPtA+gUtyS5XudVSk4=
