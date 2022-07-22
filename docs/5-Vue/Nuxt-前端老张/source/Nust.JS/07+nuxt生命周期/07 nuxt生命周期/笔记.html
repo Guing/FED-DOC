@@ -1,0 +1,67 @@
+一、服务端生命周期
+
+	1.1 nuxtServerInit( store , context ){}
+
+		参数1  ： vuex上下文
+		参数2  ： nuxt上下文
+
+	1.2 middleware({store,route,redirect,params,query,req,res}){}
+
+		***类似于vue中的导航守卫
+
+		a>全局
+
+			nuxt.config.js进行配置
+			router:{
+				middleware:'名称'
+			}
+
+			新建middleware目录 ==> 文件.js
+
+		b>页面
+				<script>
+				export default {
+				  middleware:'auth'
+				}
+				</script>
+				新建middleware目录 ==> 文件.js
+			或者
+				<script>
+				export default {
+				 	middleware(){
+	  	
+	  				}
+				}
+				</script>
+				
+	1.3 validate({params,query}){}
+		***校验url参数
+		<script>
+		export default {
+		  validate({params,query}){
+		  	console.log('validate');
+		  	return /^\d+$/.test(query.id);
+		  }
+		}
+		</script>
+
+	1.4 asyncData({store,params}){}
+
+		***pages中的页面来请求数据的
+
+	1.5 fetch({app,store,params}){}
+
+
+二、服务端和客户端共有的 生命周期
+
+	beforeCreate
+	created
+
+三、客户端生命周期
+
+	beforeMount
+  	mounted
+  	beforeUpdate
+  	updated
+  	beforeDestroy
+  	destroyed

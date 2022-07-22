@@ -1,0 +1,50 @@
+{
+  "CartLayout": {
+    "description": "Auto imported from components/cart/layout.vue"
+  },
+  "Foot": {
+    "description": "Auto imported from components/foot/foot.vue"
+  },
+  "CourseInfoContainer": {
+    "description": "Auto imported from components/course/courseInfoContainer.vue"
+  },
+  "CoursePlayMain": {
+    "description": "Auto imported from components/course/coursePlayMain.vue"
+  },
+  "CourseCoursemain": {
+    "description": "Auto imported from components/course/coursemain.vue"
+  },
+  "IndexCourseType": {
+    "description": "Auto imported from components/index/courseType.vue"
+  },
+  "IndexHeader": {
+    "description": "Auto imported from components/index/header.vue"
+  },
+  "IndexNavSwiper": {
+    "description": "Auto imported from components/index/navSwiper.vue"
+  },
+  "IndexNewGoodCourse": {
+    "description": "Auto imported from components/index/newGoodCourse.vue"
+  },
+  "VerifitionVerify": {
+    "description": "Auto imported from components/verifition/Verify.vue"
+  },
+  "VerifitionVerifyPoints": {
+    "description": "Auto imported from components/verifition/Verify/VerifyPoints.vue"
+  },
+  "VerifitionVerifySlide": {
+    "description": "Auto imported from components/verifition/Verify/VerifySlide.vue"
+  },
+  "VerifitionUtilsAse": {
+    "description": "Auto imported from components/verifition/utils/ase.js"
+  },
+  "VerifitionUtilsAxios": {
+    "description": "Auto imported from components/verifition/utils/axios.js"
+  },
+  "VerifitionUtilsUtil": {
+    "description": "Auto imported from components/verifition/utils/util.js"
+  },
+  "VerifitionApi": {
+    "description": "Auto imported from components/verifition/api/index.js"
+  }
+}

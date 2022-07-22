@@ -1,0 +1,28 @@
+一、安装下载nuxtjs
+
+	npx create-nuxt-app
+
+	***下载的时候什么都不安装
+
+二、配置路由
+
+	2.1 下载
+
+		npm install @nuxtjs/router -S
+
+	2.2 在nuxt.config.js配置
+
+		modules:[
+			'@nuxtjs/router'
+		]
+
+	2.3 把vue-cli中的router文件拷贝到nuxt项目根目录
+
+	2.4 修改最后返回
+
+		export function createRouter(){
+		    return new Router({
+		      mode: "history",
+		      routes,
+		    });
+		}

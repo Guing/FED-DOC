@@ -1,0 +1,161 @@
+一、安装下载nuxtjs
+
+	npx create-nuxt-app
+
+	***下载的时候什么都不安装
+
+二、配置路由
+
+	2.1 下载
+
+		npm install @nuxtjs/router -S
+
+	2.2 在nuxt.config.js配置
+
+		modules:[
+			'@nuxtjs/router'
+		]
+
+	2.3 把vue-cli中的router文件拷贝到nuxt项目根目录
+
+	2.4 修改最后返回
+
+		export function createRouter(){
+		    return new Router({
+		      mode: "history",
+		      routes,
+		    });
+		}
+
+三、请求接口
+
+	3.1 先解决跨域的问题,并且安装axios
+
+		a>安装下载
+
+			npm install @nuxtjs/axios @nuxtjs/proxy -S
+
+		b>nuxt.config.js配置
+
+			modules: [
+			    '@nuxtjs/router',
+			    '@nuxtjs/axios',
+			    '@nuxtjs/proxy'
+			],
+
+	3.2 设置代理解决跨域的问题 : nuxt.config.js
+
+		axios:{
+		    proxy:true
+		},
+		proxy:{
+		    '/api':{
+		        target:'http://testapi.xuexiluxian.cn',
+		    }
+		},
+
+	3.3 axios二次封装
+
+		a>配置 : nuxt.config.js
+
+			plugins: [
+			    '~/plugins/axios',
+			],
+		b>新建文件：根目录下新建plugins/axios.js
+
+		c>axios.js
+			export default ( {$axios} )=>{
+				$axios.onRequest(config=>{
+					return config;
+				})
+				$axios.onResponse(response=>{
+					return response.data;
+				})
+			}
+			参考链接：https://axios.nuxtjs.org/helpers
+
+	3.4 解耦合
+
+		a>配置: nuxt.config.js
+
+			plugins: [
+			    '~/plugins/axios',
+			    '~/api/xxx'
+			],
+		b>xxx.js中写入
+
+			export default ({$axios},inject)=>{
+
+				inject('getFirstCategorys',()=>$axios({
+					url:'/api/course/category/getFirstCategorys',
+			        method:'GET',
+				}))
+
+			}
+			
+		c>页面或者组件请求
+
+			async asyncData( app ){
+			    let res = await app.$getFirstCategorys();
+			    return {
+			    	list:res.data.list
+				}
+			}
+
+四、vuex进行引入
+
+	把vue-cli的store进入到nuxtjs项目中，修改store的返回：
+	
+		const store = ()=> new Vuex.Store({
+		  	modules: {
+			  	user,
+		      	caseInfomation
+		  	}
+		});
+
+		export default store;
+
+五、引入当前需要的模块
+
+	加密解密：crypto-js
+	element-ui : 
+			1. 安装下载：npm i element-ui -S
+			2. 配置：nuxt.config.js中的plugins
+				plugins: [
+    				'~/plugins/element'
+    			]
+    		3. 在根目录的plugins/element.js新建文件
+    			import Vue from 'vue';
+				import ElementUI from 'element-ui';
+				Vue.use(ElementUI);
+
+			4. 配置css ： nuxt.config.js中的css
+				css: [
+				    'element-ui/lib/theme-chalk/index.css',
+				],
+
+六、把token做持久化存储
+
+	1. 下载
+		npm install cookie-universal-nuxt -S
+	2. 配置:nuxt.config.js
+
+		modules: [
+	    	'cookie-universal-nuxt'
+	 	],
+
+	3. 操作
+
+		this.$cookies.get()
+		this.$cookies.set()
+		this.$cookies.remove()
+
+七、添加中间件,读取token
+
+	
+
+
+------------------------------------------------
+登录测试账号：test 、 admin123
+------------------------------------------------
+

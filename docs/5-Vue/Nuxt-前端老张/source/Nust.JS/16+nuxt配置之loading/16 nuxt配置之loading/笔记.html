@@ -1,0 +1,18 @@
+一、nuxtjsloading默认是开启的，也可以关闭
+
+	nuxt.config.js中
+	loading:false
+
+二、也可以自定义
+
+	loading: '~/components/loading.vue',
+
+	loading.vue中写入对应的内容
+
+	查看api：https://www.nuxtjs.cn/api/configuration-loading
+
+三、你也可以不用nuxtjs的loading
+
+	loading:false
+	
+	自己在axios中进行封装

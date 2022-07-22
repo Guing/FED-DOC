@@ -1,0 +1,24 @@
+一、安装
+
+	npm install @nuxtjs/axios @nuxtjs/proxy -S
+
+二、nuxt.config.js进行配置
+
+	modules: [
+	    '@nuxtjs/axios',
+	    '@nuxtjs/proxy'
+	],
+	axios:{
+	    //是否可以跨域
+	    proxy:true,
+	    //retry:{ retries:3 },
+	    //baseUr: process.env._ENV == 'production'? 'xxx' ? 'xxx'
+	},
+	proxy:{
+	    '/api':{
+	      target:'http://localhost:4000',
+	      pathRewrite:{
+	        '^/api':'',
+	      }
+	    }
+	},

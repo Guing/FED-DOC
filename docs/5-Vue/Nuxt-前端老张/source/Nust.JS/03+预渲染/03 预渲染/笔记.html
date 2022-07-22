@@ -1,0 +1,50 @@
+SEO ： 搜索引擎优化
+
+	1. 多页面
+	2. title、描述、关键词
+	3. 网站内容是怎么来的？
+
+解决方式一：预渲染
+
+	A> 使用插件：prerender-spa-plugin
+
+		1. vue项目中安装prerender-spa-plugin
+
+			npm install prerender-spa-plugin -S
+
+		2. vue.config.js进行配置
+
+
+	B> 修改title描述关键词：vue-meta-info
+
+		1. 下载
+
+			npm install vue-meta-info -S
+
+		2. 到页面组件中配置
+
+			metaInfo: {
+		    title: '小鹿线官网', 
+		    meta: [{               
+		        name: '关键字,web前端',
+		        content: '描述'
+		      }]
+		    }
+
+	可以解决：
+	
+		1. 打包多页面
+		2. 可以解决每个页面单独生成title描述关键词 [vue-meta-info]
+		3. 接口数据是在html生成之前就放在页面上的，爬虫可以抓取到内容
+
+	存在的问题：
+
+		1. 预渲染无法配置动态路由
+		2. 如果title描述关键词来自于接口的数据，配置到meta-info也是不行的
+
+	适合做什么项目：一个项目可能某几个页面需要做seo
+
+
+
+
+

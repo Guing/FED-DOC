@@ -1,0 +1,35 @@
+一、自动生成
+
+	链接：https://www.nuxtjs.cn/guide/routing
+
+	路由的跳转和vue差不多注意 <nuxt-link> 就行了
+
+二、使用router.js
+
+	2.1 下载 ： @nuxtjs/router	
+
+		npm i @nuxtjs/router -S
+
+	2.2 下载完成后在nuxt.config.js的modules模块进行配置
+
+		modules: [
+		    '@nuxtjs/router'
+		],
+
+	2.3 把router文件放入nuxt项目根目录
+
+		***必须router.js
+
+	2.4 修改router.js的内容
+
+	2.5 nuxtjs/router返回的内容和vue有所不同
+
+		export function createRouter() {
+		  return new VueRouter({
+		    mode: 'history',
+		    routes
+		  })
+		}
+
+	
+
