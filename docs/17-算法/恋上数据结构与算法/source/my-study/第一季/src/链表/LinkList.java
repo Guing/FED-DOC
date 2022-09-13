@@ -70,24 +70,39 @@ package 链表;
 }
 
 
-public class LinkList<E> implements List<E> {
+class Node<E>{
+      E element;
+     Node<E> next;
+     Node<E> prev;
+     public Node(E element,Node<E> next,Node<E> prev){
+        this.element = element;
+        this.prev = prev;
+        this.next = next;
+     }
+}
 
+public class LinkList<E> implements List<E> {
+    
+     private int size;
+     private Node<E> first;
+     private Node<E> last;
     @Override
     public void clear() {
         // TODO Auto-generated method stub
+        size =  0;
         
     }
 
     @Override
     public int size() {
         // TODO Auto-generated method stub
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
         // TODO Auto-generated method stub
-        return false;
+        return size == 0;
     }
 
     @Override
@@ -100,12 +115,16 @@ public class LinkList<E> implements List<E> {
     public void add(E element) {
         // TODO Auto-generated method stub
         
+        
+        
     }
 
     @Override
     public E get(int index) {
         // TODO Auto-generated method stub
-        return null;
+        Node<E> node = getNode(index);
+        return node.element;
+       
     }
 
     @Override
@@ -117,6 +136,14 @@ public class LinkList<E> implements List<E> {
     @Override
     public void add(int index, E element) {
         // TODO Auto-generated method stub
+        if(size == index){
+            Node<E> oldNode = last;
+            last = new Node<E>(element, null, oldNode);
+        }else{
+
+             
+
+        }
         
     }
 
@@ -129,7 +156,49 @@ public class LinkList<E> implements List<E> {
     @Override
     public int indexOf(E element) {
         // TODO Auto-generated method stub
-        return 0;
+        int index = 0;
+        Node<E> current = first;
+        while(current !=null){
+            if(current.element == element){
+                return index; 
+            }
+            index++;
+            current.next = current;
+        }
+        return -1;
     }
+
+    private Node<E> getNode(int index){
+        rangeCheck(index);
+        Node<E> current = first;
+        if(index < (size >> 1)){
+            for(int i = 0;i<index;i++){
+                current = current.next;
+            } 
+        }else{
+            for(int i = size-1;i>index;i--){
+                current = current.prev;
+            } 
+        }
+        
+        return current;
+      
+    }
+
+    private void outOfBounds(int index) {
+		throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
+	}
+	
+	private void rangeCheck(int index) {
+		if (index < 0 || index >= size) {
+			outOfBounds(index);
+		}
+	}
+	
+	private void rangeCheckForAdd(int index) {
+		if (index < 0 || index > size) {
+			outOfBounds(index);
+		}
+	}
     
 }
