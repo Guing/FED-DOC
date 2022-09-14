@@ -6,7 +6,7 @@ public abstract class Main {
         list.add(0, 'a');
         list.add(1, 'b');
         list.add(2, 'c');
-        list.add(0, 'x');
-        System.out.print(list);
+        list.set(0, 'x');
+        System.out.println(list);
     }
 }

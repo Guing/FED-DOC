@@ -121,6 +121,8 @@ public class LinkList<E> implements List<E> {
     public void clear() {
         // TODO Auto-generated method stub
         size = 0;
+        first = null;
+		last = null;
 
     }
 
@@ -139,18 +141,21 @@ public class LinkList<E> implements List<E> {
     @Override
     public boolean contains(E element) {
         // TODO Auto-generated method stub
-        return false;
+        
+        return indexOf(element) <0;
     }
 
     @Override
     public void add(E element) {
         // TODO Auto-generated method stub
+        add(size, element);
 
     }
 
     @Override
     public E get(int index) {
         // TODO Auto-generated method stub
+        rangeCheck(index);
         Node<E> node = getNode(index);
         return node.element;
 
@@ -159,12 +164,16 @@ public class LinkList<E> implements List<E> {
     @Override
     public E set(int index, E element) {
         // TODO Auto-generated method stub
-        return null;
+        rangeCheck(index);
+        Node<E> node = getNode(index);
+        node.element = element;
+        return element;
     }
 
     @Override
     public void add(int index, E element) {
         // TODO Auto-generated method stub
+        rangeCheckForAdd(index);
         if (size == index) {
             Node<E> oldNode = last;
             last = new Node<E>(element, null, oldNode);
@@ -175,16 +184,17 @@ public class LinkList<E> implements List<E> {
             }
         } else {
 
-            Node<E> next = getNode(index);
-            Node<E> prev = next.prev;
+            Node<E> current = getNode(index);
+            Node<E> currentPrev = current.prev;
          
-            Node<E> newNode = new Node<E>(element, next, prev);
-            next.next = newNode;
+            Node<E> newNode = new Node<E>(element, current, currentPrev);
+            
+            current.prev = newNode;
           
-            if(prev == null){ //第一个节点
-                 first = newNode;
+            if(currentPrev == null){ //第一个元素
+                first = newNode;
             }else{
-                prev.next = newNode;
+                currentPrev.next = newNode;
             }
         }
         size++;
@@ -194,7 +204,21 @@ public class LinkList<E> implements List<E> {
     @Override
     public E remove(int index) {
         // TODO Auto-generated method stub
-        return null;
+        rangeCheck(index);
+        Node<E> node = getNode(index);
+        if(index == 0){
+            first = node.next;
+            node.next.prev = node.prev; 
+        }else if(index == size-1){
+            last = node.prev;
+            node.prev.next = node.next;
+        }else{
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+        
+        size--;
+        return node.element;
     }
 
     @Override
