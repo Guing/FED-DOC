@@ -1,4 +1,7 @@
 package 队列;
+
+import 链表.LinkList;
+
 interface IDeque<E> {
 
 	/**
@@ -53,6 +56,84 @@ interface IDeque<E> {
 	 */
 	 E rear();
 }
-public class Deque {
+public class Deque<E> implements IDeque<E> {
+    LinkList<E> linkList;
+	public Deque(){
+		linkList = new LinkList<>();
+	}
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		linkList.clear();
+		
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return linkList.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return linkList.isEmpty();
+	}
+
+	@Override
+	public void enQueueFront(E element) {
+		// TODO Auto-generated method stub
+		linkList.add(0, element);
+		
+	}
+
+	@Override
+	public E deQueueFront() {
+		// TODO Auto-generated method stub
+		return linkList.remove(0);
+	}
+
+	@Override
+	public void enQueueRear(E element) {
+		// TODO Auto-generated method stub
+		linkList.add(element);
+		
+	}
+
+	@Override
+	public E deQueueRear() {
+		// TODO Auto-generated method stub
+		return linkList.remove(linkList.size() -1);
+	}
+
+	@Override
+	public E front() {
+		// TODO Auto-generated method stub
+		return linkList.get(0);
+	}
+
+	@Override
+	public E rear() {
+		// TODO Auto-generated method stub
+		return linkList.get(linkList.size()-1);
+	}
+
+	@Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("size=").append(size()).append(", [");
+       
+        for (int i = 0; i < size(); i++) {
+            if (i != 0) {
+                string.append(", ");
+            }
+
+            string.append(linkList.get(i));
+
+            
+        }
+        string.append("]");
+        return string.toString();
+    }
     
 }

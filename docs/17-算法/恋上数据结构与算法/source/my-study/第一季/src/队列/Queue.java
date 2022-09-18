@@ -45,63 +45,59 @@ interface IQueue<E> {
     E front();
 }
 
-public class Queue<E> implements IDeque<E> {
-    LinkList<E> linklist;
+public class Queue<E> implements IQueue<E> {
+    LinkList<E> linkList;
     public Queue(){
-        linklist = new LinkList<E>();
+        linkList = new LinkList<E>();
     }
     @Override
     public void clear() {
         // TODO Auto-generated method stub
+        linkList.clear();
         
     }
-
     @Override
     public int size() {
         // TODO Auto-generated method stub
-        return 0;
+        return linkList.size();
     }
-
     @Override
     public boolean isEmpty() {
         // TODO Auto-generated method stub
-        return false;
+        return linkList.isEmpty();
     }
-
     @Override
-    public void enQueueFront(Object element) {
+    public void enQueue(E element) {
         // TODO Auto-generated method stub
+        linkList.add(element);
         
     }
-
     @Override
-    public Object deQueueFront() {
+    public E deQueue() {
         // TODO Auto-generated method stub
-        return null;
+        return linkList.remove(0);
     }
-
     @Override
-    public void enQueueRear(Object element) {
+    public E front() {
         // TODO Auto-generated method stub
-        
+        return linkList.get(0);
     }
-
     @Override
-    public Object deQueueRear() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("size=").append(size()).append(", [");
+       
+        for (int i = 0; i < size(); i++) {
+            if (i != 0) {
+                string.append(", ");
+            }
 
-    @Override
-    public Object front() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+            string.append(linkList.get(i));
 
-    @Override
-    public Object rear() {
-        // TODO Auto-generated method stub
-        return null;
+            
+        }
+        string.append("]");
+        return string.toString();
     }
-
+  
 }
