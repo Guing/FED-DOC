@@ -2,25 +2,35 @@ package 二叉树;
 
 import java.util.Comparator;
 
+import 二叉树.BinaryTree.Visitor;
 import 二叉树.printer.BinaryTrees;
 
 public class Main {
     public static void main(String[] args) {
 
-        // test1();
+        test1();
         // test2();
-        test3();
+        // test3();
     }
 
     public static void test1() {
         BinarySearchTree<Integer> bst1 = new BinarySearchTree<>();
         int[] arr = new int[] {
-                1, 2, 3, 54, 7, 3, 2
+               10,2,4,5,12,42,21,34
         };
         for (int i = 0; i < arr.length; i++) {
             bst1.add(arr[i]);
         }
         BinaryTrees.println(bst1);
+        bst1.preOrder(new Visitor<Integer>() {
+
+            @Override
+            boolean visit(Integer element) {
+                System.out.println(element);
+                return false;
+            }
+            
+        });
     }
 
     // 使用对象的话，对象需要继承Comparable接口
