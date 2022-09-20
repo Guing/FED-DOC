@@ -1,5 +1,7 @@
 package 队列;
 
+import 链表.LinkList;
+
 interface IQueue<E> {
 
     /**
@@ -43,6 +45,59 @@ interface IQueue<E> {
     E front();
 }
 
-public class Queue {
+public class Queue<E> implements IQueue<E> {
+    LinkList<E> linkList;
+    public Queue(){
+        linkList = new LinkList<E>();
+    }
+    @Override
+    public void clear() {
+        // TODO Auto-generated method stub
+        linkList.clear();
+        
+    }
+    @Override
+    public int size() {
+        // TODO Auto-generated method stub
+        return linkList.size();
+    }
+    @Override
+    public boolean isEmpty() {
+        // TODO Auto-generated method stub
+        return linkList.isEmpty();
+    }
+    @Override
+    public void enQueue(E element) {
+        // TODO Auto-generated method stub
+        linkList.add(element);
+        
+    }
+    @Override
+    public E deQueue() {
+        // TODO Auto-generated method stub
+        return linkList.remove(0);
+    }
+    @Override
+    public E front() {
+        // TODO Auto-generated method stub
+        return linkList.get(0);
+    }
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("size=").append(size()).append(", [");
+       
+        for (int i = 0; i < size(); i++) {
+            if (i != 0) {
+                string.append(", ");
+            }
 
+            string.append(linkList.get(i));
+
+            
+        }
+        string.append("]");
+        return string.toString();
+    }
+  
 }
