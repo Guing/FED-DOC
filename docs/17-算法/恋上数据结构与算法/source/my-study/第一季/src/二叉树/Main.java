@@ -14,7 +14,8 @@ public class Main {
         // BtPreTest();
         // BtInTest();
         // BtPostTest();
-        BtLevelTest();
+        // BtLevelTest();
+        BtHeightTest();
     }
 
     public static void BstTest1() {
@@ -164,6 +165,18 @@ public class Main {
             }
 
         });
+    }
+     // 获取二叉树高度测试
+     public static void BtHeightTest() {
+        BinarySearchTree<Integer> bst1 = new BinarySearchTree<>();
+        int[] arr = new int[] {
+                10, 2, 4, 5, 12, 42, 21, 34
+        };
+        for (int i = 0; i < arr.length; i++) {
+            bst1.add(arr[i]);
+        }
+        BinaryTrees.println(bst1);
+        System.out.println(bst1.height());
     }
 }
 

@@ -83,6 +83,7 @@ public class BinaryTree<E> implements BinaryTreeInfo {
 
     }
 
+    // 层级遍历
     public void levelOrder(Visitor<E> visitor) {
         if (visitor == null || root == null)
             return;
@@ -104,6 +105,92 @@ public class BinaryTree<E> implements BinaryTreeInfo {
 
         }
 
+    }
+
+    // 获取二叉树的高度。
+    public int height() {
+        return height(root);
+    }
+
+    // 获取二叉树的高度-递归方法
+    public int heightRec(Node<E> node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + Math.max(heightRec(node.right), heightRec(node.left));
+    }
+
+    // 获取二叉树的高度-迭代方法
+    public int height(Node<E> node) {
+        if (node == null) {
+            return 0;
+        }
+        int height = 0;
+        int levelSize = 1;
+        Queue<Node<E>> queue = new LinkedList<>();
+        Node<E> current;
+        queue.offer(root);
+        // 利用层级遍历，遍历完一层时，队列的size就是这一层的节点数量。
+        while (queue.size() != 0) {
+            current = queue.poll();
+            levelSize--;
+
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+            if (levelSize == 0) {
+                height++;
+                levelSize = queue.size();
+            }
+
+        }
+
+        return height;
+    }
+
+    public boolean isComplete() {
+        Queue<Node<E>> queue = new LinkedList<>();
+        Node<E> current = null;
+        boolean isLeaf = false;
+        queue.offer(root);
+        // 利用层级遍历
+        while (queue.size() != 0) {
+            current = queue.poll();
+            if (isLeaf == true && !current.isLeaf()) {
+                return false;
+            }
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+            // 下面根据左右子节点是否为空的四种情况，来做判断：
+
+            // 左子节点为空，右子节点不为空，则肯定不是完全二叉树
+            if (current.left == null && current.right != null) {
+                return false;
+
+            } // 左子节点不为空，右子节点为空，则后续的节点必须是叶子节点，不然就不是完全二叉树
+            else if (current.left != null && current.right == null) {
+                isLeaf = true;
+            }
+            // 左子节点为空，右子节点为空，则后续的节点必须是叶子节点，不然就不是完全二叉树
+            else if (current.left == null && current.right == null) {
+                isLeaf = true;
+            }
+            // 左子节点和右子节点不为空，则继续
+            else if (current.left != null && current.right != null) {
+
+            }
+        }
+
+        return true;
     }
 
     // 遍历树时，需要传递的访问类
@@ -128,10 +215,12 @@ public class BinaryTree<E> implements BinaryTreeInfo {
             this.parent = parent;
         }
 
+        // 是否是叶子节点
         public boolean isLeaf() {
             return left == null && right == null;
         }
 
+        // 是否是两个子节点
         public boolean hasTwoChildren() {
             return left != null && right != null;
         }
