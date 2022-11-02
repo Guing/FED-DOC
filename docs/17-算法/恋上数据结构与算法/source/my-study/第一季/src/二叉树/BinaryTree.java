@@ -152,6 +152,7 @@ public class BinaryTree<E> implements BinaryTreeInfo {
         return height;
     }
 
+    // 判断是否为完全二叉树
     public boolean isComplete() {
         Queue<Node<E>> queue = new LinkedList<>();
         Node<E> current = null;
@@ -191,6 +192,48 @@ public class BinaryTree<E> implements BinaryTreeInfo {
         }
 
         return true;
+    }
+    //获取前驱节点（中序遍历的前一个节点）
+    public Node<E> predecessor(Node<E> node) {
+        if (node == null) return null;
+		
+		// 前驱节点在左子树当中（left.right.right.right....）
+		Node<E> p = node.left;
+		if (p != null) {
+			while (p.right != null) {
+				p = p.right;
+			}
+			return p;
+		}
+		
+		// 从父节点、祖父节点中寻找前驱节点
+		while (node.parent != null && node == node.parent.left) {
+			node = node.parent;
+		}
+
+		// node.parent == null
+		// node == node.parent.right
+		return node.parent;
+    }
+    //获取后继节点（中序遍历的后一个节点）
+    protected Node<E> successor(Node<E> node) {
+        if (node == null) return null;
+		
+		// 前驱节点在左子树当中（right.left.left.left....）
+		Node<E> p = node.right;
+		if (p != null) {
+			while (p.left != null) {
+				p = p.left;
+			}
+			return p;
+		}
+		
+		// 从父节点、祖父节点中寻找前驱节点
+		while (node.parent != null && node == node.parent.right) {
+			node = node.parent;
+		}
+
+		return node.parent;
     }
 
     // 遍历树时，需要传递的访问类
