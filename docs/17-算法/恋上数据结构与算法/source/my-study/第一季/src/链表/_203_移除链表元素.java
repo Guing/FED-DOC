@@ -28,7 +28,7 @@ public class _203_移除链表元素 {
     // 方法一：使用递归
     // 执行用时：1 ms
     // 内存消耗：42.1 MB
-    public static ListNode removeElements1(ListNode head, int val) {\
+    public static ListNode removeElements1(ListNode head, int val) {
         if(head == null){
             return head;
         }

@@ -1,0 +1,8 @@
+{
+    "java.configuration.runtimes": [{
+       
+            "name": "JavaSE-1.8",
+            "path": "/usr/bin/java"
+        
+    }]
+}

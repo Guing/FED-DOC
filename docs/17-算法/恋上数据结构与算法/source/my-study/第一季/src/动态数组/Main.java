@@ -8,7 +8,7 @@ public class Main {
         list.add('c');
         list.add('c');
         list.add('c');
-        list.add('c');
+        list.add('c'); 
        
        
         System.out.println(list);
