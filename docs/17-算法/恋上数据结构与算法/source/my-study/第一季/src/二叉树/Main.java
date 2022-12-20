@@ -8,14 +8,14 @@ import 二叉树.printer.BinaryTrees;
 public class Main {
     public static void main(String[] args) {
 
-        // BstTest1();
+        BstTest1();
         // BstTest2();
         // BstTest3();
         // BtPreTest();
         // BtInTest();
         // BtPostTest();
         // BtLevelTest();
-        BtHeightTest();
+        // BtHeightTest();
     }
 
     public static void BstTest1() {
@@ -26,6 +26,8 @@ public class Main {
         for (int i = 0; i < arr.length; i++) {
             bst1.add(arr[i]);
         }
+        bst1.remove(10);
+        
         BinaryTrees.println(bst1);
 
     }

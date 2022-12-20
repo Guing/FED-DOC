@@ -66,6 +66,59 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     }
 
     public void remove(E element) {
+        elementNotNullCheck(element);
+        if (root == null) {
+            return;
+        }
+        Node<E> current = root;
+        int result = 0;
+        while (current != null) {
+            result = compare(current.element, element);
+            if (result > 0) {
+                current = current.left;
+            } else if (result < 0) {
+                current = current.right;
+            } else if (result == 0) {
+                break;
+            }
+        }
+        // 节点的度为0
+        if (current.isLeaf()) {
+            if (current.parent == null) {
+                root = null;
+            } else if (current == current.parent.left) {
+                current.parent.left = null;
+            } else if (current == current.parent.right) {
+                current.parent.right = null;
+            }
+        // 节点的度为1
+        } else if (!current.hasTwoChildren()) {
+            Node<E> child = null;
+            Node<E> parent = current.parent;
+            if (current.left != null) {
+                child = current.left;
+            } else {
+                child = current.right;
+            }
+            //如果current是根节点
+            if (parent == null) {
+                root = child;
+                child.parent = root;
+            //如果current是左节点
+            } else if (current == parent.left) {
+                parent.left = child;
+                child.parent = parent.left;
+            //如果current是右节点
+            } else if (current == parent.right) {
+                parent.right = child;
+                child.parent =y67 parent.right;
+            }
+        //节点的度为2
+        } else {
+           Node<E> node =  predecessor(current);
+           current.element = node.element;
+           remove(node.element);
+        }
 
     }
 
@@ -75,9 +128,9 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     }
 
     private void elementNotNullCheck(E element) {
-		if (element == null) {
-			throw new IllegalArgumentException("element must not be null");
-		}
-	}
+        if (element == null) {
+            throw new IllegalArgumentException("element must not be null");
+        }
+    }
 
 }
