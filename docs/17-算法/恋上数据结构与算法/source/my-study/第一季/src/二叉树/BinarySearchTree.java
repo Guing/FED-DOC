@@ -66,65 +66,70 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     }
 
     public void remove(E element) {
-        elementNotNullCheck(element);
-        if (root == null) {
+        remove(node(element));
+    }
+
+    public void remove(Node<E> node) {
+
+        if (node == null) {
             return;
         }
-        Node<E> current = root;
-        int result = 0;
-        while (current != null) {
-            result = compare(current.element, element);
-            if (result > 0) {
-                current = current.left;
-            } else if (result < 0) {
-                current = current.right;
-            } else if (result == 0) {
-                break;
-            }
+        size--;
+
+        // 度为2的节点
+        if (node.hasTwoChildren()) {
+            // 找到后继节点
+            Node<E> suNode = successor(node);
+            // 用后继节点的值覆盖度为2的节点的值
+            node.element = suNode.element;
+            // 将node赋值为后继节点，下面的就是删除后继节点
+            node = suNode;
         }
-        // 节点的度为0
-        if (current.isLeaf()) {
-            if (current.parent == null) {
-                root = null;
-            } else if (current == current.parent.left) {
-                current.parent.left = null;
-            } else if (current == current.parent.right) {
-                current.parent.right = null;
+
+        // 删除node节点（node的度必然是1或者0）
+        Node<E> replacement = node.left != null ? node.left : node.right;
+
+        if (replacement != null) { // node是度为1的节点
+            // 更改parent
+            replacement.parent = node.parent;
+            // 更改parent的left、right的指向
+            if (node.parent == null) { // node是度为1的节点并且是根节点
+                root = replacement;
+            } else if (node == node.parent.left) {
+                node.parent.left = replacement;
+            } else { // node == node.parent.right
+                node.parent.right = replacement;
             }
-        // 节点的度为1
-        } else if (!current.hasTwoChildren()) {
-            Node<E> child = null;
-            Node<E> parent = current.parent;
-            if (current.left != null) {
-                child = current.left;
-            } else {
-                child = current.right;
+        } else if (node.parent == null) { // node是叶子节点并且是根节点
+            root = null;
+        } else { // node是叶子节点，但不是根节点
+            if (node == node.parent.left) {
+                node.parent.left = null;
+            } else { // node == node.parent.right
+                node.parent.right = null;
             }
-            //如果current是根节点
-            if (parent == null) {
-                root = child;
-                child.parent = root;
-            //如果current是左节点
-            } else if (current == parent.left) {
-                parent.left = child;
-                child.parent = parent.left;
-            //如果current是右节点
-            } else if (current == parent.right) {
-                parent.right = child;
-                child.parent =y67 parent.right;
-            }
-        //节点的度为2
-        } else {
-           Node<E> node =  predecessor(current);
-           current.element = node.element;
-           remove(node.element);
         }
 
     }
 
+    private Node<E> node(E element) {
+        Node<E> node = root;
+        while (node != null) {
+            int cmp = compare(element, node.element);
+            if (cmp == 0)
+                return node;
+            if (cmp > 0) {
+                node = node.right;
+            } else { // cmp < 0
+                node = node.left;
+            }
+        }
+        return null;
+    }
+
     public boolean contains(E element) {
 
-        return false;
+        return node(element) != null;
     }
 
     private void elementNotNullCheck(E element) {
