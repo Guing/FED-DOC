@@ -193,7 +193,8 @@ public class AVLTree<E> extends BST<E> {
 			int rightHeight = right == null ? 0 : ((AVLNode<E>)right).height;
 			height = 1 + Math.max(leftHeight, rightHeight);
 		}
-		
+		//返回左右子树中，高度最高的那个子树。如果两个子树高度相同，则返回和当前节点相同方向的子树
+		//（相同方向：当前节点是在父节点的哪个左右方向）
 		public Node<E> tallerChild() {
 			int leftHeight = left == null ? 0 : ((AVLNode<E>)left).height;
 			int rightHeight = right == null ? 0 : ((AVLNode<E>)right).height;
