@@ -9,11 +9,11 @@ if (dir && dir.length > 0) {
         let b_matchs = b.match(reg);
         return a_matchs[1] - b_matchs[1];
     })
-    let strs = '';
+    let strs = '# Vue入门笔记';
     dir.forEach((file, index) => {
         let str = fs.readFileSync(path.resolve(dirPath, file));
         strs +=
-            `# 第${index + 1}章
+            `## 第${index + 1}章
 
 \`\`\`html
 ${str}
