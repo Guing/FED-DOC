@@ -1,0 +1,4 @@
+<!--pages/detail/detail.wxml-->
+<text>pages/detail/detail.wxml</text>
+<button bindtap="onPassBackTap">回传数据</button>
+<button bindtap="onPassBack2Tap">回传数据2</button>

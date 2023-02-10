@@ -1,0 +1,11 @@
+<!--components/song-list-item/index.wxml-->
+<wxs module="format" src="../../utils/format.wxs"></wxs>
+<view class="item" bindtap="songItemClick" data-item="123">
+  <view class="top">
+    <image class="image" mode="widthFix" src="{{itemInfo.coverImgUrl}}"></image>
+    <view class="play-counter">{{format.countFormat(itemInfo.playCount)}}</view>
+  </view>
+  <view class="bottom">
+    {{itemInfo.name}}
+  </view>
+</view>

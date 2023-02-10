@@ -1,0 +1,10 @@
+<!--components/my-slot/my-slot.wxml-->
+<view class="my-slot">
+  <view class="header">Header</view>
+  <view class="content">
+    <!-- 小程序中插槽是不支持默认值的 -->
+    <slot></slot>
+  </view>
+  <view class="default">哈哈哈哈</view>
+  <view class="footer">Footer</view>
+</view>

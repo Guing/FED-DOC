@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "song-item-v2": "/components/song-item-v2/index",
+    "song-header": "./cpns/song-header/index"
+  }
+}

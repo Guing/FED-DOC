@@ -1,0 +1,55 @@
+{
+  "setting": {
+    "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "detail-song的ranking",
+          "pathName": "pages/detail-song/index",
+          "query": "type=song&idx=1",
+          "scene": null
+        },
+        {
+          "name": "detail-song的menu",
+          "pathName": "pages/detail-song/index",
+          "query": "type=menu&id= 6954660951",
+          "scene": null
+        },
+        {
+          "name": "detail-menu歌单页面",
+          "pathName": "pages/detail-menu/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "song-search页面",
+          "pathName": "pages/song-search/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "main-video页面",
+          "pathName": "pages/main-video/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "detail-video的页面",
+          "pathName": "pages/detail-video/index",
+          "query": "id=14478274",
+          "scene": null
+        },
+        {
+          "name": "music-player",
+          "pathName": "pages/music-player/index",
+          "query": "id=355992",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "CoderwhyMusic"
+}

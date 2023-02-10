@@ -1,0 +1,16 @@
+<!--pages/10_learn_api/index.wxml-->
+<text>pages/10_learn_api/index.wxml</text>
+
+<!-- 1.展示弹窗 -->
+<view>
+  <button size="mini" bindtap="onShowToast">showToast</button>
+  <button size="mini" bindtap="onShowModal">showModal</button>
+  <button size="mini" bindtap="onShowAction">showAction</button>
+</view>
+
+
+<!-- 3.设备信息 -->
+<button bindtap="onGetSystemInfo">设备信息</button>
+
+<!-- 4.本地存储 -->
+<button bindtap="onLocalStorage">本地存储</button>

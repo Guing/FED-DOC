@@ -1,0 +1,56 @@
+<!--pages/cart/cart.wxml-->
+<wxs src="./total.wxs" module="total"></wxs>
+<wxs src="/wxs/format.wxs" module="format"></wxs>
+<text>pages/cart/cart.wxml</text>
+
+<input model:value="{{username}}"/>
+
+<view class="info">
+  <view>{{ message }}</view>
+  <view>{{ firstName + " " + lastName }}</view>
+  <view>{{ date }}</view>
+</view>
+
+<view class="score">
+  <block wx:if="{{ score > 90 }}">
+    <view>优秀</view>
+  </block>
+  <block wx:elif="{{ score > 80 }}">
+    <view>良好</view>
+  </block>
+  <block wx:elif="{{ score >= 60 }}">
+    <view>及格</view>
+  </block>
+  <block wx:else>
+    <view>不及格</view>
+  </block>
+</view>
+
+<view hidden="{{false}}">哈哈哈</view>
+
+
+<view>{{total.calcTotal(nums)}}</view>
+<view>{{format.formatCount(count)}}</view>
+<view>{{format.formatDuration(duration)}}</view>
+
+<view>
+  <!-- 遍历一个数组 -->
+  <view wx:for="{{['abc', 'cba', 'nba']}}">{{item}}</view>
+  <!-- 遍历一个字符串 -->
+  <view wx:for="{{'hello coderwhy'}}">{{item}}</view>
+  <!-- 遍历一个数字 -->
+  <view wx:for="{{10}}">{{item}}</view>
+</view>
+
+<view class="books">
+  <block 
+    wx:for="{{books}}" 
+    wx:key="id" 
+    wx:for-item="book"
+    wx:for-index="i"
+  >
+    <view>{{book.name}}-{{i}}</view>
+  </block>
+</view>
+
+

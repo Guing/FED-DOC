@@ -1,0 +1,7 @@
+<!--components/area-header/index.wxml-->
+<van-cell value="更多" is-link bind:click="cellClick" border="{{false}}">
+  <view slot="title" class="title">
+    {{title}}
+  </view>
+</van-cell>
+

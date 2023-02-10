@@ -1,0 +1,2 @@
+<!--pages/main/main.wxml-->
+<button bindtap="pushDetail">详情页</button>

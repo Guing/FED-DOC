@@ -1,0 +1,12 @@
+/* pages/detail-song/index.wxss */
+
+.header > .title {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin: 30rpx 0 0 30rpx;
+}
+
+.song-list {
+  padding: 10rpx 30rpx;
+}
+

@@ -1,0 +1,115 @@
+/* pages/music-player/music-player.wxss */
+.bg-image, .bg-cover {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-cover {
+  background-color: rgba(0,0,0,.3);
+  backdrop-filter: blur(20px);
+}
+
+/* 导航中center */
+.tabs {
+  display: flex;
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.tabs .divider {
+  margin: 0 8rpx;
+}
+
+.tabs .active {
+  color: #fff;
+}
+
+/* 歌曲布局 */
+.music {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 40rpx 60rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+
+.music .album {
+  flex: 1;
+}
+
+.music .album .image {
+  width: 100%;
+  border-radius: 12rpx;
+}
+
+.music .info .name {
+  font-size: 48rpx;
+  font-weight: 700;
+}
+
+.music .info .singer {
+  margin-top: 10rpx;
+}
+
+.music .lyric {
+  text-align: center;
+  margin: 16rpx 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.music .progress {
+  margin: 12rpx 0;
+}
+
+.music .progress .slider {
+  margin: 16rpx 8rpx 10rpx 18rpx;
+}
+
+.music .progress .time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+}
+
+.music .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12rpx 0;
+}
+
+.music .controls .btn {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.music .controls .btn.mode {
+  width: 80rpx;
+  height: 80rpx;
+} 
+
+.music .controls .btn.play {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+/* 歌词的样式 */
+.lyric-list {
+  color: #aaa;
+  font-size: 28rpx;
+  text-align: center;
+  height: 100%;
+}
+
+.lyric-list .item {
+  height: 35px;
+  line-height: 35px;
+}

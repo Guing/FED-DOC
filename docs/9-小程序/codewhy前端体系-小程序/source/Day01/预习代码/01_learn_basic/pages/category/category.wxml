@@ -1,0 +1,37 @@
+<!--pages/category/category.wxml-->
+<view>
+  <!-- 文本是否可以选中 -->
+  <text user-select="{{true}}">文本是否可以选中呢?</text>
+</view>
+
+<!-- button按钮 -->
+<view>
+  <button 
+    size="mini" 
+    open-type="getUserInfo" 
+    bindgetuserinfo="getUserInfo"
+  >
+    用户信息
+  </button>
+  <button 
+    size="mini" 
+    open-type="getPhoneNumber" 
+    bindgetphonenumber="getPhoneNumber"
+  >
+    用户手机
+  </button>
+</view>
+
+<!-- image组件 -->
+<view>------- image组件 -------</view>
+<view class="image">
+  <!-- 1.加载本地图片 -->
+  <image mode="widthFix" src="/assets/zznh.png"/>
+
+  <!-- 2.加载网络图片 -->
+  <image src="https://ts1.cn.mm.bing.net/th/id/R-C.cc80a6584ce66a3f927ce345096282d0?rik=CHV%2bKyfGELQjEw&riu=http%3a%2f%2fimg.mm4000.com%2ffile%2f8%2f98%2f5ddeea7c76.jpg%3fdown&ehk=8ySJ9mS5TUN1JLBlZ%2fkt68v5SBvjsDLQFU1rp23Tnpc%3d&risl=&pid=ImgRaw&r=0"/>
+
+  <!-- 3.选择本地图片 -->
+  <button bind:tap="chooseLocalImage">选择本地图片</button>
+  <image src="{{chooseImage}}"/>
+</view>

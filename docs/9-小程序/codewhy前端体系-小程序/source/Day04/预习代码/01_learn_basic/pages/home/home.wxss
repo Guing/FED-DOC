@@ -1,0 +1,13 @@
+/* pages/home/home.wxss */
+.title {
+  color: red;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.count {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "my-cpn": "/components/my-cpn/my-cpn",
+    "event-cpn": "/components/event-cpn/event-cpn",
+    "tab-control": "/components/tab-control/tab-control",
+    "my-slot": "/components/my-slot/my-slot",
+    "m-slot": "/components/m-slot/m-slot"
+  }
+}

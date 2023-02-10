@@ -1,0 +1,5 @@
+<!--components/section-info/section-info.wxml-->
+<view class="section">
+  <view class="title" bindtap="onTitleTap">{{ title }}</view>
+  <view class="content info">{{ content }}</view>
+</view>

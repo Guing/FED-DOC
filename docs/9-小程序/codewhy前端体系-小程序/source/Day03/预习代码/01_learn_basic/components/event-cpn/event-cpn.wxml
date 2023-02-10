@@ -1,0 +1,3 @@
+<!--components/event-cpn/event-cpn.wxml-->
+<text>components/event-cpn/event-cpn.wxml</text>
+<button bindtap="onBtnTap">event-btn</button>

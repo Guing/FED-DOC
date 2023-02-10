@@ -1,0 +1,49 @@
+{
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "HY-Music",
+  "setting": {
+    "compileHotReLoad": false,
+    "urlCheck": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "视频页面",
+          "pathName": "pages/main-video/main-video",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "视频详情",
+          "pathName": "pages/detail-video/detail-video",
+          "query": "id=14544676",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "歌单详情",
+          "pathName": "pages/detail-menu/detail-menu",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "歌曲详情 - ranking",
+          "pathName": "pages/detail-song/detail-song",
+          "query": "type=ranking&key=upRanking",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "歌曲详情 - menu",
+          "pathName": "pages/detail-song/detail-song",
+          "query": "type=menu&id=2829883282",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

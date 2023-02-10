@@ -1,0 +1,17 @@
+/* pages/detail-video/detail-video.wxss */
+page {
+  height: 100vh;
+}
+
+.video {
+  width: 100%;
+  /* position: fixed;
+  top: 0;
+  left: 0; */
+}
+
+.content {
+  /* margin-top: 225px; */
+  /* height: 300px; */
+  height: calc(100% - 225px);
+}

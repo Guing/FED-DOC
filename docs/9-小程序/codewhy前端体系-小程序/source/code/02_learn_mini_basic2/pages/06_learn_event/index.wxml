@@ -1,0 +1,65 @@
+<!--pages/06_learn_event/index.wxml-->
+<!-- 1.事件的基本使用 -->
+<button bindtap="onBtnTap">按钮</button>
+
+<!-- 2.event中target和currentTarget区别 -->
+<view id="outer" class="outer" data-name="why" bindtap="onOuterViewTap">
+  <view id="inner" class="inner"></view>
+</view>
+
+<!-- 3.event中touches和changeTouches区别 -->
+<view
+  class="touches"
+  bindtap="onTouchTap"
+  bindlongpress="onLongPress"
+  bindtouchend="onTouchEnd"
+>
+  多指触摸
+</view>
+
+<!-- 4.event的参数传递 -->
+<view 
+  class="arguments"
+  bindtap="onArgumentsTap"
+  data-name="why"
+  data-age="18"
+  data-height="1.88"
+>
+  参数传递
+</view>
+
+
+<!-- 5.tab-control案例(重要) -->
+<view class="tab-control">
+  <block wx:for="{{ titles }}" wx:key="*this">
+    <view 
+      class="item {{index === currentIndex ? 'active': ''}}"
+      bindtap="onItemTap"
+      data-index="{{index}}"
+    >
+      <text class="title">{{ item }}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 6.捕获和冒泡阶段 -->
+<view class="view1" capture-bind:tap="onView1CaptureTap" bindtap="onView1Tap">
+  <view class="view2" capture-bind:tap="onView2CaptureTap" bindtap="onView2Tap">
+    <view class="view3" capture-bind:tap="onView3CaptureTap" bindtap="onView3Tap"></view>
+  </view>
+</view>
+
+<!-- 7.将bind替换为catch: 阻止事件仅一步传递(了解) -->
+
+
+<!-- 8.给逻辑传递数据, 另外一种方式: mark -->
+<view 
+  class="mark"
+  bindtap="onMarkTap"
+  data-name="why"
+  data-age="18"
+  mark:name="kobe"
+  mark:age="30"
+>
+ <text mark:address="洛杉矶" class="title">mark</text>
+</view>

@@ -1,0 +1,11 @@
+/* pages/category/category.wxss */
+.container1 {
+  height: 130px;
+  display: flex;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}

@@ -1,0 +1,19 @@
+<!--pages/main/main.wxml-->
+<view>title: {{title}}</view>
+
+<wxs module="test">
+  function test() {
+    return Number("123")
+  }
+
+  module.exports = {
+    test: test
+  }
+</wxs>
+
+<button bindtap="pushDetail">详情页</button>
+<view>{{test.test()}}</view>
+
+<my-slot>
+  哈哈哈
+</my-slot>

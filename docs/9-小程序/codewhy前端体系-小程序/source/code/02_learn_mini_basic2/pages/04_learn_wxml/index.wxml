@@ -1,0 +1,50 @@
+<!--pages/04_learn_wxml/index.wxml-->
+<!-- 1.Mustache语法 -->
+<view>{{ message }}</view>
+<view>{{ firstname + " " + lastname }}</view>
+<view>{{ date }}</view>
+
+<!-- 2.条件判断 -->
+<view wx:if="{{score > 90}}">优秀</view>
+<view wx:elif="{{score > 80}}">良好</view>
+<view wx:elif="{{score >= 60}}">及格</view>
+<view wx:else>不及格</view>
+
+<!-- 3.hidden属性:v-show -->
+<!-- 基本使用 -->
+<view hidden>我是hidden的view</view>
+
+<!-- 切换案例 -->
+<button bindtap="onChangeTap">切换</button>
+<view hidden="{{isHidden}}">哈哈哈哈</view>
+<view wx:if="{{!isHidden}}">呵呵呵呵</view>
+
+
+<!-- 4.列表展示 -->
+<!-- 4.1.wx:for基本使用 -->
+<!-- 遍历data中的数组 -->
+<view class="books">
+  <view wx:for="{{books}}" wx:key="id">
+    <!-- item: 每项内容, index: 每项索引 -->
+    {{item.name}}-{{item.price}}
+  </view>
+</view>
+<!-- 遍历数字 -->
+<view class="number">
+  <view wx:for="{{10}}" wx:key="*this">
+    {{ item }}
+  </view>
+</view>
+<!-- 遍历字符串 -->
+<view class="str">
+  <view wx:for="coderwhy" wx:key="*this">
+    {{ item }}
+  </view>
+</view>
+
+<!-- 4.2. 细节补充: block-item/index名称-key的使用 -->
+<view class="books">
+  <block wx:for="{{books}}" wx:key="id" wx:for-item="book" wx:for-index="i">
+    <view>{{ book.name }}-{{ book.price }}-{{ i }}</view>
+  </block>
+</view>

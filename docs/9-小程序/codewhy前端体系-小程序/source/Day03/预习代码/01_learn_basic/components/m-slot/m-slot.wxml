@@ -1,0 +1,15 @@
+<!--components/m-slot/m-slot.wxml-->
+<view class="slot">
+  <view class="left">
+    <slot name="left"></slot>
+  </view>
+  <view class="center">
+    <slot name="center"></slot>
+  </view>
+  <view class="right">
+    <slot name="right"></slot>
+  </view>
+</view>
+
+<view>{{ counter }}</view>
+<button bindtap="increment">+1</button>

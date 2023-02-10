@@ -1,0 +1,14 @@
+<!-- home首页 -->
+<view class="pages">
+  <block wx:for="{{pages}}" wx:key="name">
+    <button
+      class="btn"
+      type="primary" 
+      bindtap="onBtnClick"
+      data-item="{{item}}"
+    >
+      {{ item.name }}
+    </button>
+  </block>
+</view>
+

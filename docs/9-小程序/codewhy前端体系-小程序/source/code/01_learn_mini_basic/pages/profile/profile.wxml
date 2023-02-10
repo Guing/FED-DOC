@@ -1,0 +1,8 @@
+<!--pages/profile/profile.wxml-->
+<text>pages/profile/profile.wxml</text>
+
+<view class="list">
+  <block wx:for="{{listCount}}" wx:key="*this">
+    <view>列表数据:{{ item }}</view>
+  </block>
+</view>

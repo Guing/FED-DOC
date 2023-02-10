@@ -1,0 +1,37 @@
+<!--pages/01_初体验/index.wxml-->
+<view class="banner">
+  <swiper circular autoplay indicator-dots="{{true}}">
+    <block wx:for="{{banners}}" wx:key="acm">
+      <swiper-item>
+        <!-- image组件默认宽度和高度: 320x240 -->
+        <image mode="widthFix" src="{{item.image}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view class="counter">
+  <view>当前计数: {{ counter }}</view>
+</view>
+
+<view class="buttons">
+  <button bindtap="onBtn1Click">按钮1</button>
+
+  <block wx:for="{{btns}}" wx:key="*this">
+    <button 
+      class="btn" 
+      style="background: {{item}};"
+      bindtap="onBtnClick"
+      data-color="{{item}}"
+    >
+      {{ item }}
+    </button>
+  </block>
+</view>
+
+
+<view class="list">
+  <block wx:for="{{30}}" wx:key="*this">
+    <view>列表数据:{{ item }}</view>
+  </block>
+</view>

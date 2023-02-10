@@ -1,0 +1,9 @@
+<!--components/my-slot/my-slot.wxml-->
+<view>
+  <view>header</view>
+  <view class="content">
+    <slot></slot>
+  </view>
+  <view class="default">我是默认内容</view>
+  <view>footer</view>
+</view>

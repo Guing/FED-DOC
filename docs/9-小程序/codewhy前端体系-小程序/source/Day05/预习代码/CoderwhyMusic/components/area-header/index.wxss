@@ -1,0 +1,6 @@
+/* components/area-header/index.wxss */
+.title {
+  color: #333;
+  font-size: 36rpx;
+  font-weight: 700;
+}

@@ -1,0 +1,13 @@
+/* pages/07_learn_cpns/index.wxss */
+.title {
+  background-color: skyblue;
+}
+
+.abc {
+  background-color: #0f0;
+}
+
+.cba {
+  background-color: #00f;
+}
+

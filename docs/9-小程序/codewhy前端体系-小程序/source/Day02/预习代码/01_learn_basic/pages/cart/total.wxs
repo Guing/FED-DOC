@@ -1,0 +1,8 @@
+function calcTotal(nums) {
+  return nums.reduce(function(prevValue, item) {
+    return prevValue + item
+  }, 0)
+}
+module.exports = {
+  calcTotal: calcTotal
+}

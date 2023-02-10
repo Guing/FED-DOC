@@ -1,0 +1,5 @@
+<!--pages2/detail/detail.wxml-->
+<text>pages2/detail/detail.wxml</text>
+<view>name: {{name}}, age: {{age}}</view>
+<button size="mini" type="primary" bindtap="onBackTap">返回</button>
+<navigator open-type="navigateBack">返回</navigator>

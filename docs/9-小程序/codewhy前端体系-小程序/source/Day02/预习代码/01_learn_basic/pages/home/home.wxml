@@ -1,0 +1,8 @@
+<!--pages/home/home.wxml-->
+<view class="title">购物街</view>
+
+<view class="list">
+  <block wx:for="{{listCount}}" wx:key="index">
+    <view>列表数据{{item}}</view>
+  </block>
+</view>

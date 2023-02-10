@@ -1,0 +1,23 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+page {
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+.van-cell {
+  background-color: transparent !important;
+}
+
+.app-color {
+  color: red
+}

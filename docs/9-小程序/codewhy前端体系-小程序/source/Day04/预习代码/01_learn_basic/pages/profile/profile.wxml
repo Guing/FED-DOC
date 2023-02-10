@@ -1,0 +1,58 @@
+<!--pages/profile/profile.wxml-->
+<!-- <view class="outer" id="outer" bindtap="onOuterTap">
+  outer
+  <view class="inner" id="inner" bindtap="onInnerTap">inner</view>
+</view>
+
+<view class="touch" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd"></view>
+
+<view 
+  class="arguments"
+  bindtap="onArgumentTap"
+  data-name="why"
+  data-age="18"
+/> -->
+
+<view class="tab-control">
+  <block wx:for="{{titles}}" wx:key="*this">
+    <view 
+      class="item {{index === currentIndex ? 'active': ''}}"
+      data-item="{{item}}" 
+      data-index="{{index}}"
+      bindtap="onTabItemTap"
+    >
+      <text class="title">{{item}}</text>
+    </view>
+  </block>
+</view>
+
+<my-cpn info="info"/>
+<MyCpn/>
+
+<view class="title">外部title</view>
+
+<event-cpn bindcpnClick="onCpnClick"/>
+
+<tab-control class="tabs" titles="{{['电脑', '手机', '平板']}}" bindtabchange="onTabChange"/>
+<button bindtap="onChangeBtnTap">修改tab</button>
+
+<m-slot>
+  <text slot="left">左边</text>
+  <view slot="center">标题</view>
+  <text slot="right">右边</text>
+</m-slot>
+
+<!-- 1.插入文本 -->
+<my-slot>
+  <text>我是文本</text>
+</my-slot>
+<!-- 2.插件按钮 -->
+<my-slot>
+  <button>哈哈哈</button>
+</my-slot>
+<!-- 3.插入图片 -->
+<my-slot>
+  <image src="/assets/nhlt.jpg"></image>
+</my-slot>
+
+

@@ -1,0 +1,13 @@
+<!--components/song-item-v2/index.wxml-->
+<view class="item">
+  <view class="index app-color">{{index}}</view>
+  <view class="info">
+    <view class="name">{{itemInfo.name}}</view>
+    <view class="source">
+      <image class="icon" src="/assets/images/icons/sq_icon.png"></image>
+      {{itemInfo.ar[0].name || itemInfo.artists[0].name}}
+      <text wx:if="{{itemInfo.alia[0]}}"> · {{itemInfo.alia[0]}}</text>
+      <text wx:elif="{{itemInfo.alias[0]}}"> · {{itemInfo.alias[0]}}</text>
+    </view>
+  </view>
+</view>

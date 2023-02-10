@@ -1,0 +1,8 @@
+<!--pages/show/show.wxml-->
+<button bindtap="onShowToast">showToast</button>
+<button>showModal</button>
+<button>showLoading</button>
+<button>showActionSheet</button>
+
+<button bindtap="onGetSystemInfo">获取设备信息</button>
+<button bindtap="onGetLocationInfo">获取位置信息</button>

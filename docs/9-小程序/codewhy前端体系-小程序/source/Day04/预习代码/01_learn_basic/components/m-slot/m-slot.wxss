@@ -1,0 +1,16 @@
+/* components/m-slot/m-slot.wxss */
+.slot {
+  display: flex;
+}
+
+.slot .left {
+  width: 240rpx;
+}
+
+.slot .right {
+  width: 240rpx;
+}
+
+.slot .center {
+  flex: 1;
+}

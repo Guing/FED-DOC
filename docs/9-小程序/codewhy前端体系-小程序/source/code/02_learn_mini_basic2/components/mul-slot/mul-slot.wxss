@@ -1,0 +1,13 @@
+/* components/mul-slot/mul-slot.wxss */
+.mul-slot {
+  display: flex;
+  text-align: center;
+}
+
+.left, .right {
+  width: 160rpx;
+}
+
+.center {
+  flex: 1;
+}

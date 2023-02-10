@@ -1,0 +1,11 @@
+<!--components/song-list/song-list.wxml-->
+<view class="hot-songs">
+  <area-header title="{{title}}" bind:click="hotSongsHeaderClick"></area-header>
+  <scroll-view scroll-x class="song-list">
+    <block wx:for="{{songList}}" wx:key="id">
+      <view class="song-list-item">
+        <song-list-item itemInfo="{{item}}"></song-list-item>
+      </view>
+    </block>
+  </scroll-view>
+</view>

@@ -1,0 +1,25 @@
+<!--pages/08_learn_slot/index.wxml-->
+<!-- 1.单个插槽的使用 -->
+<!-- <my-slot>
+  <button>我是按钮</button>
+</my-slot>
+<my-slot>
+  <image src="/assets/nhlt.jpg" mode="widthFix"></image>
+</my-slot>
+
+<my-slot></my-slot> -->
+
+<!-- 2.多个插槽的使用 -->
+<!-- <mul-slot>
+  <button slot="left" size="mini">left</button>
+  <view slot="center">哈哈哈</view>
+  <button slot="right" size="mini">right</button>
+</mul-slot> -->
+
+<!-- 3.组件的混入 -->
+<!-- <c-behavior/> -->
+
+
+<!-- 4.组件的生命周期 -->
+<button bindtap="onChangeTap">切换</button>
+<c-lifetime wx:if="{{isShowLiftTime}}"/>
