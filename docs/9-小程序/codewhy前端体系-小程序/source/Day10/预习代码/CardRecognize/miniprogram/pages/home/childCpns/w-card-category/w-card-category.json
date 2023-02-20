@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "w-card-item": "/components/w-card-item/w-card-item"
+  }
+}

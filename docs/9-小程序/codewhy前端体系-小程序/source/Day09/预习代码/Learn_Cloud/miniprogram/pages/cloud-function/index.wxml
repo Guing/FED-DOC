@@ -1,0 +1,8 @@
+<!--pages/cloud-function/index.wxml-->
+<button type="primary" bindtap="onNumSumTap">数字相加</button>
+<button type="primary" bindtap="onLoginTap">登录信息</button>
+<button type="primary" bindtap="onRequestTap">请求数据</button>
+<button type="primary" bindtap="onHandleDBTap">操作数据库</button>
+<button type="primary" bindtap="onGenQRCodeTap">获取二维码</button>
+
+<image src="cloud://coderwhy-i7b7z.636f-coderwhy-i7b7z-1259322030/images/minicode.jpeg"></image>

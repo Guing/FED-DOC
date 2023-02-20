@@ -1,0 +1,9 @@
+<!--pages/home/childCpns/w-card-category/w-card-category.wxml-->
+<view class="card-category">
+  <block wx:for="{{categories}}" wx:key="index">
+    <w-card-item title="{{item.title}}" 
+                 iconPath="{{item.icon}}"
+                 bindtap="itemClick"
+                 data-index="{{index}}"/>
+  </block>
+</view>

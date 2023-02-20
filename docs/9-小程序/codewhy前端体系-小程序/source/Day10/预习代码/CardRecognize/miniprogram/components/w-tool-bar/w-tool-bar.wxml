@@ -1,0 +1,8 @@
+<!--components/w-tool-bar/w-tool-bar.wxml-->
+<view class="tool-bar my-class" 
+      hover-class="hover"
+      hover-stay-time="50"
+      style="background: {{bgColor}}">
+  <image class="image" class="image" src="{{icon}}"/>
+  <text class="text">{{title}}</text>
+</view>

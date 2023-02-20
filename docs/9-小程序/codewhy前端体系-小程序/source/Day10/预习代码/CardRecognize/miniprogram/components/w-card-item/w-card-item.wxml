@@ -1,0 +1,5 @@
+<!--components/w-card-item/w-card-item.wxml-->
+<view class="item">
+  <image class="image" src="{{iconPath}}" mode="widthFix"/>
+  <view class="title">{{title}}</view>
+</view>

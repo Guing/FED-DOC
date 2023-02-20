@@ -1,0 +1,85 @@
+/* pages/06_learn_event/index.wxss */
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400rpx;
+  height: 400rpx;
+  background-color: orange;
+}
+
+.inner {
+  width: 200rpx;
+  height: 200rpx;
+  background-color: red;
+}
+
+.touches, .arguments {
+  height: 100rpx;
+  color: white;
+}
+
+.touches {
+  background-color: green;
+}
+
+.arguments {
+  background-color: purple;
+}
+
+/* tab-control */
+.tab-control {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.tab-control .item {
+  flex: 1;
+}
+
+.tab-control .item.active {
+  color: #ff8189;
+}
+
+.tab-control .item.active .title {
+  border-bottom: 3px solid #ff8189;
+  padding: 5px;
+}
+
+
+/* 捕获和冒泡 */
+.view1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600rpx;
+  height: 600rpx;
+  background-color: orange;
+}
+
+.view2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400rpx;
+  height: 400rpx;
+  background-color: purple;
+}
+
+.view3 {
+  width: 200rpx;
+  height: 200rpx;
+  background-color: red;
+}
+
+/* mark样式 */
+.mark {
+  height: 100rpx;
+  background-color: skyblue;
+}
+
+.mark .title {
+  background-color: #ff0;
+}

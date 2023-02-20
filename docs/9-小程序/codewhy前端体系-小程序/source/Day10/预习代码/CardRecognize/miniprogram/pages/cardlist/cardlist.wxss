@@ -1,0 +1,4 @@
+/* miniprogram/pages/cardlist/cardlist.wxss */
+.operate-bar {
+  display: flex;
+}

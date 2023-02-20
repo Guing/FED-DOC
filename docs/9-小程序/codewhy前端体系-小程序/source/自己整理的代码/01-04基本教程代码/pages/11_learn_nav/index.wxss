@@ -1,0 +1,4 @@
+/* pages/11_learn_nav/index.wxss */
+.nav {
+  background-color: orange;
+}

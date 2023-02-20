@@ -1,0 +1,11 @@
+/* pages/home/childCpns/w-card-category/w-card-category.wxss */
+.card-category {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+
+  border-bottom: 2rpx solid #36ab60;
+  padding: 40rpx 0;
+}
+

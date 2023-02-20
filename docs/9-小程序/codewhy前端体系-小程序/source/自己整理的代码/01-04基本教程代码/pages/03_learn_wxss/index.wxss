@@ -1,0 +1,13 @@
+/* pages/03_learn_wxss/index.wxss */
+.message {
+  color: green;
+}
+
+/* 设置item的宽度和高度 */
+.item {
+  font-size: 32rpx;
+  /* iphone6: 1px === 2rpx */
+  width: 200rpx;
+  height: 200rpx;
+  background-color: #f00;
+}

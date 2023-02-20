@@ -1,0 +1,18 @@
+<!--miniprogram/pages/home/home.wxml-->
+<!-- 1.卡片的头部 -->
+<w-header title="我的卡证">
+  <text>哈哈哈</text>
+</w-header>
+
+<!-- 2.卡片类型的列表 -->
+<w-card-category categories="{{categories}}"/>
+
+<!-- 3.工具栏 -->
+<picker range="{{categories}}" 
+        range-key="title"
+        bindchange="pickValueChange"
+        class="add-card">
+  <w-tool-bar icon="/assets/add.png" 
+              title="添加卡证"/>
+</picker>
+

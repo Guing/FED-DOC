@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/profile/profile",
+    "pages/recognize/recognize",
+    "pages/cardlist/cardlist"
+  ],
+  "window": {
+    "backgroundColor": "#FFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "卡证识别",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "w-header": "/components/w-header/w-header",
+    "w-tool-bar": "/components/w-tool-bar/w-tool-bar",
+    "w-card-info": "/components/w-card-info/w-card-info"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/assets/home.png",
+        "selectedIconPath": "/assets/home_selected.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "/assets/profile.png",
+        "selectedIconPath": "/assets/profile_selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

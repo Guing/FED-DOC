@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/cloud-database/index",
+    "pages/cloud-storage/index",
+    "pages/cloud-function/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/cloud-database/index",
+        "text": "数据库"
+      },
+      {
+        "pagePath": "pages/cloud-storage/index",
+        "text": "云存储"
+      },
+      {
+        "pagePath": "pages/cloud-function/index",
+        "text": "云调用"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

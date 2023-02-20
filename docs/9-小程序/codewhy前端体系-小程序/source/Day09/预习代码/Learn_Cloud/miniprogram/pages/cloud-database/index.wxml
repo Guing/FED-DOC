@@ -1,0 +1,5 @@
+<!--pages/cloud-database/index.wxml-->
+<button type="primary" bindtap="onInsertDataTap">添加数据</button>
+<button type="primary" bindtap="onDeleteDataTap">删除数据</button>
+<button type="primary" bindtap="onUpdateDataTap">修改数据</button>
+<button type="primary" bindtap="onSelectDataTap">查询数据</button>

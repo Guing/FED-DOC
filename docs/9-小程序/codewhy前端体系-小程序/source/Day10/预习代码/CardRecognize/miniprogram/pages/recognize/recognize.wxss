@@ -1,0 +1,9 @@
+/* pages/recognize/recognize.wxss */
+.select-bar {
+  margin-top: 50rpx !important;
+}
+
+
+.btn {
+  vertical-align: middle;
+}

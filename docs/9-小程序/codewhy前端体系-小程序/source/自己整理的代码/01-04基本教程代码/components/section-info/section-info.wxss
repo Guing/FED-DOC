@@ -1,0 +1,11 @@
+/* components/section-info/section-info.wxss */
+.section .title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: red;
+}
+
+.section .content {
+  font-size: 24rpx;
+  color: purple;
+}
