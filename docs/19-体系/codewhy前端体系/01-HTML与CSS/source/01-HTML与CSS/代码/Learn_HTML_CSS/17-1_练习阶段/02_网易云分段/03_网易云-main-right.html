@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网易云的主要区域</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <style>
+    .main .area {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid #d3d3d3;
+      border-width: 0 1px;
+      background-image: url(./images/main_bg.png);
+    }
+
+    /* 左侧区域 */
+    .main .area-left {
+      width: 729px;
+    }
+
+    /* 右侧区域 */
+    .main .area-right {
+      width: 250px;
+    }
+
+    .main .area-right .user-login {
+      width: 250px;
+      height: 126px;
+      background: url(./images/main_sprite.png) 0 0;
+    }
+
+    .main .area-right .user-login .desc {
+      width: 205px;
+      margin: 0 auto;
+      padding-top: 16px;
+      color: #666;
+      font-size: 12px;
+      line-height: 22px;
+    }
+
+    .main .area-right .user-login .btn {
+      display: block;
+      width: 100px;
+      height: 31px;
+      margin: 15px auto 0;
+      line-height: 31px;
+      text-align: center;
+      color: #fff;
+      font-size: 12px;
+      background: url(./images/main_sprite.png) 0 -195px;
+      text-shadow: 0 1px 0 #8a060b;
+    }
+
+    .main .settle-singer {
+      padding: 20px;
+    }
+
+    .main .settle-singer .list {
+      padding: 5px 0;
+    }
+
+    .main .settle-singer .list .item {
+      display: flex;
+      /* align-items: center; */
+      width: 210px;
+      height: 62px;
+      margin-top: 15px;
+      background-color: #fafafa;
+    }
+
+    .main .settle-singer .list .item .info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 3px 12px;
+      border: 1px solid #e9e9e9;
+      border-left: none;
+      overflow: hidden;
+    }
+
+    .main .settle-singer .item .info .singer {
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .main .settle-singer .item .info .desc {
+      font-size: 12px;
+      color: #666;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .main .hot-anchor {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="main">
+    <div class="area wrapper_02">
+      <div class="area-left">
+      </div>
+      <div class="area-right">
+        <div class="user-login">
+          <p class="desc">
+            登录网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机
+          </p>
+          <a class="btn" href="#">用户登录</a>
+        </div>
+        <div class="settle-singer">
+          <div class="header_type_01">
+            <h3 class="title">入驻歌手</h3>
+            <a class="more" href="#">查看全部 &gt;</a>
+          </div>
+          <ul class="list">
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹fdafdafadfafa</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="hot-anchor">
+          <div class="header_type_01">
+            <h3 class="title">热门主播</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

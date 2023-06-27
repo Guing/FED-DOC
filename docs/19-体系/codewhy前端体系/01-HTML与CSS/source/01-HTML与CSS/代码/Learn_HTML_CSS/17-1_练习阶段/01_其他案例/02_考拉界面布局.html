@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>考拉布局</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <style>
+    .sport {
+      margin-top: 20px;
+      background-color: orange;
+    }
+
+    .sport .item {
+      float: left;
+      height: 541px;
+    }
+
+    .sport .item.left {
+      width: 330px;
+      background-color: purple;
+    }
+
+    .sport .item.center {
+      width: 550px;
+    }
+
+    .sport .center .center-item {
+      float: left;
+      width: 275px;
+      height: 271px;
+
+      box-sizing: border-box;
+      border: 1px solid #000;
+      border-left: none;
+    }
+
+    .sport .center .center-item:nth-last-child(-n+2) {
+      margin-top: -1px;
+    }
+
+    .sport .item.right {
+      width: 220px;
+    }
+
+    .sport .right .item {
+      float: left;
+      width: 220px;
+      height: 121px;
+
+      box-sizing: border-box;
+      border: 1px solid #000;
+      border-left: none;
+      margin-top: -1px;
+    }
+
+    .sport .right .item.header {
+      height: 61px;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="kl_wrapper sport">
+    <div class="item left"></div>
+    <div class="item center">
+      <div class="center-item">1</div>
+      <div class="center-item">2</div>
+      <div class="center-item">3</div>
+      <div class="center-item">4</div>
+    </div>
+    <div class="item right">
+      <div class="item header">header</div>
+      <!-- .item{$}*4 -->
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+    </div>
+  </div>
+
+</body>
+</html>

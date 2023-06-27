@@ -1,0 +1,80 @@
+/* main右侧区域样式 */
+.main .area-right {
+  width: 250px;
+}
+
+.main .area-right .user-login {
+  width: 250px;
+  height: 126px;
+  background: url(../images/main_sprite.png) 0 0;
+}
+
+.main .area-right .user-login .desc {
+  width: 205px;
+  margin: 0 auto;
+  padding-top: 16px;
+  color: #666;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.main .area-right .user-login .btn {
+  display: block;
+  width: 100px;
+  height: 31px;
+  margin: 15px auto 0;
+  line-height: 31px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  background: url(../images/main_sprite.png) 0 -195px;
+  text-shadow: 0 1px 0 #8a060b;
+}
+
+.main .settle-singer {
+  padding: 20px;
+}
+
+.main .settle-singer .list {
+  padding: 5px 0;
+}
+
+.main .settle-singer .list .item {
+  display: flex;
+  /* align-items: center; */
+  width: 210px;
+  height: 62px;
+  margin-top: 15px;
+  background-color: #fafafa;
+}
+
+.main .settle-singer .list .item .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 3px 12px;
+  border: 1px solid #e9e9e9;
+  border-left: none;
+  overflow: hidden;
+}
+
+.main .settle-singer .item .info .singer {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+
+.main .settle-singer .item .info .desc {
+  font-size: 12px;
+  color: #666;
+
+  /* 文本超出后显示... */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.main .hot-anchor {
+  padding: 20px;
+}

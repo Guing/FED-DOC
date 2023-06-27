@@ -1,0 +1,8 @@
+/* 主要内容main样式 */
+.main > .area {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #d3d3d3;
+  border-width: 0 1px;
+  background-image: url(../images/main_bg.png);
+}

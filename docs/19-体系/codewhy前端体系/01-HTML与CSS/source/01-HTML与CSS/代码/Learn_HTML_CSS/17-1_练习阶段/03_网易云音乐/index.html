@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网易云音乐</title>
+  <link rel="shortcut icon" href="//s1.music.126.net/style/favicon.ico?v20180823">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/header.css">
+
+  <link rel="stylesheet" href="./css/page_header.css">
+  <link rel="stylesheet" href="./css/page_banner.css">
+  <link rel="stylesheet" href="./css/page_main.css">
+  <link rel="stylesheet" href="./css/page_main_right.css">
+  <link rel="stylesheet" href="./css/page_main_left.css">
+
+</head>
+<body>
+  
+  <!-- header部分: top/nav -->
+  <div class="header">
+    <div class="top">
+      <div class="topbar wrapper_01">
+        <div class="bar-left">
+          <h1 class="logo">
+            <a href="#">网易云音乐</a>
+          </h1>
+          <ul class="list">
+            <li><a href="#" class="item active">发现音乐</a></li>
+            <li><a href="#" class="item">我的音乐</a></li>
+            <li><a href="#" class="item">关注</a></li>
+            <li><a href="#" class="item">商城</a></li>
+            <li><a href="#" class="item">音乐人</a></li>
+            <li>
+              <a href="#" class="item">
+                下载客户端
+                <i class="topbar_sprite topbar_icon_hot icon-hot"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="bar-right">
+          <div class="search">
+            <input type="text" placeholder="音乐/视频/电台/用户">
+          </div>
+          <div class="anthor">
+            <a href="#">创作者中心</a>
+          </div>
+          <div class="login">
+            <a href="#">登录</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="nav">
+      <div class="navbar wrapper_01">
+        <!-- 如果block元素中是没有内容, 那么line-height继承过来也是不生效 -->
+        <!-- ul>(li>a[href=#].item)*6 -->
+        <ul class="list">
+          <li><a href="#" class="item active"><span>推荐</span></a></li>
+          <li><a href="#" class="item"><span>排行榜</span></a></li>
+          <li><a href="#" class="item"><span>歌单</span></a></li>
+          <li><a href="#" class="item"><span>主播电台</span></a></li>
+          <li><a href="#" class="item"><span>歌手</span></a></li>
+          <li><a href="#" class="item"><span>新碟上架</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- banner部分 -->
+  <div class="banner">
+    <div class="area wrapper_03">
+      <div class="area-left">
+        <ul class="img-list">
+          <li>
+            <a class="item" href="#">
+              <img src="./images/banner_02.jpeg" alt="">
+            </a>
+          </li>
+          <li>
+            <a class="item" href="#">
+              <img src="./images/banner_02.jpeg" alt="">
+            </a>
+          </li>
+          <li>
+            <a class="item" href="#">
+              <img src="./images/banner_02.jpeg" alt="">
+            </a>
+          </li>
+          <li>
+            <a class="item" href="#">
+              <img src="./images/banner_02.jpeg" alt="">
+            </a>
+          </li>
+        </ul>
+        
+        <ul class="dots-list">
+          <li><a class="item active" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+          <li><a class="item" href=""></a></li>
+        </ul>
+      </div>
+      <div class="area-right">
+        <a class="download" href="#">下载客户端</a>
+        <p class="desc">PC 安卓 iPhone WP iPad Mac 六大客户端</p>
+      </div>
+      <a class="control  left" href="#"></a>
+      <a class="control right" href="#"></a>
+    </div>
+  </div>
+
+  <!-- main部分 -->
+  <div class="main">
+    <div class="area wrapper_02">
+      <div class="area-left">
+        <div class="recommend-section">
+          <div class="header_type_02">
+            <div class="area_left">
+              <h2 class="title">热门推荐</h2>
+              <ul class="keywords">
+                <li><a class="item" href="#">华语</a></li>
+                <li class="line">|</li>
+                <li><a class="item" href="#">流行</a></li>
+                <li class="line">|</li>
+                <li><a class="item" href="#">摇滚</a></li>
+                <li class="line">|</li>
+                <li><a class="item" href="#">民谣</a></li>
+                <li class="line">|</li>
+                <li><a class="item" href="#">电子</a></li>
+              </ul>
+            </div>
+            <div class="area_right">
+              <a class="more" href="#">更多</a>
+            </div>
+          </div>
+          <div class="list">
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                <i class="iconall_sprite iconall_sprite_radio icon-radio"></i>
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                <i class="iconall_sprite iconall_sprite_radio icon-radio"></i>
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                <i class="iconall_sprite iconall_sprite_radio icon-radio"></i>
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+            <div class="item">
+              <div class="top">
+                <img src="./images/recommend_album_01.jpeg" alt="音乐封面">
+                <a class="cover" href="#"></a>
+                <div class="info">
+                  <i class="icon_sprite icon_sprite_music icon-music"></i>
+                  <span class="count">62万</span>
+                  <i class="icon_sprite icon_sprite_play_01 icon-play"></i>
+                </div>
+              </div>
+              <a class="bottom" href="#">
+                <i class="iconall_sprite iconall_sprite_radio icon-radio"></i>
+                天气好的话，把耳机分给我一半吧
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="disc-section">
+          <div class="header_type_02">
+            <div class="area_left">
+              <h2 class="title">新碟上架</h2>
+            </div>
+            <div class="area_right">
+              <a class="more" href="#">更多</a>
+            </div>
+          </div>
+
+          <div class="content">
+            <div class="inner">
+              <div class="roller">
+                <ul class="list">
+                  <li class="item">
+                    <div class="album">
+                      <img src="./images/newdisc_album_01.jpeg" alt="">
+                      <a class="cover" href="#"></a>
+                      <a class="play" href="#"></a>
+                    </div>
+                    <a class="title" href="#">原神-佚落迁忘之岛 Islands of the Lost and Forgotten</a>
+                    <a class="anchor" href="#">HOYO-MiX</a>
+                  </li>
+                  <li class="item">
+                    <div class="album">
+                      <img src="./images/newdisc_album_01.jpeg" alt="">
+                      <a class="cover" href="#"></a>
+                      <a class="play" href="#"></a>
+                    </div>
+                    <a class="title" href="#">原神-佚落迁忘之岛 Islands of the Lost and Forgotten</a>
+                    <a class="anchor" href="#">HOYO-MiX</a>
+                  </li>
+                  <li class="item">
+                    <div class="album">
+                      <img src="./images/newdisc_album_01.jpeg" alt="">
+                      <a class="cover" href="#"></a>
+                      <a class="play" href="#"></a>
+                    </div>
+                    <a class="title" href="#">原神-佚落迁忘之岛 Islands of the Lost and Forgotten</a>
+                    <a class="anchor" href="#">HOYO-MiX</a>
+                  </li>
+                  <li class="item">
+                    <div class="album">
+                      <img src="./images/newdisc_album_01.jpeg" alt="">
+                      <a class="cover" href="#"></a>
+                      <a class="play" href="#"></a>
+                    </div>
+                    <a class="title" href="#">原神-佚落迁忘之岛 Islands of the Lost and Forgotten</a>
+                    <a class="anchor" href="#">HOYO-MiX</a>
+                  </li>
+                  <li class="item">
+                    <div class="album">
+                      <img src="./images/newdisc_album_01.jpeg" alt="">
+                      <a class="cover" href="#"></a>
+                      <a class="play" href="#"></a>
+                    </div>
+                    <a class="title" href="#">原神-佚落迁忘之岛 Islands of the Lost and Forgotten</a>
+                    <a class="anchor" href="#">HOYO-MiX</a>
+                  </li>
+                </ul>
+                <ul class="list">2</ul>
+              </div>
+              <a class="control control-left" href="#"></a>
+              <a class="control control-right" href="#"></a>
+            </div>
+          </div>
+
+        </div>
+        <div class="rank-section">
+          <div class="header_type_02">
+            <div class="area_left">
+              <h2 class="title">榜单</h2>
+            </div>
+            <div class="area_right">
+              <a class="more" href="#">更多</a>
+            </div>
+          </div>
+
+          <div class="content">
+            <dl class="rank up-rank">
+              <dt class="header">
+                <div class="album">
+                  <img src="./images/rank_up.jpeg" alt="飙升榜">
+                  <a class="cover" href="#"></a>
+                </div>
+                <div class="info">
+                  <h3 class="title">飙升榜</h3>
+                  <div class="operation">
+                    <a class="btn play" href="#"></a>
+                    <a class="btn favor" href="#"></a>
+                  </div>
+                </div>
+              </dt>
+              <dd class="list up-list">
+                <ol>
+                  <li class="item">
+                    <!-- Java: Student -> sno(numero序号) -->
+                    <span class="no">1</span>
+                    <a class="song" href="#">再等冬天(Memories)</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">9</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">10</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                </ol>
+                <div class="more">
+                  <a href="#">查看全部 &gt;</a>
+                </div>
+              </dd>
+            </dl>
+            <dl class="rank up-rank">
+              <dt class="header">
+                <div class="album">
+                  <img src="./images/rank_new.jpeg" alt="新歌榜">
+                  <a class="cover" href="#"></a>
+                </div>
+                <div class="info">
+                  <h3 class="title">新歌榜</h3>
+                  <div class="operation">
+                    <a class="btn play" href="#"></a>
+                    <a class="btn favor" href="#"></a>
+                  </div>
+                </div>
+              </dt>
+              <dd class="list new-list">
+                <ol>
+                  <li class="item">
+                    <!-- Java: Student -> sno(numero序号) -->
+                    <span class="no">1</span>
+                    <a class="song" href="#">再等冬天(Memories)</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">9</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">10</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                </ol>
+                <div class="more">
+                  <a href="#">查看全部 &gt;</a>
+                </div>
+              </dd>
+            </dl>
+            <dl class="rank origin-rank">
+              <dt class="header">
+                <div class="album">
+                  <img src="./images/rank_origin.jpeg" alt="原创榜">
+                  <a class="cover" href="#"></a>
+                </div>
+                <div class="info">
+                  <h3 class="title">原创榜</h3>
+                  <div class="operation">
+                    <a class="btn play" href="#"></a>
+                    <a class="btn favor" href="#"></a>
+                  </div>
+                </div>
+              </dt>
+              <dd class="list up-list">
+                <ol>
+                  <li class="item">
+                    <!-- Java: Student -> sno(numero序号) -->
+                    <span class="no">1</span>
+                    <a class="song" href="#">再等冬天(Memories)</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">2</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">9</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <span class="no">10</span>
+                    <a class="song" href="#">再等冬天</a>
+                    <div class="operation">
+                      <a class="btn play" href="#"></a>
+                      <a class="btn add" href="#"></a>
+                      <a class="btn favor" href="#"></a>
+                    </div>
+                  </li>
+                </ol>
+                <div class="more">
+                  <a href="#">查看全部 &gt;</a>
+                </div>
+              </dd>
+            </dl>
+          </div>
+
+        </div>
+      </div>
+      <div class="area-right">
+        <div class="user-login">
+          <p class="desc">
+            登录网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机
+          </p>
+          <a class="btn" href="#">用户登录</a>
+        </div>
+        <div class="settle-singer">
+          <div class="header_type_01">
+            <h3 class="title">入驻歌手</h3>
+            <a class="more" href="#">查看全部 &gt;</a>
+          </div>
+          <ul class="list">
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹发发到付发发</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="item" href="#">
+                <div class="album">
+                  <img src="./images/singer_01.jpeg" alt="">
+                </div>
+                <div class="info">
+                  <div class="singer">张惠妹aMEI</div>
+                  <div class="desc">台湾歌手张惠妹</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="hot-anchor">
+          <div class="header_type_01">
+            <h3 class="title">热门主播</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer部分(作业) -->
+
+</body>
+</html>
