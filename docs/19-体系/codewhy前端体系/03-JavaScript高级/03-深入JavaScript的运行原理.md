@@ -1,13 +1,6 @@
-﻿**深入JavaScript的运行原理 ![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.001.png)![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.002.png)![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.003.png)**
 
-王红元 coderwhy![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.004.png)
 
-![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.005.png) ![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.006.png)
-
-|<p>**目录 content**</p><p>![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.007.png)</p>|<p>1	 **深入V8引擎原理![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.008.png)**</p><p>2	 **JS执行上下文![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.009.png)**</p><p>3	 **全局代码执行过程![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.010.png)**</p><p>4	 **函数代码执行过程![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.011.png)**</p><p>5	 **作用域和作用域链![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.012.png)**</p>|
-| :- | - |
-
-**JavaScript代码的执行![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.013.png)**
+## **JavaScript代码的引擎**
 
 - **JavaScript代码下载好之后，是如何一步步被执行的呢？**
 - **我们知道，浏览器内核是由两部分组成的，以webkit为例：**
@@ -18,61 +11,87 @@
 
 - **另外一个强大的JavaScript引擎就是V8引擎。**
 
-**V8引擎的执行原理![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.013.png)**
+## **V8引擎的执行原理**
 
 - **我们来看一下官方对V8引擎的定义：**
-- V8是用C ++编写的Google开源高性能JavaScript和WebAssembly引擎，它用于Chrome和Node.js等。
-- 它实现[ECMAScript和W](https://tc39.es/ecma262/)[ebAssembly，并在](https://webassembly.github.io/spec/core/)Windows 7或更高版本，macOS 10.12+和使用x64，IA-32，ARM或MIPS处理 器的Linux系统上运行。
-- V8可以独立运行，也可以嵌入到任何C ++应用程序中。
+  - V8是用C ++编写的Google开源高性能JavaScript和WebAssembly引擎，它用于Chrome和Node.js等。
+  - 它实现[ECMAScript](https://tc39.es/ecma262/)和[WebAssembly](https://webassembly.github.io/spec/core/)，并在Windows 7或更高版本，macOS 10.12+和使用x64，IA-32，ARM或MIPS处理 器的Linux系统上运行。
+  - V8可以独立运行，也可以嵌入到任何C ++应用程序中。
+  
 
 ![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.015.jpeg)
 
-**V8引擎的架构![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.013.png)**
+### **V8引擎的架构**
 
-- V8引擎本身的源码**非常复杂**，大概有超过**100w行C++代码**，通过了解它的架构，我们可以知道它是如何对JavaScript执行的：
-- Parse模块会将JavaScript代码转换成AST（抽象语法树），这是因为解释器并不直接认识JavaScript代码；
-- 如果函数没有被调用，那么是不会被转换成AST的；
-- Parse的V8官方文档：http[s://v8.dev/blog/scanner](https://v8.dev/blog/scanner)
-- Ignition是一个解释器，会将AST转换成ByteCode（字节码）
+- V8引擎本身的源码**非常复杂**，大概有超过**100w行C++代码**
+- 通过了解它的架构，我们可以知道它是如何对JavaScript执行的：
+- Parse模块
+  - Parse模块会将JavaScript代码转换成AST（抽象语法树），这是因为解释器并不直接认识JavaScript代码；
+  - 如果函数没有被调用，那么是不会被转换成AST的；
+  - Parse的V8官方文档：http[s://v8.dev/blog/scanner](https://v8.dev/blog/scanner)
+
+- Ignition解释器
+  - 会将AST转换成ByteCode（字节码）
   - 同时会收集TurboFan优化所需要的信息（比如函数参数的类型信息，有了类型才能进行真实的运算）；
   - 如果函数只调用一次，Ignition会解释执行ByteCode；
   - Ignition的V8官方文档：https[://v8.dev/blog/ignition-interpreter](https://v8.dev/blog/ignition-interpreter)
-- TurboFan是一个编译器，可以将字节码编译为CPU可以直接执行的机器码；
-- 如果一个函数被多次调用，那么就会被标记为热点函数，那么就会经过TurboFan转换成优化的机器码，提高代码的执行性能；
-- 但是，机器码实际上也会被还原为ByteCode，这是因为如果后续执行函数的过程中，类型发生了变化（比如sum函数原来执 行的是number类型，后来执行变成了string类型），之前优化的机器码并不能正确的处理运算，就会逆向的转换成字节码；
-- TurboFan的V8官方文档：https[://v8.dev/blog/turbofan-jit](https://v8.dev/blog/turbofan-jit)
 
-**V8引擎的解析图（官方）![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.013.png)**
+- TurboFan编译器
+  - 可以将字节码编译为CPU可以直接执行的机器码；
+  - 如果一个函数被多次调用，那么就会被标记为热点函数，那么就会经过TurboFan转换成优化的机器码，提高代码的执行性能；
+  - 但是，机器码实际上也会被还原为ByteCode
+    - 这是因为如果后续执行函数的过程中，类型发生了变化（比如sum函数原来执 行的是number类型，后来执行变成了string类型），之前优化的机器码并不能正确的处理运算，就会逆向的转换成字节码；
 
-- **词法分析（英文lexical analysis）![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.016.jpeg)**
-- 将字符序列转换成token序列 的过程。
-- token是**记号化**
+  - TurboFan的V8官方文档：https[://v8.dev/blog/turbofan-jit](https://v8.dev/blog/turbofan-jit)
 
-（tokenization）的缩写
 
-- **词法分析器**（lexical analyzer，简称lexer），也 叫**扫描器**（scanner）
+**所以在了解TurboFan编译器时，我们写函数时，尽量使用同一个类型的参数或者使用typescript时，就可以加快代码的执行效率**
+
+### **V8引擎的解析图（官方）**
+
+![](image/03-%E6%B7%B1%E5%85%A5JavaScript%E7%9A%84%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.016.jpeg)
+
+- **词法分析（英文lexical analysis）**
+
+  - 将字符序列转换成token序列 的过程。
+  - token是**记号化**（tokenization）的缩写
+
+  - **词法分析器**（lexical analyzer，简称lexer），也 叫**扫描器**（scanner）
+
+
 - **语法分析（英语：syntactic analysis，也叫 parsing）**
-- **语法分析器也可以称之为** parser。
+  - **语法分析器也可以称之为** parser。
 
-**V8引擎的解析图![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.013.png)**
+- 一行代码，比如`var num = 10`
+  - 先通过词法分析，也就是将`var`,`num`,`=`,`10`这些分组
+  - 然后再通过语法分析，也就是分析其中的语法含义，比如找到`var`，那就这一行代码就是声明变量。
+
+
+### **V8引擎的解析图**
 
 ![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.017.jpeg)
 
-**JavaScript代码执行原理 - 版本说明![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.013.png)**
 
-- **在ECMA早期的版本中（ECMAScript3），代码的执行流程的术语和**
-- 目前网上大多数流行的说法都是基于ECMAScript3版本的解析
-- 但是ECMAScript3终将过去， ECMAScript5必然会成为主流 好版本的内容；
 
-**ECMAScript5以及之后的术语会有所区别：**                   ，并且在面试时问到的大多数都是ECMAScript3的版本内容。 ，所以最好也理解ECMAScript5甚至包括ECMAScript6以及更
+## **JavaScript的执行原理**
 
-- 事实上在TC39（ ECMAScript5 ）的最新描述中，和ECMAScript5之后的版本又出现了一定的差异；
+### **JavaScript代码执行原理 - 版本说明**
+
+- **在ECMA早期的版本中（ECMAScript3），代码的执行流程的术语和ECMAScript5以及之后的术语会有所区别：**
+
+  - 目前网上大多数流行的说法都是基于ECMAScript3版本的解析 ，并且在面试时问到的大多数都是ECMAScript3的版本内容。
+  - 但是ECMAScript3终将过去， ECMAScript5必然会成为主流 ，所以最好也理解ECMAScript5甚至包括ECMAScript6以及更好版本的内容；
+
+  - 事实上在TC39（ ECMAScript5 ）的最新描述中，和ECMAScript5之后的版本又出现了一定的差异；
+
+
 - **那么我们课程按照如下顺序学习：**
-- 通过ECMAScript3中的概念学习JavaScript执行原理、作用域、作用域链、闭包等概念；
-- 通过ECMAScript5中的概念学习块级作用域、let、const等概念；
+  - 通过ECMAScript3中的概念学习JavaScript执行原理、作用域、作用域链、闭包等概念；
+  - 通过ECMAScript5中的概念学习块级作用域、let、const等概念；
+
 - **事实上，它们只是在对某些概念上的描述不太一样，在整体思路上都是一致的。**
 
-**JavaScript的执行过程![](image/Aspose.Words.77779478-4789-41fd-95da-692768ae6395.013.png)**
+### **JavaScript的执行过程**
 
 - 假如我们有下面一段代码，它在JavaScript中是如何被执行的呢？
 

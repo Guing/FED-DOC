@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-  <script>
-    // 你不知道的JavaScript(上中下)
-    // 隐式绑定
-    function foo() {
-      console.log("foo函数:", this)
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.简单的隐式绑定
+      function foo() {
+        console.log("foo函数:", this);
+      }
 
-    var obj = {
-      bar: foo
-    }
+      var obj = {
+        bar: foo,
+      };
 
-    obj.bar()
+      obj.bar(); //obj
 
-  </script>
-
-</body>
+      //2.嵌套的隐式绑定
+      var obj2 = {
+        obj: obj,
+      };
+      obj2.obj.bar(); //obj
+    </script>
+  </body>
 </html>
