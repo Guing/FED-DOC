@@ -583,3 +583,15 @@ person1.obj.foo2()() // 上层作用域查找: obj(隐式绑定)
 person1.obj.foo2.call(person2)() // 上层作用域查找: person2(显式绑定)
 person1.obj.foo2().call(person2) // 上层作用域查找: obj(隐式绑定)
 ```
+
+## 作业
+
+###### 二. 整理this的绑定规则
+
+
+
+###### 三. 说出apply、call、bind函数的用法和区别
+
+
+
+###### 四. 说出箭头函数的各种用法和简写
