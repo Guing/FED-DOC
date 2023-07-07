@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-  <script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: "why", // configurable: true
+        age: 18,
+      };
 
-    var obj = {
-      name: "why", // configurable: true
-      age: 18
-    }
+      Object.defineProperty(obj, "name", {
+        configurable: false, // 告诉js引擎, obj对象的name属性不可以被删除
+        enumerable: false, // 告诉js引擎, obj对象的name属性不可枚举(for in/Object.keys)
+        writable: false, // 告诉js引擎, obj对象的name属性不写入(只读属性 readonly)
+        value: "coderwhy", // 告诉js引擎, 返回这个value
+      });
+      //configurable
+      delete obj.name; //不可以删除，在严格模式下会掉错
+      Object.defineProperty(obj, "name", { configurable: true }); //不可以再次修改，在严格模式下会掉错
+      console.log(obj);
 
-    Object.defineProperty(obj, "name", {
-      configurable: false, // 告诉js引擎, obj对象的name属性不可以被删除
-      enumerable: false, // 告诉js引擎, obj对象的name属性不可枚举(for in/Object.keys)
-      writable: false, // 告诉js引擎, obj对象的name属性不写入(只读属性 readonly)
-      value: "coderwhy" // 告诉js引擎, 返回这个value
-    })
+      //enumerable
+      console.log(Object.keys(obj)); //读取不到name
+      for (let p in obj) {
+        console.log(p);
+      } //读取不到name
 
-    delete obj.name
-    console.log(obj)
+      //writable
+      obj.name = "kobe"; //无法写入，在严格模式下会报错
+      console.log(obj.name);
 
-    // 通过Object.defineProperty添加一个新的属性
-    Object.defineProperty(obj, "address", {})
-    delete obj.address
-    console.log(obj)
-
-    console.log(Object.keys(obj))
-
-    obj.name = "kobe"
-    console.log(obj.name)
-
-  </script>
-
-</body>
+      //value
+      //如果对象本身有name的值，defineProperty定义的value会覆盖掉原本的值
+      
+    </script>
+  </body>
 </html>
