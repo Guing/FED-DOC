@@ -67,8 +67,6 @@ patterns）和修饰符（flags）
 - JavaScript中的正则表达式被用于 RegExp 的 exec 和 test 方法；
 - 也包括 String 的 match、matchAll、replace、search 和 split 方法；
 
-
-
 |**方法**|**描述**|
 | - | - |
 |[exec](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)|一个在字符串中执行查找匹配的 RegExp 方法，它返回一个数组（未匹配到则返回 null）。|
@@ -118,8 +116,8 @@ m 多行匹配
 
 - **符号 ^ 和符号 $ 在正则表达式中具有特殊的意义，它们被称为“锚点”。**
 - 符号 ^ 匹配文本开头； ![](image/Aspose.Words.d833b2b8-17c9-4cc7-87b0-872b716acd8d.019.png)
-- 符号 $ 匹配文本末尾； 
-- **词边界（Word boundary）** 
+- 符号 $ 匹配文本末尾；
+- **词边界（Word boundary）**
 - 词边界 \b 是一种检查，就像 ^ 和 $ 一样，它会检查字符串中的位置是否是词边界。
 - 词边界测试 \b 检查位置的一侧是否匹配 \w，而另一侧则不匹配 “\w”
 - **在字符串 Hello, Java! 中，以下位置对应于 \b：**
@@ -214,7 +212,7 @@ m 多行匹配
 - **命名组：**
 - 用数字记录组很困难。
 - 对于更复杂的模式，计算括号很不方便。我们有一个更好的选择：给括号起个名字。
-- 这是通过在开始括号之后立即放置 ?<name> 来完成的。
+- 这是通过在开始括号之后立即放置 ?`<name>` 来完成的。
 
 ![](image/Aspose.Words.d833b2b8-17c9-4cc7-87b0-872b716acd8d.028.png)
 
