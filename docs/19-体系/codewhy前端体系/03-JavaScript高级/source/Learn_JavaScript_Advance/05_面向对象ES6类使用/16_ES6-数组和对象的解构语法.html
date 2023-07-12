@@ -14,20 +14,20 @@
 
 
     // 1.数组的解构
-    // var name1 = names[0]
-    // var name2 = names[1]
-    // var name3 = names[2]
+    var name1 = names[0]
+    var name2 = names[1]
+    var name3 = names[2]
     // 1.1. 基本使用
-    // var [name1, name2, name3] = names
-    // console.log(name1, name2, name3)
+    var [name1, name2, name3] = names
+    console.log(name1, name2, name3)
 
     // 1.2. 顺序问题: 严格的顺序
-    // var [name1, , name3] = names
-    // console.log(name1, name3)
+    var [name1, , name3] = names
+    console.log(name1, name3)
 
     // 1.3. 解构出数组
-    // var [name1, name2, ...newNames] = names
-    // console.log(name1, name2, newNames)
+    var [name1, name2, ...newNames] = names
+    console.log(name1, name2, newNames)
 
     // 1.4. 解构的默认值
     var [name1, name2, name3 = "default"] = names
@@ -36,21 +36,21 @@
 
     // 2.对象的解构
     var obj = { name: "why", age: 18, height: 1.88 }
-    // var name = obj.name
-    // var age = obj.age
-    // var height = obj.height
+    var name = obj.name
+    var age = obj.age
+    var height = obj.height
     // 2.1. 基本使用
-    // var { name, age, height } = obj
-    // console.log(name, age, height)
+    var { name, age, height } = obj
+    console.log(name, age, height)
 
     // 2.2. 顺序问题: 对象的解构是没有顺序, 根据key解构
-    // var { height, name, age } = obj
-    // console.log(name, age, height)
+    var { height, name, age } = obj
+    console.log(name, age, height)
 
 
     // 2.3. 对变量进行重命名
-    // var { height: wHeight, name: wName, age: wAge } = obj
-    // console.log(wName, wAge, wHeight)
+    var { height: wHeight, name: wName, age: wAge } = obj
+    console.log(wName, wAge, wHeight)
 
     // 2.4. 默认值
     var { 

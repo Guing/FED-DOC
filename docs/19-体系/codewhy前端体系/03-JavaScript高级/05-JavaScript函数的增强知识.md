@@ -688,4 +688,84 @@ foo.apply(null);//null
 - **接下来我们来实现一下apply、call、bind函数：**
 - 注意：我们的实现是练习函数、this、调用关系，不会过度考虑一些边界情况
 
-![](image/Aspose.Words.237f9eab-156b-4f57-9de7-a92a98b05b8e.041.jpeg) ![](image/Aspose.Words.237f9eab-156b-4f57-9de7-a92a98b05b8e.042.png)
+```js
+// 1.给函数对象添加方法: hyapply
+Function.prototype.hyapply = function(thisArg, otherArgs) {
+  // this -> 调用的函数对象
+  // thisArg -> 传入的第一个参数, 要绑定的this
+  // console.log(this) // -> 当前调用的函数对象
+  // this.apply(thisArg)
+
+  thisArg.fn = this
+
+  // 1.获取thisArg, 并且确保是一个对象类型
+  thisArg = (thisArg === null || thisArg === undefined)? window: Object(thisArg)
+
+  // thisArg.fn = this
+  Object.defineProperty(thisArg, "fn", {
+    enumerable: false,
+    configurable: true,
+    value: this
+  })
+  thisArg.fn(...otherArgs)
+
+  delete thisArg.fn
+}
+foo.hyapply({ name: "why" }, ["james", 25])
+foo.hyapply(123, ["why", 18])
+foo.hyapply(null, ["kobe", 30])
+```
+
+```js
+// 2.给函数对象添加方法: hycall
+Function.prototype.hycall = function(thisArg, ...otherArgs) {
+  // 1.获取thisArg, 并且确保是一个对象类型
+  thisArg = (thisArg === null || thisArg === undefined)? window: Object(thisArg)
+
+  // thisArg.fn = this
+  Object.defineProperty(thisArg, "fn", {
+    enumerable: false,
+    configurable: true,
+    value: this
+  })
+  thisArg.fn(...otherArgs)
+
+  delete thisArg.fn
+}
+
+foo.hycall({ name: "why", fn: "abc" }, "james", 25)
+foo.hycall(123, "why", 18)
+foo.hycall(null, "kobe", 30)
+```
+
+```js
+// 实现hybind函数
+function foo(name, age, height, address) {
+  console.log(this, name, age, height, address)
+}
+
+
+Function.prototype.hybind = function(thisArg, ...otherArgs) {
+  // console.log(this) // -> foo函数对象
+  thisArg = thisArg === null || thisArg === undefined ? window: Object(thisArg)
+  Object.defineProperty(thisArg, "fn", {
+    enumerable: false,
+    configurable: true,
+    writable: false,
+    value: this
+  })
+
+  return (...newArgs) => {
+    // var allArgs = otherArgs.concat(newArgs)
+    var allArgs = [...otherArgs, ...newArgs]
+    thisArg.fn(...allArgs)
+  }
+}
+
+var newFoo = foo.hybind("abc", "kobe", 30)
+newFoo(1.88, "广州市")
+newFoo(1.88, "广州市")
+newFoo(1.88, "广州市")
+newFoo(1.88, "广州市")
+```
+
