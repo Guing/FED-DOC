@@ -13,18 +13,18 @@
     const names = ["abc", "cba", "nba"]
     
     // 给数组names创建一个迭代器(迭代器: names的跌大气)
-    let index = 0
-    const namesIterator = {
-      next: function() {
-        // done: Boolean
-        // value: 具体值/undefined
-        if (index < names.length) {
-          return { done: false, value: names[index++] }
-        } else {
-          return { done: true }
-        }
-      }
-    }
+    // let index = 0
+    // const namesIterator = {
+    //   next: function() {
+    //     // done: Boolean
+    //     // value: 具体值/undefined
+    //     if (index < names.length) {
+    //       return { done: false, value: names[index++] }
+    //     } else {
+    //       return { done: true }
+    //     }
+    //   }
+    // }
 
     console.log(namesIterator.next())
     console.log(namesIterator.next())

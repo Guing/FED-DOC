@@ -9,26 +9,26 @@
 <body>
   
   <script>
-    // const obj = {
-    //   name: "why",
-    //   age: 18,
-    //   // 1.和hasOwnProperty的区别一: 防止对象中也有一个自己的hasOwnProperty方法
-    //   hasOwnProperty: function() {
-    //     return "abc"
-    //   },
-    //   __proto__: {
-    //     address: "广州市"
-    //   }
-    // }
+    const obj = {
+      name: "why",
+      age: 18,
+      // 1.和hasOwnProperty的区别一: 防止对象中也有一个自己的hasOwnProperty方法
+      hasOwnProperty: function() {
+        return "abc"
+      },
+      __proto__: {
+        address: "广州市"
+      }
+    }
 
-    // console.log(obj.name, obj.age)
-    // console.log(obj.address)
+    console.log(obj.name, obj.age)
+    console.log(obj.address)
 
-    // console.log(obj.hasOwnProperty("name"))
-    // console.log(obj.hasOwnProperty("address"))
+    console.log(obj.hasOwnProperty("name"))
+    console.log(obj.hasOwnProperty("address"))
 
-    // console.log(Object.hasOwn(obj, "name"))
-    // console.log(Object.hasOwn(obj, "address"))
+    console.log(Object.hasOwn(obj, "name"))
+    console.log(Object.hasOwn(obj, "address"))
 
 
     // 2.和hasOwnProperty的区别二:
