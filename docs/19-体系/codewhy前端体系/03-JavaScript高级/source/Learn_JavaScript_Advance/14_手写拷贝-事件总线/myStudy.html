@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    function getType(value) {
+        return Object.prototype.toString.call(value).slice(8, -1)
+    }
+    function deepCopy(target) {
+        if (getType(target) === 'Function') {
+            return target
+        }
+        if (getType(target) === 'Symbol') {
+            return Symbol(target.description)
+        }
+        if (getType(target) === 'Set' || getType(target) === 'WeakSet') {
+            let newSet = getType(target) === 'Set' ? new Set() : new WeakSet();
+            for (let item of target) {
+                newSet.add(deepCopy(item))
+            }
+            return newSet
+        }
+        if (getType(target) === 'Map' || getType(target) === 'WeakMap') {
+            let newMap = getType(target) === 'Map' ? new Map() : new WeakMap();
+            for (let item of target) {
+                newMap.set(deepCopy(item))
+            }
+            return newMap
+        }
+
+
+        if (getType(target) === 'Object') {
+            let newObj = {}
+            for (let key in target) {
+                newObj[key] = deepCopy(target[key])
+            }
+            return newObj
+        }
+        return target
+
+
+    }
+    let obj = {
+        name: 'xiaohei',
+        age: 18,
+        isMan: true,
+        intr: {
+            info: "he is a good man"
+        },
+        say: function () {
+            console.log(this.name);
+        },
+        myMap: new Map([[1, 2]]),
+        mySet: new Set([1, 2, 3]),
+        symbol: Symbol('symbol'),
+        myNull: null,
+        myundefined: undefined,
+    }
+    obj.obj = obj;
+
+    let newObj = deepCopy(obj)
+    console.log(newObj);
+
+</script>
+
+</html>
