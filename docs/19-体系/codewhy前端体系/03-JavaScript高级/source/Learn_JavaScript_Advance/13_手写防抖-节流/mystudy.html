@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+    <button id="btn">取消</button>
+  </body>
+  <script>
+    function debounce(callback, delay, immediate = false) {
+      let timer = null;
+      let isInvoke = false;
+      let _debounce = function (...args) {
+        return new Promise((reslove, reject) => {
+          if (timer) {
+            clearTimeout(timer);
+          }
+
+          if (immediate && !isInvoke) {
+            reslove(callback.apply(this, args));
+            isInvoke = true;
+          }
+
+          timer = setTimeout(() => {
+            reslove(callback.apply(this, args));
+            timer = null;
+            isInvoke = false;
+          }, delay);
+        });
+      };
+      _debounce.cancel = function () {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+      };
+      return _debounce;
+    }
+
+    function throttle(callback, interval, immediate = true) {
+      let startTime = 0;
+      let isInvoke = false;
+      let timer = null;
+      return function (...args) {
+        let nowTime = Date.now();
+        if (!immediate && !isInvoke) {
+          startTime = nowTime;
+          isInvoke = true;
+        }
+        let waitTime = interval - (nowTime - startTime);
+        // console.log(waitTime);
+        if (waitTime <= 0) {
+          callback.apply(this, args);
+          startTime = nowTime;
+          isInvoke = false;
+          clearTimeout(timer);
+          timer = null;
+          return;
+        }
+        if (!timer) {
+          timer = setTimeout(() => {
+            callback.apply(this, args);
+            startTime = Date.now();
+            isInvoke = false;
+            timer = null;
+          }, waitTime);
+        }
+      };
+    }
+
+    let input = document.getElementById("input");
+    let btn = document.getElementById("btn");
+    // let debounceHandle = debounce(function (event) {
+    //   console.log(event);
+    // }, 500);
+    // input.oninput = debounceHandle;
+    // btn.onclick = function () {
+    //   debounceHandle.cancel();
+    // };
+    let throttleHandle = throttle(
+      function (event) {
+        console.log(event, new Date().getSeconds());
+      },
+      3000,
+      false
+    );
+    input.oninput = throttleHandle;
+    btn.onclick = function () {
+      throttleHandle.cancel();
+    };
+  </script>
+</html>
