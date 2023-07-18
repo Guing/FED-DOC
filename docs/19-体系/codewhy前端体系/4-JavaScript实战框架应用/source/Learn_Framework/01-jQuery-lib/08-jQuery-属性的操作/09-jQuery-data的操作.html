@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel"
+    data-name="liujun" data-age="17"
+  >
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // 1.获取data属性 ul
+      console.log($('ul').data() )  //  {age: 17, name: 'liujun'}
+      // console.log($('ul').data('age') )
+      
+      // 2.设置data属性 ul
+      // $('ul').data('name', 'coder')
+      $('ul').data({  // 调用data()函数只能修改 缓存中的数据
+        name: 'coder',
+        age: '18',
+        height: '1.66'  // 动态添加的data-xx属性
+      })
+
+      // 3.删除data属性
+      // $('ul').removeData('name')  // 只能删除 缓存中的数据
+      $('ul').removeData(['name', 'age', 'height'])  // 只能删除 缓存中的数据
+
+
+      console.log( $('ul').data('name') )
+      console.log("%O", $('ul').get(0) )
+
+
+    })
+  </script>
+</body>
+</html>

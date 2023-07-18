@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5
+      <span>我是span</span>
+    </li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // 1.拿到 ul 中所有的文本
+      // console.log( $('ul').text() )
+      console.log( $('ul li').text() )  // 
+
+      // 2.设置 li 中的文本
+     $('ul li').text('我是li')  // 会给匹配元素集合中所有的元素添加文本 （ 设置值：一般是给选中所有元素设置）
+
+
+    })
+  </script>
+</body>
+</html>

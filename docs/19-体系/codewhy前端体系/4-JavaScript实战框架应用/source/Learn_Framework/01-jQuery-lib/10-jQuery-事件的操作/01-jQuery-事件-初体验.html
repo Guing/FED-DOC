@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <button class="cancel">取消事件的监听</button>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+     
+      // 监听事件
+      // 1.使用on来监听事件
+      $('ul').on('click', function() {
+        console.log('click1')
+      })
+
+      // 2.使用click来监听事件
+      $('ul').click(function() {
+        console.log('click2')
+      })
+
+      // 3.使用mouseenter来监听事件
+      $('ul').mouseenter(function() {
+        console.log('mouseenter')
+      })
+
+      // 取消监听事件
+      $('.cancel').click(function() {
+        // $('ul').off() // 取消ul元素上所有的事件
+        // $('ul').off('mouseenter')
+        $('ul').off('click')
+      })
+
+
+
+      // 使用程序-自动触发事件
+      // $('ul').trigger('click')  // 模拟用户点击了ul元素
+      $('ul').trigger('mouseenter')
+
+
+
+
+
+
+    })
+  </script>
+</body>
+</html>

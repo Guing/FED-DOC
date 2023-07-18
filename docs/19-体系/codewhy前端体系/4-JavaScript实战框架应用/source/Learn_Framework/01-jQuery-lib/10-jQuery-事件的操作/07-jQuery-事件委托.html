@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1
+      <p class="p1">我是p元素</p>
+    </li>
+    <li class="li-2">li-2
+      <p  class="p2">我是p元素</p>
+    </li>
+    <li class="li-3">li-3
+      <p  class="p3">我是p元素</p>
+    </li>
+    <li class="li-4">li-4
+      <p  class="p4">我是p元素</p>
+    </li>
+    <li class="li-5">li-5
+      <p  class="p5">我是p元素</p>
+    </li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+
+      // 事件的委托
+      // $('ul').on('click', function(event) {
+      //   console.log(event.target)  // DOM Element : ul li  p
+      // })
+
+      // 仅仅监听li中元素的点击事件( 筛选出 可触发事件的 后代元素 )
+      $('ul').on('click', 'li p' , function(event) {
+        console.log(event.target)  // DOM Element : ul li  p
+      })
+
+     // on vs click
+
+    })
+  </script>
+</body>
+</html>

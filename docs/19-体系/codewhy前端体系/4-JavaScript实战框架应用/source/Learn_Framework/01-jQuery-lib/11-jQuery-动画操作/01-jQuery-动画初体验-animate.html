@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  
+  <button class="hide">隐藏</button>
+  <button class="show">显示</button>
+
+  <div class="box">
+    box
+  </div>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      $('.hide').click(function() {
+        // 需要一个隐藏的动画
+        $('.box').animate({
+          height: 0, // 100px -> 0px
+          width: 0, // 200px -> 0px
+          opacity: 0 // 1 -> 0
+        },2000, 'swing' , function() {
+          console.log('动画执行完毕之后会回调')
+        })
+
+      })
+
+      $('.show').click(function() {
+
+
+        $('.box').animate({
+          height: 100,
+          width: 200,
+          opacity: 1
+        }, function() {
+          console.log('动画执行完毕之后会回调')
+        })
+
+        // $('.box').animate({
+        //   height: 100,
+        //   width: 200,
+        //   opacity: 1
+        // }, 2000, 'swing', function() {
+        //   console.log('动画执行完毕之后会回调')
+        // })
+
+
+        // $('.box').animate({
+        //   height: 100,
+        //   width: 200,
+        //   opacity: 1
+        // }, {
+        //   duration: 'slow',
+        //   complete: function() {
+        //     console.log('动画执行完毕之后会回调')
+        //   }
+        // })
+
+
+
+      })
+
+    })
+  </script>
+</body>
+</html>

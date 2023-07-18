@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+
+  </ul>
+
+   <li class="li-7">我是li-7</li>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+     // 1.给ul的尾部插入内容
+     $('<li>')
+      .addClass('li-6')
+      .css('color', 'red')
+      .text('我是li-6')  // 创建一个li元素(必须是一个jQuery对象)
+
+      // 方式一: 支持 jQuery对象
+      // .appendTo( $('ul') )
+
+      // 方式二: 支持 字符串类型的选择器
+      // .appendTo( 'ul' )
+
+      // 方式三: 支持 元素对象
+      .appendTo( document.querySelector('ul') )
+
+
+      $('.li-7').appendTo('ul')  // append
+
+    })
+  </script>
+</body>
+</html>

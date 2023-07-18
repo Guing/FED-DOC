@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="./libs/dayjs.js"></script>
+  <script>
+    // 1.增加一天
+    var day = dayjs() // dayjs 对象
+              // .add(1, 'year') // 增加一年
+              // .add(2, 'month') // 增加2个月
+              // .add(-1, 'month') // 减去一个月
+
+              // .subtract(1, 'year')  // 减去一年
+               // .subtract(1, 'month')
+              // .subtract(1, 'day') 
+
+              // .startOf('year')  // 一年的开始 2022-01-01 00:00:00
+              // .startOf('month')  // 
+              // .startOf('day')  //
+
+
+    // 时间的格式化
+    console.log( day.format("YYYY-MM-DD HH:mm:ss") )
+
+  </script>
+</body>
+</html>

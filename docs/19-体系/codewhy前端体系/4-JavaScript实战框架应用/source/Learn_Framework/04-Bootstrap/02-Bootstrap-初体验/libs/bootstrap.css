@@ -1,0 +1,21 @@
+.btn{
+  width: 60px;
+  line-height: 40px;
+  color: white;
+  text-align: center;
+}
+
+.btn-cirlce{
+  border-radius: 4px;
+}
+
+.btn-primary{
+  background-color: skyblue;
+}
+
+.btn-warning{
+  background-color: orange;
+}
+.btn-default{
+  background-color: #cdcdcd;
+}

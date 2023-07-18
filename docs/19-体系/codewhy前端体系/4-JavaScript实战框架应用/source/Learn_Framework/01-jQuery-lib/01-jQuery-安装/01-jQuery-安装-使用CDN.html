@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- 
+    integrity: 防止资源被篡改,如果浏览器发现资源被篡改 就不会加载该资源
+    crossorigin: 加载不同源的资源时,浏览器是否需要携带用户凭证信息( cookie, ssl 证书 等 )
+      anonymous: 不需要携带用户凭证信息
+      user-credentail: 需要携带用户凭证信息
+   -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
+
+
+  <!-- 
+    1.使用CDN的方式引入
+    执行下面的js文件
+      1.window.jQuery 函数 -> 工厂函数
+      2.window.$ 函数
+   -->
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    // console.log("%O", jQuery)
+    // console.log($ === jQuery)
+
+    // 需求:在页面上显示 Hello World
+    // document.querySelector('body').textContent = 'Hello World'
+
+    // var $body = jQuery('body')
+    // $body.text('hello jQuery')
+
+    $('body').text('hello jQuery')
+  </script>
+
+</body>
+</html>

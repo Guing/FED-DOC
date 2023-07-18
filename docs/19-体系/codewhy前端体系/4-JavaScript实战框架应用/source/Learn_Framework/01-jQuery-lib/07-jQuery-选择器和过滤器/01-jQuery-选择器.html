@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* ul li:nth-child(2){
+
+    } */
+  </style>
+</head>
+<body>
+
+  <ul id="list">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+
+    // 1.基本的选择器
+    // console.log( $('.li-1') )
+    // console.log( $('#list') )
+
+    // 2.伪元素选择器
+    // console.log($('ul li:nth-child(2)'))
+
+    // 3.jQuery额外扩展的选择器
+    // document.querySelector('ul li:eq(1)') // 不会生效
+    // console.log($('ul li:eq(1)'))
+    // console.log($('ul li:first') )
+    // console.log($('ul li:last') )
+
+    // console.log($('ul li:odd') )
+    // console.log($('ul li:even') )
+
+  </script>
+</body>
+</html>

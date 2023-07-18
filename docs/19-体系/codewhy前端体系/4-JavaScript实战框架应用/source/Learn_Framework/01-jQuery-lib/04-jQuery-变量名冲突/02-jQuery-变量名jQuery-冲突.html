@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- 
+    给window 添加了 $ 变量
+    window.$ = '我是hy-utils'
+    window.jQuery = '我是hy-utils jQuery'
+   -->
+  <script src="./utils/hy-utils.js"></script>
+
+  <!-- 
+    给window 添加了 $ 变量
+     var _$ = window.$
+    var _jQuery = window.jQuery
+
+    window.$ = func 函数
+    window.jQuery = func 函数
+
+   -->
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // console.log('%O', $)  // func 还是  '我是hy-utils'
+
+    // 1.解决变量的冲突
+    var newjQuery = jQuery.noConflict(true) // window.$ =  _$ ;  window.jQuery =  _jQuery
+    console.log( $ ) // 我是hy-utils
+    console.log( jQuery ) // 我是hy-utils
+
+    console.log(newjQuery)
+
+  </script>
+</body>
+</html>

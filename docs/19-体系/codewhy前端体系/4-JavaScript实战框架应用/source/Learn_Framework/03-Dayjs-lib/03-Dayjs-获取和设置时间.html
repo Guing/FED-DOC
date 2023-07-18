@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="./libs/dayjs.js"></script>
+  <script >
+
+    // 1.拿到Dayjs的对象
+    // var day = dayjs()
+    // 获取时间
+    // console.log(day.year(), (day.month() + 1), day.date(), day.hour(), day.minute(), day.second())
+
+    // 2.设置时间
+    var day = dayjs()
+              .year(2021)
+              .month(5)
+              .date(1)
+    console.log(day.year(), (day.month() + 1), day.date(), day.hour(), day.minute(), day.second())
+
+
+  </script>
+</body>
+</html>

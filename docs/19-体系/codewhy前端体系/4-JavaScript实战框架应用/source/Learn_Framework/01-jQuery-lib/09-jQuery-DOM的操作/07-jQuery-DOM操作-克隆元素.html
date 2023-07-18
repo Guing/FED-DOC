@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+    
+  </ul>
+
+  <li class="li-6">li-6</li>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // 1.将li-6克隆到ul元素的尾部
+      // var $newLi = $('.li-6').clone() // 属于克隆一个li元素
+      // $newLi.appendTo('ul')
+
+      // 简写
+      // $('.li-6').clone().appendTo('ul')
+
+      // 2.将li-6克隆到 ul元素的尾部( 将li-6的事件处理函数和data自定义属性一起拷贝过去 )
+      $('.li-6')
+        .data({
+          name: 'liujun',
+          age: '17'
+        })
+        .click(function() {
+          console.log( 'li-6' )
+        })
+        // 开始克隆
+        .clone(true)
+        .appendTo('ul')
+         
+      console.log("%O", $('.li-6').get(0))
+    })
+  </script>
+</body>
+</html>

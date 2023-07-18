@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // 1.获取到元素的width
+      // width: content ;  innerWidth:padding + content; outerWidth: border + padding + content
+      console.log($('ul').width()) // 返回的结果是 number
+
+      // 2.设置ul元素的width
+      // $('ul').width(300)  // 直接给style设置一个width
+      // $('ul').width('500px')  // 直接给style设置一个width
+
+      // 3. width height  innerWidth innerHeight ......
+
+    })
+  </script>
+</body>
+</html>

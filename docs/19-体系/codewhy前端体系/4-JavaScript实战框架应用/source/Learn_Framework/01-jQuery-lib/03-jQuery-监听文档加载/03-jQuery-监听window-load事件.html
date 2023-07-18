@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <img src="https://jquery.com/jquery-wp-content/themes/jquery/content/donate.png" alt="">
+  
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // $(window).load(function() {} ) // 3.0 remove
+
+    // 1.监听整个HTML页面加载完成( 外部链接 和 图片资源.. )
+    $(window).on('load', function() {
+      console.log('图片加载完成')
+    })
+  </script>
+</body>
+</html>

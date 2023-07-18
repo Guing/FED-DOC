@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+
+      // 1.eq()
+      // console.log($('ul li:eq(2)') ) // selector
+      // console.log( $('ul li').eq(2) ) // API -> 原型上的方法
+
+      // 2.first()  last()
+      // console.log( $('ul li').first() )
+      // console.log( $('ul li').last() )
+
+      // 3.not()
+      // console.log($('ul li').not('.li-1') )
+      // console.log($('ul li').not('.li-1, .li-2') )
+
+      // 4. odd()  even()
+      // console.log($('ul li').odd() )
+      // console.log($('ul li').even() )
+
+      // 5.filter()
+      // console.log($('ul li').filter('.li-4') )
+      // console.log($('ul li').filter('.li-4, .li-3') )
+
+      // 6.jQuery原型上的方法，大部分支持链式调用
+      var $el = $('ul li')
+                .filter('.li-2, .li-3, .li-4')
+                .eq(1)
+
+      console.log($el)
+
+      // new Promise()
+      //   .then()
+      //   .then()
+      //   .then()
+              
+
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      height: 200px;
+    }
+    .box{
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  
+  <button class="hide">隐藏</button>
+  <button class="show">显示</button>
+  <button class="toggle">切换</button>
+
+  <div class="box">
+    box
+  </div>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // $('.hide').click(function() {
+      //   // 需要一个隐藏的动画
+      //   $('.box').animate({
+      //     opacity: 'toggle',
+      //     // height: 0,  // number
+      //     // height: '0',  // string
+      //     // height: '100%',  // 百分比  50% -> 100% ; 100px -> 200px
+      //     // height: 'toggle' // 关键字: show  hide  toggle(切换)
+      //     // height: '-=40px' // 100px -> 60px
+      //   }, 4000, 'swing' , function() {
+      //     console.log('动画执行完毕之后会回调')
+      //   })
+      // })
+
+      $('.hide').click(function() {
+        $('.box').animate({
+          opacity: 0,
+          height:0,
+          width: 0
+        }, 'slow', function() {   // number | 关键之: slow->600 fast->200
+          console.log('动画执行完成')
+        })
+      })
+      $('.show').click(function() {
+        $('.box').animate({
+          opacity: 1,
+          height: 100,
+          width: 200
+        }, 'fast', function() {
+          console.log('动画执行完成')
+        })
+      })
+      $('.toggle').click(function() {
+        $('.box').animate({
+          opacity: 'toggle',
+          height: 'toggle',
+          width: 'toggle'
+        }, 400, function() {
+          console.log('动画执行完成')
+        })
+      })
+
+    })
+  </script>
+</body>
+</html>

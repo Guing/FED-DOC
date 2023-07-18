@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="./libs/dayjs.js"></script>
+  <!-- 会在 Dayjs 的原型上添加: fromNow .... -->
+  <script src="./libs/dayjs.relative-time.min.js"></script>
+  <!-- 
+    给给dayjs的全局变量 Ls 添加了一个中文支持
+   -->
+  <script src="./libs/dayjs.zh-cn.min.js"></script>
+
+  <script>
+    // 1.安装插件
+    dayjs.extend(dayjs_plugin_relativeTime)
+    // 2.切换使用中文
+    dayjs.locale('zh-cn')
+
+    // 1. 1小时   5分钟   2天前
+    var day = dayjs(1656206934331) // dayjs 对象
+
+    console.log(day.fromNow())
+
+
+  </script>
+</body>
+</html>

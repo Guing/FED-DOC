@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+  <title>弘源智能生活</title>
+  <!-- 引入 Bootstarp中的CSS文件 -->
+  <link rel="stylesheet" href="./libs/bootstrap-4.6.1/css/bootstrap.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/target-customer.css">
+</head>
+<body>
+  
+  <!-- 1.导航栏 -->
+  <nav class="navbar navbar-expand-lg">
+   
+    <div class="container-fluid">
+      <!-- logo -->
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="./img/logo.png" alt="">
+      </a>
+      
+      <!-- 按钮 <=992才会显示出来  -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <img class="expand-icon" src="./img/show-icon.png" alt="">
+      </button>
+      
+      <!-- 导航列表 -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <!-- 使用自定义的样式 -->
+          <li class="text-link active">
+           <span>首页</span>
+          </li>
+          <li class="text-link">
+            <span>API</span>
+          </li>
+          <li class="text-link">
+            <span>解决方案</span>
+          </li>
+          <li class="text-link">
+            <span>案例</span>
+          </li>
+          <li class="text-link">
+            <span>新闻</span>
+          </li>
+          <li class="text-link">
+            <span>关于我们</span>
+          </li>
+        </ul>
+
+        <p class="text-link hot-line">
+          <span>咨询热线：4009910008</span>
+        </p>
+      </div>
+
+    </div>
+
+
+  </nav>
+
+
+  <!-- 2.轮播图 -->
+
+  <!-- 
+     data-ride="carousel" 当页面加载完成之后 录播图自动轮播
+   -->
+  <div id="carouselExampleIndicators_liujun" class="carousel slide">
+    <!-- 指示器 -->
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators_liujun" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators_liujun" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators_liujun" data-slide-to="2"></li>
+    </ol>
+
+    <!-- 轮播图的图片 -->
+    <div class="carousel-inner">
+
+      <!-- 
+        
+      <div class="carousel-item active">
+        <img src="./img/banner0.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="./img/banner1.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="./img/banner2.png" class="d-block w-100" alt="...">
+      </div> 
+    -->
+
+    </div>
+
+    <!-- 分页:上一张 下一张 -->
+    <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators_liujun" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators_liujun" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  <!-- 3.目标客户 -->
+  <div class="target-customer">
+    <!-- 在小屏上是不可见 -->
+    <h1 class="title text-center d-none d-md-block">目标客户</h1>
+    <!-- 网格系统性 -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-xl-3 item">
+          <img class=" d-none d-md-block" src="./img/target-1.png" alt="">
+          <div class="sub-title">电子银行</div>
+          <div class="desc text-center">
+            <p>助力五大行、商业银行、城商行、农商行、农信社等</p>
+            <p>手机银行与直销银行APP消费场景升级</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3 item">
+          <!-- 在小屏上是不可见 -->
+          <img class=" d-none d-md-block" src="./img/target-2.png" alt="">
+          <div class="sub-title">金服平台</div>
+          <div class="desc text-center">
+            <p>助力钱包、小贷、基金、保险、信托、证券等</p>
+            <p>金融服务平台APP 消费场景升级</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3 item">
+          <img class=" d-none d-md-block" src="./img/target-3.png" alt="">
+          <div class="sub-title">企业福利</div>
+          <div class="desc text-center">
+            <p>助力国有、私营、外资、人力资源公司等</p>
+            <p>企业报销与福利系统消费场景升级</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3 item">
+          <img class=" d-none d-md-block" src="./img/target-4.png" alt="">
+          <div class="sub-title">智能终端</div>
+          <div class="desc text-center">
+            <p>助力机器人、汽车中控、电子屏、商用电视等</p>
+            <p>人工智能语音消费场景升级</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./libs/jquery/jquery-3.6.0.js"></script>
+  <script src="./libs/bootstrap-4.6.1/js/bootstrap.bundle.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/banner.js"></script>
+</body>
+</html>

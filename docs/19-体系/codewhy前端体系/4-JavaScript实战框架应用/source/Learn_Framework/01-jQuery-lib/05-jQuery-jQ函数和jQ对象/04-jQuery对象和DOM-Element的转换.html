@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.jQuery对象 转成 DOM Element
+    var $ul = jQuery('ul')
+    // console.log($ul) 
+    // 方式一
+    // var ulEl = $ul[0]  // 将jQuery对象转成DOM Element
+    // console.log('%O', ulEl)
+    // 方式二
+    // console.log($ul.get()) // 获取到匹配元素集合中所有的元素 [ul]
+    // console.log($ul.get(0)) // 获取到匹配元素集合中某一个元素 ul
+    
+
+    // 2.DOM Element 转成  jQuery对象
+    // var ulEL = document.querySelector('ul')
+    // console.log(ulEL)
+    // console.log(jQuery(ulEL)) // 目的：想调用jQuery对象中的方法
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <li class="li-6">li-6</li>
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // 1.将li替换为 span元素 .replaceAll(target)
+      // $('<span>')
+      //   .addClass('content')
+      //   .text('我是span')
+      //   .css('color', 'red') // 创建一个span元素( jQuery对象 )
+
+      //   .replaceAll( 'ul li' ) // 将li元素替换为span 
+      //   replaceAll参数: 1.字符串类型的选择器  2. $('ul li') jQuery对象  3. 元素对象
+
+      // 2.将li替换为 span元素 .replaceWidh( content )
+      var $span = $('<span>').text('我是span')
+      // $('ul li').replaceWith( $span )
+      $('ul li').replaceWith('<span>我是span</span>')
+        //   replaceWith 参数: 1.字符串文本/html字符串  2. $('ul li') jQuery对象  3. 元素对象
+
+    })
+  </script>
+</body>
+</html>

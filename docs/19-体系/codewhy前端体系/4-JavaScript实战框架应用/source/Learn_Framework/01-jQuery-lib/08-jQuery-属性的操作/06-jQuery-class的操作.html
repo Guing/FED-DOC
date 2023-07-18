@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul class="active list">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <button class="toggle">切换class</button>
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // 1.添加class
+      // $('ul').addClass('list1 list2')
+      // $('ul li').addClass(['list1', 'list2'])
+
+      // 2.判断是否存在弄个class
+      // console.log($('ul').hasClass('active list') )
+
+      // 3.删除class
+      // $('ul').removeClass() // 删除全部
+      // $('ul').removeClass('list') // 删除指定的某一个
+
+      // 4.class的切换
+      $('.toggle').click(function() {
+        // $('ul').toggleClass()
+        $('ul').toggleClass('active')
+      })
+     
+
+    })
+  </script>
+</body>
+</html>

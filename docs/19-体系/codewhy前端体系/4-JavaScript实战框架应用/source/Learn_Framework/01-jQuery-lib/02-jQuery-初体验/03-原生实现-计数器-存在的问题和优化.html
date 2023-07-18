@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+
+
+  <button class="sub">-</button>
+  <span class="counter">0</span>
+  <button class="add">+</button>
+
+  <script>
+    // 1.监听文档完全解析完成
+    document.addEventListener('DOMContentLoaded', function() {
+      var subEl = document.querySelector('.sub')
+      var spanEl = document.querySelector('.counter')
+      var addEl = document.querySelector('.add')
+      var counter = 0
+      subEl.addEventListener('click', function() {
+        spanEl.innerText = --counter
+      })
+      addEl.addEventListener('click', function() {
+        spanEl.innerText = ++counter
+      })
+    })
+  </script>
+
+</body>
+</html>

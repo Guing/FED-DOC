@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      // 1.遍历jQuery对象 ( 已经实现了迭代器协议 for of )
+      // 对象中的 each 底层调用的 jQuery函数上的each方法
+      $('ul li').each(function(index, element) {  // [].forEach( func(element, index, array ))
+        console.log(index, element)
+      })
+
+      console.log("%O", $('ul') )
+      // 2.使用 for of
+
+    })
+  </script>
+</body>
+</html>

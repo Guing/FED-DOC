@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <ul id="list" class="panel">
+    <li class="li-1">li-1</li>
+    <li class="li-2">li-2</li>
+    <li class="li-3">li-3</li>
+    <li class="li-4">li-4</li>
+    <li class="li-5">li-5</li>
+  </ul>
+
+  <input type="text">
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+
+      // on('hover', func)
+
+      // 1.hover 底层使用的是: mouseenter or mouseleaver
+      // $('ul').hover(function() {
+      //   console.log('鼠标悬浮在ul')
+      // }, function() {
+      //   console.log('鼠标离开在ul')
+      // })
+
+      // 2.监听浏览器resize事件 ( throttle 节流 )
+      // on('resize', func)
+      $(window).resize(function() {
+        console.log('resize')
+      })
+
+
+      // 3.表单事件
+      $('input').focus(function() {
+        console.log('input focus事件')
+      })
+      $('input').blur(function() {
+        console.log('input blur事件')
+      })
+
+      // input ( debounce 防抖操作 )
+      $('input').on('input', function() {
+      //  console.log( $('input').val() )
+       console.log( $(this).val() )
+      })
+
+    })
+  </script>
+</body>
+</html>

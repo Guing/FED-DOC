@@ -1,0 +1,57 @@
+.navbar{
+  margin: 16px 0;
+}
+
+.navbar .container-fluid{
+  max-width: var(--content-width);
+}
+
+.navbar .logo{
+  height: 26px;
+  padding-right: 25px;
+}
+
+.navbar .text-link{
+  padding: 8px 25px;
+  font-size: var(--font-size);
+  cursor: pointer;
+}
+.navbar .text-link.hot-line{
+  cursor: inherit;
+}
+.navbar .text-link.active,
+.navbar .text-link:hover:not(.hot-line){
+  color: var(--theme-color);
+}
+
+.navbar .text-link.active span{
+  border-bottom: 2px solid var(--theme-color);
+}
+
+/* 显示 按钮 */
+@media (max-width: 992px) {
+  .navbar-toggler{
+    border: none;
+    padding: 0;
+  }
+
+  .navbar-toggler .expand-icon{
+    height: 25px;
+  }
+  .navbar-toggler .expand-icon:active{
+    opacity: .6;
+  }
+
+  /* 修改下拉的背景 */
+  #navbarNav{
+
+    position: absolute;
+    top: calc(100% + 16px);
+    width: 100%;
+
+    background-color: var(--bg-nav-color);
+    color: #fff;
+    margin: 0 -16px;
+    z-index: 100;
+  }
+}

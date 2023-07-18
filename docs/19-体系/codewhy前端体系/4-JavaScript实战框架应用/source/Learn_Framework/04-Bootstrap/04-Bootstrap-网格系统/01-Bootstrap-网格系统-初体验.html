@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+  <title>Document</title>
+  <!-- 引入 Bootstarp中的CSS文件 -->
+  <link rel="stylesheet" href="../libs/bootstrap-4.6.1/css/bootstrap.css">
+  <style>
+
+    .container{
+      background-color: pink;
+    }
+    .item{
+      height: 40px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <!-- 
+    初体验网格系统,属于自动列的宽
+   -->
+
+   <div class="container">
+    <!-- 
+      display: flex
+      flex-wrap:wrap
+     -->
+     <div class="row">
+      <!-- 
+        flex item: 
+          flex-grow: 1
+       -->
+       <div class="col item">1</div>
+       <div class="col item">2</div>
+       <div class="col item">3</div>
+     </div>
+
+   </div>
+
+
+   <!-- 
+    网格系统(启用了12列,超出12列就会换行)
+    可以制定列的框
+    -->
+   <div class="container">
+    <!-- 
+      display:flex
+      flex-wrap: wrap
+     -->
+      <div class="row">
+        <!-- 
+          flex item:  
+            flex-basis: xx%
+            max-width: xx%
+            flex-grow: 0,
+            flex-shrink: 0
+         -->
+        <div class="col-4 item">1</div>
+        <div class="col-4 item">2</div>
+        <div class="col-4 item">3</div>
+        <div class="col-6 item">4</div>
+      </div>
+   </div>
+
+
+</body>
+</html>

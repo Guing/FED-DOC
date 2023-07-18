@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: relative;
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <button class="start">开始动画</button>  
+  <button class="stop">停止动画</button>  
+  <button class="queue">查看动画队列</button> 
+
+  <div class="box">box</div>
+
+  <script src="../libs/jquery-3.6.0.js"></script>
+  <script>
+    // 1.监听文档完全解析完成
+    $(function() {
+      var $box = $('.box')
+      $('.start').click(function() {
+        $box.animate({
+          top: 100
+        }, 5000)
+
+        $box.animate({
+          left: 100
+        }, 5000)
+
+        $box.animate({
+          top: 0
+        }, 5000)
+
+        $box.animate({
+          left: 0
+        }, 5000)
+
+      })
+
+      $('.queue').click(function() {
+        console.log( $box.queue() )  // 查看动画队列 fx
+      })
+
+      $('.stop').click(function() {
+        // $box.stop()  // 停止 fx 动画队列( 停止当前执行的动画,还会继续执行动画队列中其它的动画 )
+        // stop(false, false) 默认值
+
+        // $box.stop(true) // 停止所有的动画, 清空了动画队列
+
+        //  $box.stop(true, true) // 清空了动画队列, 立即执行完当前的动画
+
+      })
+
+    })
+  </script>
+</body>
+</html>

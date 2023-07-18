@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="./libs/lodash-4.17.21.js"></script>
+  <script>
+    var obj = {}
+    var colors = ['red', 'red', obj, obj,  'green', 'blue', ['orange', 'pink'] ]
+
+    // 1.数组去重
+    // console.log( _.uniq(colors) )
+
+    // 2.扁平化
+    // console.log( _.flatten(colors) )
+
+    // 2.去除数组中假的值
+    console.log( _.compact( [1, 2, {}, '', 0, null, undefined, false, 'red'] ) )
+    
+    
+  </script>
+</body>
+</html>
