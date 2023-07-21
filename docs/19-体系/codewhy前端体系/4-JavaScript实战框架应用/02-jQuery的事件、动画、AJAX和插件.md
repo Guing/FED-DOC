@@ -8,9 +8,9 @@
 
 - **原生事件监听方法：**
 
-  - 事件监听方式一：在script中直接监听（很少使用）。 
-  - 事件监听方式二：DOM属性，通过元素的on来监听事件。 
-  - 事件监听方式三：通过EventTarget中的addEventListener来监听。 
+  - 事件监听方式一：在script中直接监听（很少使用）。
+  - 事件监听方式二：DOM属性，通过元素的on来监听事件。
+  - 事件监听方式三：通过EventTarget中的addEventListener来监听。
 
   ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.014.png)
 
@@ -19,7 +19,6 @@
   - 事件监听方式一：直接调用jQuery对象中的事件处理函数来监听，例如：click，mouseenter....。
   - 事件监听方式二：调用jQuery对象中的on函数来监听，使用off函数来取消监听。
 
-
 **click和on的区别**
 
 - **click和on的区别：**
@@ -27,7 +26,6 @@
   - 如果 on 没有使用 selector 的话，那么和使用click是一样的。
   - on 函数可以接受一个 selector 参数，用于筛选 可触发事件 的后代元素。
   - on 函数支持给事件添加命名空间。
-
 
 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.015.jpeg)
 
@@ -48,7 +46,6 @@
   - IE<9仅采用了事件冒泡的方式，Netscape采用了事件捕获的方式；
   - IE9+和现在所有主流浏览器都已支持这两种方式。
 
-
 **事件冒泡（Event Bubble）; 事件捕获（Event Capture）；**
 
 - **jQuery为了更好的兼容IE浏览器，底层并没有实现事件捕获。![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.018.png)![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.019.png)**
@@ -64,7 +61,7 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 - jQuery事件对象常用的方法：
 - preventDefault() :  取消事件的默认行为（例如，a标签、表单事件等）。
 - stopPropagation() :  阻止事件的进一步传递（例如，事件冒泡）。 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.020.png)
-- 要访问其它事件的属性，可以使用 event.originalEvent 获取原生对象。 
+- 要访问其它事件的属性，可以使用 event.originalEvent 获取原生对象。
 
 **jQuery的事件委托（event delegation）**
 
@@ -84,25 +81,24 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 - .mouseover()、.mouseout() 、.contextmenu()、.toggle()
 - **键盘事件（Keyboard Events）**
 - .keydown() 、.keypress()、.keyup() ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.022.png)
-- **文档事件（Document Loading Events）** 
-- load、ready()、.unload 
-- **表单事件（Form Events）** 
-- .blur() 、.focus()、.change()、.submit()、.select() 
-- **浏览器事件（Browser Events）** 
-- .resize()、.scroll() 
-
+- **文档事件（Document Loading Events）**
+- load、ready()、.unload
+- **表单事件（Form Events）**
+- .blur() 、.focus()、.change()、.submit()、.select()
+- **浏览器事件（Browser Events）**
+- .resize()、.scroll()
 
 **mouseover和mouseenter的区别**
 
 - **mouseenter()和mouseleave() ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.023.png)**
 - 不支持冒泡 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.024.png)
-- 进入子元素依然属于在该元素内，没有任何反应 
-- **mouseover()和mouseout()** 
-- 支持冒泡 
-- 进入元素的子元素时 
+- 进入子元素依然属于在该元素内，没有任何反应
+- **mouseover()和mouseout()**
+- 支持冒泡
+- 进入元素的子元素时
 - 先调用父元素的mouseout ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.025.png)
-- 再调用子元素的mouseover 
-- 因为支持冒泡，所以会将mouseover传递到父元素中； 
+- 再调用子元素的mouseover
+- 因为支持冒泡，所以会将mouseover传递到父元素中；
 
 **jQuery的键盘事件**
 
@@ -121,12 +117,11 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 - **表单事件（Form Events）**
 - .blur()  - 元素失去焦点时触发
 - .focus() - 元素获取焦点时触发
-- change() - 该事件在表单元素的内容改变时触发( <input>, <keygen>, <select>, 和 <textarea>)
+- change() - 该事件在表单元素的内容改变时触发( `<input>`, `<keygen>`, `<select>`, 和 `<textarea>`)
 - .submit() - 表单提交时触发
 - **......**
 
 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.027.png)
-
 
 **jQuery-选项卡切换**
 
@@ -142,7 +137,7 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 - propertys参数的支持：
 - 数值：number 、string
 - 关键字：'show'、'hide'和'toggle'
-- 相对值：+= 、 -= 
+- 相对值：+= 、 -=
 - 支持 em 、% 单位（可能会进行单位转换）。
 - **自定义修改宽高度动画**
 - **height ：100% -> 0**
@@ -159,7 +154,7 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 
 - **.显示和隐藏**匹配的元素
   - .hide() 、.hide( [duration ] [, complete ] )、.hide( options )  - 隐藏元素 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.032.png)
-  - .show() 、.show( [duration ] [, complete ] )、.show( options ) - 显示元素 
+  - .show() 、.show( [duration ] [, complete ] )、.show( options ) - 显示元素
   - .toggle() 、.toggle( [duration ] [, complete ] )、.toggle( options ) -显示或者隐藏元素
 - **淡入淡出**
 - .fadeIn()、.fadeIn( [duration ] [, complete ] )、.fadeIn( options )  - 淡入动画
@@ -178,9 +173,9 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 **动画队列(queue)来维护的。例如执行下面的动画都会添加到动画队列中：**
 
 - **.queue()：查看当前选中元素中的动画队列。 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.033.png)**
-- **.stop( [clearQueue ] [, jumpToEnd ] )：停止匹配元素上当前正在运行的动画。** 
-- clearQueue ：一个布尔值，指示是否也删除排队中的动画。默认为false 
-- jumpToEnd ：一个布尔值，指示是否立即完成当前动画。默认为false 
+- **.stop( [clearQueue ] [, jumpToEnd ] )：停止匹配元素上当前正在运行的动画。**
+- clearQueue ：一个布尔值，指示是否也删除排队中的动画。默认为false
+- jumpToEnd ：一个布尔值，指示是否立即完成当前动画。默认为false
 
 **jQuery实现-隐藏侧边栏广告**
 
@@ -189,15 +184,15 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 **jQuery中的遍历**
 
 - **.each( function )： 遍历一个 jQuery 对象，为每个匹配的元素执行一个回调函数。**
-- function 参数: 
+- function 参数:
 - Function( Integer index, Element element )， 函数中返回false会终止循环。
 - **jQuery.each( array | object , callback ) : 一个通用的迭代器函数，可以用来无缝地迭代对象和数组。**
 - array参数：支持数组（array）或者类数组（array-like）,底层使用for循环 。 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.036.jpeg)
-- object参数: 支持普通的对象 object 和 JSON对象等，底层用for in循环。 
+- object参数: 支持普通的对象 object 和 JSON对象等，底层用for in循环。
 - function 参数:  
-- Function( Integer index, Element element )， 函数中返回false会终止循环。 
-- **.each() 和 jQuery.each(）函数的区别：** 
-- .each()是jQuery对象上的方法，用于遍历 jQuery对象。 
+- Function( Integer index, Element element )， 函数中返回false会终止循环。
+- **.each() 和 jQuery.each(）函数的区别：**
+- .each()是jQuery对象上的方法，用于遍历 jQuery对象。
 - jQuery.each( ) 是jQuery函数上的方法，可以遍历对象、数组、类数组等，它是一个通用的工具函数。
 
 **jQuery的AJAX**
@@ -213,24 +208,24 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 - $.get( url [, data ] [, success ] [, dataType ] ) - 发起GET请求，底层调用的还是$ajax()
 - $.post( url [, data ] [, success ] [, dataType ] ) - 发起POST请求，底层调用的还是$ajax()
 - **初体验jQuery中的AJAX**
-- https://httpbin.org  (是一个专门提供：免费测试http服务的网站)
+- <https://httpbin.org>  (是一个专门提供：免费测试http服务的网站)
 
 **AJAX请求参数(Parameters)**
 
 - **请求参数（Parameters） ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.037.png)**
-- url - 指定发送请求的 URL。 
-- method / type - 用于指定请求的类型 (e.g. "POST", "GET", "PUT")，默认为GET 
+- url - 指定发送请求的 URL。
+- method / type - 用于指定请求的类型 (e.g. "POST", "GET", "PUT")，默认为GET
 - data - 指定要发送到服务器的数据（PlainObject or String or Array）
 - processData：当data是一个对象时，jQuery  从对象的键/值对生成数据字符串，除非该processData选项设置为false.  例如，{ a: "bc", d: "e,f" }被转换为字符串"a=bc&d=e%2Cf"，默认为true。
 - header - 请求头的内容（PlainObject） ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.038.jpeg)
-- contentType - 默认值：application/x-www-form-urlencoded; charset=UTF-8，向服务器发送数据时指定内容类型。 
-  - application/x-www-form-urlencoded; charset=UTF-8： 请求体的数据以查询字符串形式提交，如：a=bc&d=e%2Cf。 
-  - application/json; charset=UTF-8  指定为json字符串类型 
-  - 为时 false， 代表是 multipart/form-data  。表单类型，一般用于上传文件 
-- dataType - 期望服务器端发回的数据类型（json、xml、text...），默认会根据响应的类型来自动推断类型。 
-- timeout - 请求超时时间。它以毫秒为单位。 
-- beforeSend - 这是一个在发送请求之前运行的函数，返回false会取消网路请求。 
-- success - 请求成功回调的函数 
+- contentType - 默认值：application/x-www-form-urlencoded; charset=UTF-8，向服务器发送数据时指定内容类型。
+  - application/x-www-form-urlencoded; charset=UTF-8： 请求体的数据以查询字符串形式提交，如：a=bc&d=e%2Cf。
+  - application/json; charset=UTF-8  指定为json字符串类型
+  - 为时 false， 代表是 multipart/form-data  。表单类型，一般用于上传文件
+- dataType - 期望服务器端发回的数据类型（json、xml、text...），默认会根据响应的类型来自动推断类型。
+- timeout - 请求超时时间。它以毫秒为单位。
+- beforeSend - 这是一个在发送请求之前运行的函数，返回false会取消网路请求。
+- success - 请求成功回调的函数
 - error - 请求失败回调的函数![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.039.png)
 
 **jQuery插件（plugins）开发**
@@ -242,9 +237,9 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 - 在立即执行函数中编写插件，这样可以避免插件中的变量与全局变量冲突。
 - 在jQuery的原型对象上新增一些的方法。
 - 最后在html中导入就可以像使用其他 jQuery对象方法一样使用了 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.040.png)
-- 到此就开发完一个jQuery的插件了。 
-- **案例：开发一个 jquery.showlinklocation.js 的插件。** 
-- 功能：让网页上所有的a标签文本的后面追加对应的域名地址。 
+- 到此就开发完一个jQuery的插件了。
+- **案例：开发一个 jquery.showlinklocation.js 的插件。**
+- 功能：让网页上所有的a标签文本的后面追加对应的域名地址。
 
 **jQuery项目实战**
 
@@ -253,9 +248,8 @@ altKey, clientX, clientY, currentTarget, data, detail,  key, keyCode, offsetX, o
 ![](./image/Aspose.Words.3b352543-d398-4031-be9a-648224251dd0.041.png)
 
 - **项目的接口地址**
-- baseURL：http://123.207.32.32:9060/beike/api
+- baseURL：<http://123.207.32.32:9060/beike/api>
 - 首页数据(GET)：baseURL + /homePageInfo
 - 搜索接口(GET)：baseURL + /sug/headerSearch?cityId=440100&cityName=广州&channel=site&keyword=白云山 &query=白云山
 - 热门推荐(GET)：baseURL + /site/rent
 - 城市数(GET)据：baseURL + /city
-

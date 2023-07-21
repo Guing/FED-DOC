@@ -1,21 +1,4 @@
-﻿**Git版本控制工具详解 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.001.png)![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.002.png)![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.003.png)**
-
-王红元 coderwhy![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.004.png)
-
-|**目录 content**|**1**|**邂逅版本控制工具**|
-| :- | - | - |
-||**2![ref2]**|**集中式和分布式区别**|
-||**3![ref3]**|**Git的环境安装搭建**|
-||**4![ref4]**|**Git初始化本地仓库**|
-||**5![ref5]**|**Git记录更新变化过程**|
-||**6![ref6]**|**Git远程仓库和验证**|
-|**目录 content**|**7![ref1]**|**Git的标签tag用法**|
-||**8![ref2]**|**Git分支的使用过程**|
-||**9![ref3]**|**工作中的Git Flow**|
-||**10![ref4]**|**Git远程分支的管理**|
-||**11![ref5]**|**Git rebase的使用**|
-||**12![ref6]**|**Git常见命令速查表**|
-
+﻿
 **认识版本控制（版本控制）![ref7]**
 
 - **什么是版本控制？**
@@ -78,12 +61,11 @@
 
 **分布式版本控制![ref7]**
 
-- **Git是属于分布式版本控制系统（Distributed Version Control System，简 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.014.png)称 DVCS）** 
-- 客户端并不只提取最新版本的文件快照， 而是把代码仓库完整地镜像下 来，包括完整的历史记录； 
-- 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何 一个镜像出来的本地仓库恢复； 
-- 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份； 
-- **目前在公司开发中我们都是使用Git来管理项目的，所以接下来我们会重点 学习Git的各种用法；** 
-
+- **Git是属于分布式版本控制系统（Distributed Version Control System，简 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.014.png)称 DVCS）**
+- 客户端并不只提取最新版本的文件快照， 而是把代码仓库完整地镜像下 来，包括完整的历史记录；
+- 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何 一个镜像出来的本地仓库恢复；
+- 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份；
+- **目前在公司开发中我们都是使用Git来管理项目的，所以接下来我们会重点 学习Git的各种用法；**
 
 **Git的安装![ref7]**
 
@@ -143,7 +125,6 @@
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.018.png) ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.019.png)
 
-
 **Git的别名（alias）![ref7]**
 
 - **Git 并不会在你输入部分命令时自动推断出你想要的命令：**
@@ -169,7 +150,7 @@ git init
 
 - **方式二：从Git远程仓库**
 
-git clone https://github.com/coderwhy/hy-react-web-music.git
+`git clone <https://github.com/coderwhy/hy-react-web-music.git>`
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.023.png)
 
@@ -182,11 +163,11 @@ git clone https://github.com/coderwhy/hy-react-web-music.git
 - 未跟踪：默认情况下，Git仓库下的文件也没有添加到Git仓库管理中，我们需要通过add命令来操作；
 - 已跟踪：添加到Git仓库管理的文件处于已跟踪状态，Git可以对其进行各种跟踪管理；
 - **已跟踪的文件又可以进行细分状态划分： ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.024.png)**
-- staged：暂缓区中的文件状态； 
-- Unmodified：commit命令，可以将staged中文件提交到Git仓库 
-- Modified：修改了某个文件后，会处于Modified状态； 
-- **在工作时，你可以选择性地将这些修改过的文件放入暂存区；** 
-- **然后提交所有已暂存的修改，如此反复；** 
+- staged：暂缓区中的文件状态；
+- Unmodified：commit命令，可以将staged中文件提交到Git仓库
+- Modified：修改了某个文件后，会处于Modified状态；
+- **在工作时，你可以选择性地将这些修改过的文件放入暂存区；**
+- **然后提交所有已暂存的修改，如此反复；**
 
 **Git操作流程图![ref7]**
 
@@ -205,7 +186,7 @@ git clone https://github.com/coderwhy/hy-react-web-music.git
 
 git status –s ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.027.png)
 
-git status --short 
+git status --short
 
 - 左栏指明了暂存区的状态，右栏指明了工作区的状态；
 
@@ -225,14 +206,14 @@ git add .![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.030.png)
 **git忽略文件![ref7]**
 
 - **一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在 未跟踪文件列表。 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.031.jpeg)**
-- 通常都是些自动生成的文件，比如日志文件，或者编译过程中创建 的临时文件等； 
-- 我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件的模 式； 
-- **在实际开发中，这个文件通常不需要手动创建，在必须的时候添加自 己的忽略内容即可；** 
-- **比如右侧是创建的Vue项目自动创建的忽略文件：** 
-- 包括一些不需要提交的文件、文件夹； 
-- 包括本地环境变量文件； 
-- 包括一些日志文件； 
-- 包括一些编辑器自动生成的文件； 
+- 通常都是些自动生成的文件，比如日志文件，或者编译过程中创建 的临时文件等；
+- 我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件的模 式；
+- **在实际开发中，这个文件通常不需要手动创建，在必须的时候添加自 己的忽略内容即可；**
+- **比如右侧是创建的Vue项目自动创建的忽略文件：**
+- 包括一些不需要提交的文件、文件夹；
+- 包括本地环境变量文件；
+- 包括一些日志文件；
+- 包括一些编辑器自动生成的文件；
 
 **文件更新提交 – git commit![ref7]**
 
@@ -334,7 +315,7 @@ git reset --hard HEAD^ git reset --hard HEAD~1000 git reset --hard 2d44982
 - 例如其中一种方法是使用自动生成的公钥-私钥对来简单地加密网络连接，随后使用密码认证进行登录；
 - 另一种方法是人工生成一对公钥和私钥，通过生成的密钥进行认证，这样就可以在不输入密码的情况下登录；
 - 公钥需要放在待访问的电脑之中，而对应的私钥需要由用户自行保管；
-- **如果我们以SSH的方式访问Git仓库，那么就需要生产对应的公钥和私钥：** ssh-keygen -t ed25519 -C “your email" ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.041.jpeg)ssh-keygen -t rsa -b 2048 -C “your email" 
+- **如果我们以SSH的方式访问Git仓库，那么就需要生产对应的公钥和私钥：** ssh-keygen -t ed25519 -C “your email" ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.041.jpeg)ssh-keygen -t rsa -b 2048 -C “your email"
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.042.png)
 
@@ -352,9 +333,9 @@ git remote –v
 
 - **添加远程地址：我们也可以继续添加远程服务器（让本地的仓库和远程服务器仓库建立连接）：**
 
-git remote add <shortname> <url>
+`git remote add <shortname> <url>`
 
-git remote add gitlab http://152.136.185.210:7888/coderwhy/gitremotedemo.git
+`git remote add gitlab <http://152.136.185.210:7888/coderwhy/gitremotedemo.git>`
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.045.png)
 
@@ -395,7 +376,7 @@ git remote add gitlab http://152.136.185.210:7888/coderwhy/gitremotedemo.git
 
 - **从远程仓库clone代码：将存储库克隆到新创建的目录中；**
 
-git clone http://152.136.185.210:7888/coderwhy/gitremotedemo.git 
+`git clone <http://152.136.185.210:7888/coderwhy/gitremotedemo.git>`
 
 - **将代码push到远程仓库：将本地仓库的代码推送到远程仓库中；**
 - 默认情况下是将当前分支（比如master）push到origin远程仓库的；
@@ -455,12 +436,12 @@ git fetch + git merge(rebase)
 
 - **删除本地tag：**
 
-要删除掉你本地仓库上的标签，可以使用命令 git tag -d <tagname>
+要删除掉你本地仓库上的标签，可以使用命令 `git tag -d <tagname>`
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.059.png)
 
 - **删除远程tag：**
-- 要删除远程的tag我们可以通过git push <remote> –delete <tagname>
+- 要删除远程的tag我们可以通过`git push <remote> –delete <tagname>`
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.060.png)
 
@@ -496,12 +477,12 @@ git fetch + git merge(rebase)
 **Git创建分支![ref7]**
 
 - **Git 是怎么创建新分支的呢？ ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.065.png)**
-- 很简单，它只是为你创建了一个可以移动的新的指针； 
-- **比如，创建一个 testing 分支， 你需要使用 git branch 命令：** 
+- 很简单，它只是为你创建了一个可以移动的新的指针；
+- **比如，创建一个 testing 分支， 你需要使用 git branch 命令：**
 
-git branch testing 
+git branch testing
 
-- **那么，Git 又是怎么知道当前在哪一个分支上呢？** 
+- **那么，Git 又是怎么知道当前在哪一个分支上呢？**
 - 也很简单，它也是通过一个名为 HEAD 的特殊指针； git checkout testing
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.066.png)![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.067.png)
@@ -520,7 +501,7 @@ git branch testing
 
 - **创建新分支的同时切换过去**
 - 通常我们会在创建一个新分支后立即切换过去；
-- 这可以用 git checkout -b <newbranchname> 一条命令搞定；
+- 这可以用 `git checkout -b <newbranchname>` 一条命令搞定；
 
 **为什么需要使用分支呢？![ref7]**
 
@@ -590,7 +571,7 @@ git branch –D hotfix # 强制删除某一个分支
 **Git的远程分支![ref7]**
 
 - **远程分支是也是一种分支结构：**
-- 以 <remote>/<branch> 的形式命名的；
+- 以 `<remote>/<branch>` 的形式命名的；
 - **如果我们刚刚clone下来代码，分支的结构如下：**
 - **如果其他人修改了代码，那么远程分支结构如下：**
 - 你需要通过fetch来获取最新的远程分支提交信息；
@@ -601,21 +582,21 @@ git branch –D hotfix # 强制删除某一个分支
 
 - **操作一：推送分支到远程**
 - 当你想要公开分享一个分支时，需要将其推送到有写入权限的远程仓库上；
-- 运行 git push <remote> <branch>；
+- 运行 `git push <remote> <branch>`；
 
-git push origin <branch>
+`git push origin <branch>`
 
 - **操作二：跟踪远程分支**
 - 当克隆一个仓库时，它通常会自动地创建一个跟踪 origin/master 的 master 分支；
-- 如果你愿意的话可以设置其他的跟踪分支，可以通过运行 git checkout --track <remote>/<branch>
+- 如果你愿意的话可以设置其他的跟踪分支，可以通过运行 `git checkout --track <remote>/<branch>`
 - 如果你尝试检出的分支 (a) 不存在且 (b) 刚好只有一个名字与之匹配的远程分支，那么 Git 就会为你创建一个跟踪分支；
 
-git checkout --track <remote>/<branch> git checkout <branch>
+`git checkout --track <remote>/<branch> git checkout <branch>`
 
 - **操作三：删除远程分支**
 - 如果某一个远程分支不再使用，我们想要删除掉，可以运行带有 --delete 选项的 git push 命令来删除一个远程分支。
 
-git push origin --delete <branch>
+`git push origin --delete <branch>`
 
 **Git rebase用法![ref7]**
 
@@ -658,10 +639,4 @@ $ git checkout master $ git merge experiment![](./image/Aspose.Words.ccb4f164-95
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.085.jpeg)
 
-[ref1]: ./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.005.png
-[ref2]: ./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.006.png
-[ref3]: ./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.007.png
-[ref4]: ./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.008.png
-[ref5]: ./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.009.png
-[ref6]: ./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.010.png
 [ref7]: Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.011.png

@@ -1,12 +1,4 @@
-﻿**Webpack常见的插件和模式 ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.001.png)![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.002.png)![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.003.png)**
-
-王红元 coderwhy![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.004.png)
-
-![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.005.png) ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.006.png)
-
-|<p>**目录 content**</p><p>![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.007.png)</p>|<p>1	 **认识插件Plugin![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.008.png)**</p><p>2	 **CleanWebpackPlugin![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.009.png)**</p><p>3	 **HtmlWebpackPlugin![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.010.png)**</p><p>4	 **DefinePlugin![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.011.png)**</p><p>5	 **mode模式配置![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.012.png)**</p>|
-| :- | - |
-
+﻿
 **认识Plugin**
 
 - **Webpack的另一个核心是Plugin，官方有这样一段对Plugin的描述：**
@@ -58,14 +50,14 @@ npm install html-webpack-plugin -D![](./image/Aspose.Words.95866b9b-4faf-4384-ad
 
 - **如果我们想在自己的模块中加入一些比较特别的内容：**
 - 比如添加一个noscript标签，在用户的JavaScript被关闭时，给予响应的提示；
-- 比如在开发vue或者react项目时，我们需要一个可以挂载后续组件的根标签 <div id="app"></div>；
+- 比如在开发vue或者react项目时，我们需要一个可以挂载后续组件的根标签`<div id="app"></div>`；
 - **这个我们需要一个属于自己的index.html模块：**
 
 ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.020.jpeg)
 
 **自定义模板数据填充**
 
-- **上面的代码中，会有一些类似这样的语法<%  变量 %>，这个是EJS模块填充数据的方式。**
+- **上面的代码中，会有一些类似这样的语法`<%  变量 %>`，这个是EJS模块填充数据的方式。**
 - **在配置HtmlWebpackPlugin时，我们可以添加如下配置：**
 - **template：**指定我们要使用的模块所在的路径；
 - **title：**在进行htmlWebpackPlugin.options.title读取时，就会读到该信息；
@@ -79,7 +71,7 @@ npm install html-webpack-plugin -D![](./image/Aspose.Words.95866b9b-4faf-4384-ad
 ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.022.png)
 
 - **这是因为在编译template模块时，有一个BASE\_URL：**
-- <link rel="icon" href="<%= BASE\_URL %>favicon.ico">；
+- `<link rel="icon" href="<%= BASE\_URL %>favicon.ico">`；
 - 但是我们并没有设置过这个常量值，所以会出现没有定义的错误；
 - **这个时候我们可以使用DefinePlugin插件；**
 
@@ -90,7 +82,6 @@ npm install html-webpack-plugin -D![](./image/Aspose.Words.95866b9b-4faf-4384-ad
 ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.023.png)
 
 - **这个时候，编译template就可以正确的编译了，会读取到BASE\_URL的值；**
-
 
 **Mode配置**
 
@@ -105,5 +96,3 @@ npm install html-webpack-plugin -D![](./image/Aspose.Words.95866b9b-4faf-4384-ad
 **Mode配置代表更多**
 
 ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.025.jpeg) ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.026.jpeg)
-
-[ref1]: ./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.013.png

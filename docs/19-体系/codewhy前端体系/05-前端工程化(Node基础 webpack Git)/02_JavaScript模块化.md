@@ -1,5 +1,4 @@
 
-
 ## **什么是模块化？**
 
 - **到底什么是模块化、模块化开发呢？**
@@ -19,7 +18,7 @@
 ### **模块化的历史**
 
 - **在网页开发的早期，** Brendan Eich**开发JavaScript 仅仅作为一种脚本语言，做一些简单的表单验证或动画实现等，那个时候代 码还是很少的：**
-  - 这个时候我们只需要讲JavaScript 代码写到 <script>标签中即可；
+  - 这个时候我们只需要讲JavaScript 代码写到 `<script>`标签中即可；
   - 并没有必要放到多个文件中来编写；甚至流行：通常来说 JavaScript 程序的长度只有一行。
 
 - **但是随着前端和JavaScript 的快速发展， JavaScript代码变得越来越复杂了：**
@@ -31,7 +30,6 @@
   - 但是JavaScript 本身，直到ES6 （2015 ） 才推出了自己的模块化方案 ；
   - 在此之前，为了让JavaScript 支持模块化，涌现出了很多不同的模块化规范： AMD、CMD 、CommonJS 等；
   - 在我们的课程中，我将详细讲解 JavaScript的模块化，尤其是CommonJS 和ES6 的模块化。
-
 
 ### **没有模块化带来的问题**
 
@@ -47,7 +45,6 @@
   - 我们需要制定一定的规范来约束每个人都按照这个规范去编写模块化的代码；
   - 这个规范中应该包括核心功能： 模块本身可以导出暴露的属性，模块又可以导入自己需要的属性；
   - JavaScript社区为了解决上面的问题，涌现出一系列好用的规范 ，接下来我们就学习具有代表性的一些规范。
-
 
 ```js
 const moduleA = (function() {
@@ -68,8 +65,6 @@ const moduleA = (function() {
 
 ```
 
-
-
 ## CommonJS规范
 
 ### **CommonJS规范和Node 关系**
@@ -84,13 +79,9 @@ const moduleA = (function() {
   - 这个模块中包括CommonJS 规范的核心变量：exports、module.exports 、require ；
   - 我们可以使用这些变量来方便的进行模块化开发 ；
 
-
-
-
 - **前面我们提到过模块化的核心是导出和导入， Node中对其进行了实现：**
   - exports和module.exports 可以负责对模块中的内容进行导出 ；
   - require函数可以帮助我们导入其他模块（自定义模块、系统模块、第三方库模块）中的内容；
-
 
 ### **exports导出**
 
@@ -113,8 +104,6 @@ exports.UTIL_NAME = UTIL_NAME
 exports.formatCount = formatCount
 exports.formatDate = formatDate
 ```
-
-
 
 - **另外一个文件中可以导入：**
 
@@ -192,9 +181,6 @@ module.exports = {
 exports.name = "哈哈哈哈" //这样的写法是无效的。
 ```
 
-
-
-
 ### **require查找文件细节**
 
 - **我们现在已经知道，require 是一个函数，可以帮助我们引入一个文件（模块）中导出的对象。**
@@ -205,7 +191,6 @@ exports.name = "哈哈哈哈" //这样的写法是无效的。
 - **情况一：X是一个Node核心模块，比如path 、http**
   - 直接返回核心模块，并且停止查找
 
-
 - **情况二：X是以 ./ 或 ../ 或 /（根目录）开头的**
 
   - 第一步：将X 当做一个文件在对应的目录下查找；
@@ -215,7 +200,6 @@ exports.name = "哈哈哈哈" //这样的写法是无效的。
       - 2> 查找X.js 文件
       - 3> 查找X.json 文件
       - 4> 查找X.node 文件
-
 
   - 第二步：没有找到对应的文件，将X作为一个目录
 
@@ -229,9 +213,8 @@ exports.name = "哈哈哈哈" //这样的写法是无效的。
 
   - 如果没有找到，那么报错：not found
 
-
 - **情况三：直接是一个X（没有路径），并且X不是一个核心模块**
-  - `/Users/coderwhy/Desktop/Node/TestCode/04\_learn\_node/05\_javascript-module/02\_commonjs/main.js`中编写` require('why’)`
+  - `/Users/coderwhy/Desktop/Node/TestCode/04\_learn\_node/05\_javascript-module/02\_commonjs/main.js`中编写`require('why’)`
   - 如果下面的路径中都没有找到，那么报错：not found
 
 ![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.015.png)
@@ -272,9 +255,9 @@ const foo = require("./aaa") //打印aaa
 
 - **结论二：模块被多次引入时，会缓存，最终只加载（运行）一次**
 
-  - 为什么只会加载运行一次呢？ 
-    - **这是因为每个模块对象module 都有一个属性： loaded。** 
-    - 为false 表示还没有加载，为true表示已经加载； 
+  - 为什么只会加载运行一次呢？
+    - **这是因为每个模块对象module 都有一个属性： loaded。**
+    - 为false 表示还没有加载，为true表示已经加载；
 
   ```js
   /*aaa.js文件*/
@@ -305,15 +288,13 @@ const foo = require("./aaa") //打印aaa
   */
   ```
 
-  
+- **结论三：如果有循环引入，那么加载顺序是什么？**
 
-- **结论三：如果有循环引入，那么加载顺序是什么？** 
-
-  - 如果出现右图模块的引用关系，那么加载顺序是什么呢？ 
+  - 如果出现右图模块的引用关系，那么加载顺序是什么呢？
   - 这个其实是一种数据结构：图结构；
   - 图结构在遍历的过程中，有深度优先搜索（DFS, depth first search ）和广度优先搜索（BFS, breadth first search ）；
   - Node采用的是深度优先算法：
-    - main  -> aaa -> ccc -> ddd -> eee 
+    - main  -> aaa -> ccc -> ddd -> eee
     - bbb->ccc(已被加载)->eee(已被加载)
 
   ![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.016.png)
@@ -348,9 +329,6 @@ aaa2222
 
 ```
 
-
-
-
 ### **CommonJS规范缺点**
 
 - **CommonJS加载模块是同步的：**
@@ -373,7 +351,6 @@ aaa2222
 
   - AMD和CMD 已经使用非常少了；
 
-
 ## **AMD规范**
 
 - **AMD主要是应用于浏览器的一种模块化规范：**
@@ -384,7 +361,6 @@ aaa2222
 - 我们提到过，**规范只是定义代码的应该如何去编写**，只有有了具体的实现才能被应用：
   - AMD实现的比较常用的库是require.js 和curl.js ；
 
-
 ### **require.js的使用**
 
 - **第一步：下载require.js**
@@ -394,8 +370,7 @@ aaa2222
 - **第二步：定义HTML的script 标签引入require.js 和定义入口文件：**
   - data-main属性的作用是在加载完 src的文件后会加载执行该文件
 
-
-<script src="./lib/require.js" data-main="./index.js"></script>
+`<script src="./lib/require.js" data-main="./index.js"></script>`
 
 ![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.017.png)  ![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.018.png)![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.019.png)
 
@@ -409,7 +384,6 @@ aaa2222
 - **CMD也有自己比较优秀的实现方案：**
   - SeaJS
 
-
 ### **SeaJS的使用**
 
 - **第一步：下载SeaJS**
@@ -418,7 +392,6 @@ aaa2222
 
 - **第二步：引入sea.js 和使用主入口文件**
   - seajs是指定主入口文件的
-
 
 ![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.020.png) ![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.021.png)
 
@@ -469,7 +442,7 @@ sayHello()
 
 - **这里我在浏览器中演示ES6 的模块化开发：**
 
-<script src="./modules/foo.js" type="module"></script> <script src="main.js" type="module"></script>
+`<script src="./modules/foo.js" type="module"></script> <script src="main.js" type="module"></script>`
 
 - **如果直接在浏览器中运行代码，会报如下错误：**
 
@@ -523,9 +496,6 @@ export class Person {}
 
 ```
 
-
-
-
 ### **import关键字**
 
 - **import关键字负责从另外一个模块中导入内容**
@@ -546,8 +516,6 @@ import { name, age, sayHello } from "./foo.js"
 // 3.导入时可以给整个模块起别名
 import * as foo from "./foo.js"
 ```
-
-
 
 ### **export和import 结合使用**
 
@@ -575,9 +543,6 @@ export { parseLyric } from './parse.js'
 export * from './format.js'
 export * from './parse.js'
 ```
-
-
-
 
 ### **default-默认用法**
 
@@ -708,9 +673,8 @@ utils.default() //这里访问foo()
   - 甚至拼接路径的写法也是错误的：因为我们必须到运行时能确定path 的值；
 - **但是某些情况下，我们确确实实希望动态的来加载某一个模块：**
   - 如果根据不同的条件，动态来选择加载模块的路径；
-  - 这个时候我们需要使用 import() 函数来动态加载； 
-  - import函数返回一个Promise，可以通过then 获取结果； 
-
+  - 这个时候我们需要使用 import() 函数来动态加载；
+  - import函数返回一个Promise，可以通过then 获取结果；
 
 ```js
 import { name, age, sayHello } from "./foo.js"
@@ -806,8 +770,6 @@ setTimeout(()=>{
 
 ```
 
-
-
 ## ES Module的循环引用问题
 
 - JavaScript 的 `import` 和 `export` 语句使用静态解析，这意味着在模块加载和解析阶段就确定了模块之间的依赖关系。
@@ -845,19 +807,15 @@ console.log('main end');
 //main end
 ```
 
-
-
-
 ## **ES Module的解析流程**
 
 - **ES Module是如何被浏览器解析并且让模块之间可以相互引用的呢？**
-  - https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/
+  - <https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/>
 
 - **ES Module的解析过程可以划分为三个阶段：**
   - 阶段一：构建（Construction），根据地址查找js 文件，并且下载，将其解析成模块记录（ Module Record）；
   - 阶段二：实例化（Instantiation），对模块记录进行实例化，并且分配内存空间，解析模块的导入和导出语句，把模块指向 对应的内存地址。
   - 阶段三：运行（Evaluation），运行代码，计算值，并且将值填充到内存地址中；
-
 
 ![](./image/Aspose.Words.674d9ac1-d18c-4a1d-a209-a02240b64ac7.026.png)
 
