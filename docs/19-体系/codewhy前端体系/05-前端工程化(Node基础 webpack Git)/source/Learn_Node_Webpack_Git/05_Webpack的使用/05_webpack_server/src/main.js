@@ -36,11 +36,11 @@ console.log("aaaabbbbccccdddd")
 console.log("Hello Codery")
 
 // 指定哪一个模块需要HMR
-// if (module.hot) {
-//   module.hot.accept("./utils/math.js", () => {
-//     console.log("math模块发生了刷新")
-//   })
-// }
+if (module.hot) {
+  module.hot.accept("./utils/math.js", () => {
+    console.log("math模块发生了刷新")
+  })
+}
 
 if (module.hot) {
   module.hot.accept("./utils/demo.js", () => {

@@ -230,6 +230,7 @@ npm install webpack webpack-cli –D
   - 通过 JavaScript创建了⼀个元素，并且希望给它设置⼀些样式；
   - 继续编译命令 npm run build![](./image/Aspose.Words.2152b78b-89e3-4675-a6db-4d26865b7f05.031.jpeg)![](./image/Aspose.Words.2152b78b-89e3-4675-a6db-4d26865b7f05.032.png)![](./image/Aspose.Words.2152b78b-89e3-4675-a6db-4d26865b7f05.033.png)
 
+## Webpack处理样式资源
 
 ### **css-loader的使⽤**
 

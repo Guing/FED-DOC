@@ -1,52 +1,105 @@
-## **认识asset module type**
+## Webpack处理图片资源
+
+### **webpack5处理文件资源-asset module type**
 
 - **我们当前使用的webpack版本是 webpack5：**
   - 在webpack5之前，加载这些资源我们需要使用一些 loader，比如raw -loader 、url- loader、file -loader；
   - 在webpack5开始，我们可以直接使用 资源模块类型（asset module type），来替代上面的这些loader ；
-
 - **资源模块类型(asset module type)**，通过添加 4 种新的模块类型，来替换所有这些loader：
 - **asset/resource** 发送一个单独的文件并导出 URL。
+  - 打包图片, 复制到输出目录，并且图片有自己的地址, 将地址设置到img的src中。
   - 之前通过使用 file-loader 实现；
+  - 缺点: 多图片加载的两次网络请求
+  
 - **asset/inline** 导出一个资源的 data URI。
+  - 将图片进行base64的编码, 并且直接编码后的源码放到打包的js文件中
   - 之前通过使用 url-loader 实现；
+  -  造成js文件非常大, 下载js文件本身消耗时间非常长, 造成js代码的下载和解析/执行时间过长
+
 - **asset/source** 导出资源的源代码
+  - 比如可以直接将图片的二进制返回
+  - 用得比较少
   - 之前通过使用 raw-loader 实现；
+
 - **asset** 在导出一个 data URI 和发送一个单独的文件之间自动选择。
+  - 自动处理，对于小一点的图片, 可以进行base64编码；对于大一点的图片, 单独的图片打包, 形成url地址
+  - 可以通过`parser.dataUrlCondition.maxSize`配置
   - 之前通过使用 url-loader，并且配置资源体积限制实现；
 
 
-### **asset module type的使用**
+```js
+{
+    test: /\.(png|jpe?g|svg|gif)$/,
+    // 1.打包两张图片, 并且这两张图片有自己的地址, 将地址设置到img/bgi中
+    // 缺点: 多图片加载的两次网络请求
+    // type: "asset/resource",
 
-- **比如加载图片，我们可以使用下面的方式：**
+    // 2.将图片进行base64的编码, 并且直接编码后的源码放到打包的js文件中
+    // 缺点: 造成js文件非常大, 下载js文件本身消耗时间非常长, 造成js代码的下载和解析/执行时间过长
+    // type: "asset/inline"
 
-![](./image/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.016.png)
+    // 3.合理的规范:
+    // 3.1.对于小一点的图片, 可以进行base64编码
+    // 3.2.对于大一点的图片, 单独的图片打包, 形成url地址, 单独的请求这个url图片
+    type: "asset",
+    parser: {
+      dataUrlCondition: {
+        maxSize: 60 * 1024
+      }
+    },
+    generator: {
+      // 占位符
+      // name: 指向原来的图片名称
+      // ext: 扩展名
+      // hash: webpack生成的hash
+      filename: "img/[name]_[hash:8][ext]"
+    }
+}
+```
+
+### 修改输出文件的名称
 
 - 但是，如何可以自定义文件的输出路径和文件名呢？ 
-  - **方式一：**修改output，添加assetModuleFilename 属性； 
-    - ![](./image/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.017.png)
-  - **方式二：**在Rule中，添加一个generator 属性，并且设置 filename； 
-    - ![](./image/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.018.png)
+
+- **方式一：**修改output，添加assetModuleFilename 属性； 
+
+  - 缺点：所有的资源文件都会采用同一个名称
+
+  ```js
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "./build"),
+    assetModuleFilename: "abc.png"
+  }
+  ```
+
+  
+
+- **方式二：**在Rule中，添加一个generator 属性，并且设置 filename； 
+
+  ```js
+   {
+      test: /\.(png|jpe?g|svg|gif)$/,
+      generator: {
+        // 占位符
+        // name: 指向原来的图片名称
+        // ext: 扩展名
+        // hash: webpack生成的hash
+        filename: "img/[name]_[hash:8][ext]"
+      }
+  },
+  ```
 
 
 - 我们这里介绍几个最常用的placeholder ： 
   - **[ext]：** 处理文件的扩展名； 
   - **[name]：**处理文件的名称； 
   - **[hash]：**文件的内容，使用MD4 的散列函数处理，生成的一个128位的 hash值（32个十六进制）；
+    - `[hash:8]`：可以取前8位的hash值。
 
-### **url-loader的limit 效果**
+## webpack处理JS资源
 
-- **开发中我们往往是小的图片需要转换，但是 大的图片直接使用图片 即可**
-  - 这是因为小的图片转换base64之后可以和页面一起被请求 ，减少不必要的请求过程；
-  - 而大的图片也进行转换，反而会 影响页面的请求速度 ；
-
-- **我们需要两个步骤来实现：**
-  - **步骤一：**将type 修改为asset ；
-  - **步骤二：**添加一个parser 属性，并且制定dataUrl 的条件，添加maxSize属性；
-
-
-![](./image/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.019.png)
-
-## **为什么需要babel？**
+### **为什么需要babel？**
 
 - **事实上，在开发中我们很少直接去接触 babel，但是babel 对于前端开发来说，目前是不可缺少的一部分：**
   - 开发中，我们想要使用ES6+ 的语法 ，想要使用 TypeScript，开发React 项目，它们都是离不开Babel 的；
@@ -63,8 +116,8 @@
 
 - babel本身可以作为**一个独立的工具** （和postcss一样），不和webpack等构建工具配置来单独使用。
 - 如果我们希望在命令行尝试使用 babel，需要安装如下库：
-  - @babel/core：babel 的核心代码，必须安装；
-  - @babel/cli：可以让我们在命令行使用 babel；
+  - **@babel/core**：babel 的核心代码，必须安装；
+  - **@babel/cli**：可以让我们在命令行使用 babel；
   - `npm install @babel/cli @babel/core -D`
 
 - 使用babel 来处理我们的源代码：
@@ -76,19 +129,14 @@
 ### **插件的使用**
 
 - 比如我们需要转换箭头函数，那么我们就可以使用**箭头函数转换相关的插件**：
-
-`npm install @babel/plugin-transform-arrow-functions -D`
-
-`npx babel src --out-dir dist --plugins=@babel/plugin-transform-arrow-functions`
-
-- 查看转换后的结果：我们会发现 const 并没有转成 var
-  - 这是因为 plugin-transform-arrow-functions，并没有提供这样的功能；
-  - 我们需要使用 plugin-transform-block-scoping 来完成这样的功能；
+  - `npm install @babel/plugin-transform-arrow-functions -D``
+  - `npx babel src --out-dir dist --plugins=@babel/plugin-transform-arrow-functions`
 
 
-`npm install @babel/plugin-transform-block-scoping -D `
-
-`npx babel src --out-dir dist --plugins=@babel/plugin-transform-block-scoping,@babel/plugin-transform-arrow-functions`
+- const 转成 var，需要使用 plugin-transform-block-scoping 来完成这样的功能；
+  - `npm install @babel/plugin-transform-block-scoping -D ``
+  - `npx babel src --out-dir dist --plugins=@babel/plugin-transform-block-scoping,@babel/plugin-transform-arrow-functions`
+  
 
 ### **babel-loader**
 
@@ -99,16 +147,31 @@
 
 - 我们可以设置一个规则，在加载 js文件时，使用我们的babel ：
 
-![](./image/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.030.png)
+```js
+{
+  test: /\.js$/,
+  use: [
+    { 
+      loader: "babel-loader", 
+       options: {
+         plugins: [
+           "@babel/plugin-transform-arrow-functions",
+           "@babel/plugin-transform-block-scoping"
+         ]
+       } 
+    }
+  ]
+}
+```
 
 ### **Babel的预设preset**
 
 - 如果我们一个个去安装使用插件，那么需要手动来管理大量的babel 插件，我们可以直接给 webpack提供一个preset，webpack 会根据我们的预设来加载对应的插件列表，并且将其传递给 babel。
 
 - 比如常见的预设有三个：
-  - env
-  - react
-  - TypeScript 
+  - **env**
+  - **react**
+  - **TypeScript** 
 
 - 安装@babel/preset -env预设：
 
@@ -118,9 +181,45 @@
 
   - `npx babel src --out-dir dist --presets=@babel/preset-env`
 
-  ### ![](image/04_Webpack%E6%89%93%E5%8C%85%E5%9B%BE%E7%89%87-JS-Vue/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.031.png)
+- 写在webpack的配置文件中
 
-## **编写App.vue代码**
+```js
+{
+  test: /\.js$/,
+  use: [
+    { 
+      loader: "babel-loader", 
+      // options: {
+      //   plugins: [
+      //     "@babel/plugin-transform-arrow-functions",
+      //     "@babel/plugin-transform-block-scoping"
+      //   ]
+      // } ,
+       presets: [
+        "@babel/preset-env"
+      ]
+    }
+  ]
+}
+```
+
+- 写在babel.config.js文件中
+
+```js
+module.exports = {
+  // plugins: [
+  //   "@babel/plugin-transform-arrow-functions",
+  //   "@babel/plugin-transform-block-scoping"
+  // ]
+  presets: [
+    "@babel/preset-env"
+  ]
+}
+```
+
+## webpack处理Vue资源
+
+### **编写App.vue代码**
 
 - 在开发中我们会编写Vue 相关的代码， webpack可以对Vue 代码进行解析：
 - 接下来我们编写自己的App.vue 代码；
@@ -141,7 +240,7 @@
 
 ![](./image/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.037.png)
 
-**@vue/compiler-sfc**
+### **@vue/compiler-sfc**
 
 - 打包依然会报错，这是因为我们必须添加@vue/compiler -sfc来对 template进行解析：
   - `npm install @vue/compiler-sfc -D`
@@ -156,7 +255,7 @@
 - 重新打包即可支持App.vue的写法
 - 另外，我们也可以编写其他的.vue文件来编写自己的组件；
 
-## **resolve模块解析**
+## **Webpack的resolve模块解析**
 
 - resolve用于设置模块如何被解析：
   - 在开发中我们会有各种各样的模块依赖，这些模块可能来自于自己编写的代码，也可能来自第三方库；
@@ -165,13 +264,17 @@
 - **webpack能解析三种文件路径：**
 - 绝对路径
   - 由于已经获得文件的绝对路径，因此不需要再做进一步解析。
+  - `import { sum } from '/project/src/utils'`
 - 相对路径
   - 在这种情况下，使用 import 或 require 的资源文件所处的目录，被认为是上下文目录；
   - 在 import/require 中给定的相对路径，会拼接此上下文路径，来生成模块的绝对路径；
+  - `import { sum } from './utils'`
 - 模块路径
   - 在 resolve.modules中指定的所有目录检索模块；
+    
+  - `import { createApp } from 'vue`
     - 默认值是 ['node\_modules']，所以默认会从node\_modules 中查找文件；
-
+  
   - 我们可以通过设置别名的方式来替换初识模块路径，具体后面讲解alias 的配置；
 
 
@@ -195,6 +298,14 @@
   - 特别是当我们项目的目录结构比较深的时候，或者一个文件的路径可能需要 ../../../这种路径片段；
   - 我们可以给某些常见的路径起一个别名；
 
+```js
+ resolve: {
+    extensions: [".js", ".json", ".vue", ".jsx", ".ts", ".tsx"],
+    alias: {
+      utils: path.resolve(__dirname, "./src/utils")
+    }
+  }
+```
 
-![](./image/Aspose.Words.4269ae50-2429-44fe-a876-4d2128386572.041.png)
+
 
