@@ -1,3 +1,14 @@
+## 总结
+
+### 4.1. babel的作用
+
+### 4.2. babel命令行
+
+* plugin
+* preset
+
+### 4.3. babel底层原理
+
 
 
 
@@ -124,19 +135,17 @@ npx babel src --out-dir dist --presets=@babel/preset-env
 - 我们来思考一个问题：开发中，浏览器的兼容性问题，我们应该如何去解决和处理？
   - 当然这个问题很笼统，这里我说的兼容性问题不是指屏幕大小的变化适配；
   - 我这里指的兼容性是针对不同的浏览器支持的特性：比如css特性、js语法之间的兼容性；
-
 - 我们知道市面上有大量的浏览器：
   - 有Chrome、Safari、IE、Edge、Chrome for Android、UC Browser、QQ Browser等等；
   - 它们的市场占率是多少？我们要不要兼容它们呢？
-
 - 其实在很多的脚手架配置中，都能看到类似于这样的配置信息：
   - 这里的百分之一，就是指市场占有率
 
 
 ```shell
- > 1%
-last 2 versions
-not dead
+ > 1% #市场占用率大于百分之一
+last 2 versions #最新两个版本
+not dead  #还在维护的
 ```
 
 ### **浏览器市场占有率**
@@ -185,7 +194,7 @@ not dead
 
 ### **Browserslist编写规则**
 
-- 规则一：
+- 规则一，常见规则：
 
   - **defaults：Browserslist的默认浏览器（> 0.5%, last 2 versions, Firefox ESR, not dead）。**
 
@@ -213,39 +222,47 @@ not dead
 
     - last 2 major versions或last 2 iOS major versions：最近2个主要版本的所有次要/补丁版本。
 
-- 规则二：
+- 规则二，不常见规则：
 
   - **node 10和node 10.4：选择最新的Node.js10.x.x 或10.4.x版本。**
 
     - current node：Browserslist现在使用的Node.js版本。
 
     - maintained node versions：所有Node.js版本，仍由 Node.js Foundation维护。
-
-
-  - **iOS 7：直接使用iOS浏览器版本7。**
-
-    - Firefox > 20：Firefox的版本高于20 >=，<并且<=也可以使用。它也可以与Node.js一起使用。
-
-    - ie 6-8：选择一个包含范围的版本。
-
-    - Firefox ESR：最新的[Firefox ESR]版本。
-
-    - PhantomJS 2.1和PhantomJS 1.9：选择类似于PhantomJS运行时的Safari版本。
-
-
-  - **extends browserslist-config-mycompany：从browserslist-config-mycompanynpm包中查询 。**
-
-  - **supports es6-module：支持特定功能的浏览器。**
-    - es6-module这是“我可以使用” 页面feat的URL上的参数。有关所有可用功能的列表，请参见 。caniuse-lite/data/features
-
-
-  - **browserslist config：在Browserslist配置中定义的浏览器。**在差异服务中很有用，可用于修改用户的配置，例如 browserslist config and supports es6-module。
-
-  - **since 2015或last 2 years**：自2015年以来发布的所有版本（since 2015-03以及since 2015-03-10）。
-
-  - **unreleased versions或unreleased Chrome versions**：Alpha和Beta版本。
-
-  - **not ie <= 8：排除先前查询选择的浏览器。**
+  
+  
+    - **iOS 7：直接使用iOS浏览器版本7。**
+  
+      - Firefox > 20：Firefox的版本高于20 >=，<并且<=也可以使用。它也可以与Node.js一起使用。
+  
+      - ie 6-8：选择一个包含范围的版本。
+  
+      - Firefox ESR：最新的[Firefox ESR]版本。
+  
+      - PhantomJS 2.1和PhantomJS 1.9：选择类似于PhantomJS运行时的Safari版本。
+  
+  
+    - **extends browserslist-config-mycompany：从browserslist-config-mycompany的npm包中查询 。**
+  
+        - **supports es6-module：支持特定功能的浏览器。**
+          - es6-module这是“我可以使用” 页面feat的URL上的参数。有关所有可用功能的列表，请参见 。caniuse-lite/data/features
+  
+  
+  
+    - **browserslist config：在Browserslist配置中定义的浏览器。**在差异服务中很有用，可用于修改用户的配置，例如 browserslist config and supports es6-module。
+  
+  
+  
+    - **since 2015或last 2 years**：自2015年以来发布的所有版本（since 2015-03以及since 2015-03-10）。
+  
+  
+  
+    - **unreleased versions或unreleased Chrome versions**：Alpha和Beta版本。
+  
+  
+  
+    - **not ie <= 8：排除先前查询选择的浏览器。**
+  
 
 
 ### **命令行使用browserslist**
@@ -477,3 +494,7 @@ not dead
     - 我们执行 `npm run type-check`可以对ts代码的类型进行检测； 
     - 我们执行 `npm run type-check-watch`可以实时的检测类型错误； 
 
+## 作业
+
+- Babel命令的使用，plugin/preset使用
+- Babel的转换代码的原理是什么？（面试题）
