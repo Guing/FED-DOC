@@ -1,0 +1,1 @@
+{"version":3,"file":"bundle.js","mappings":"mBAQAA,QAAQC,IAAIC,OCLZF,QAAQC,IADQ,eAGhBD,QAAQC,IAAIE,SAGVH,QAAQC,IAAI,sBAIdD,QAAQC,IDXCG,ICYTJ,QAAQC,KDRCG,G","sources":["webpack://source_map/./src/utils/math.js","webpack://source_map/./src/main.js"],"names":["console","log","count","address","num1"],"sourceRoot":""}
