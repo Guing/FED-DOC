@@ -1,13 +1,37 @@
 ## 总结
 
-### 4.1. babel的作用
+### babel的作用
 
-### 4.2. babel命令行
+### babel命令行
 
 * plugin
 * preset
 
-### 4.3. babel底层原理
+### babel底层原理
+
+### preset-env的使用
+
+### 浏览器兼容性问题
+
+* browerslist工具
+* targets(很少)
+* stage-x
+
+### babel的配置文件
+
+### babel和polyfill使用
+
+### babel对react的支持
+
+### webpack对typescript支持
+
+* ts-loader
+  * 会进行类型检测,类似于polyfill无能为力
+* babel-loader
+  * 可以使用polyfill, 但是不会类型检测
+* 结合使用:
+  * 打包代码使用babel-loader
+  * 开发阶段 tsc --noEmit --watch监听类型错误
 
 
 
@@ -166,14 +190,16 @@ not dead  #还在维护的
 
 - 如何可以让他们共享我们的配置呢？
   - 这个问题的答案就是**Browserslist**；
-  - **Browserslist**是什么？Browserslist是一个在不同的前端工具之间，共享目标浏览器和Node.js版本的配置：
-    - [Autoprefixer](https://github.com/postcss/autoprefixer)
-    - [Babel](https://github.com/babel/babel/tree/master/packages/babel-preset-env)
-    - [postcss-preset-env](https://github.com/jonathantneal/postcss-preset-env)
-    - [eslint-plugin-compat](https://github.com/amilajack/eslint-plugin-compat)
-    - [stylelint-no-unsupported-browser-features](https://github.com/ismay/stylelint-no-unsupported-browser-features)
-    - [postcss-normalize](https://github.com/jonathantneal/postcss-normalize)
-    - [obsolete-webpack-plugin](https://github.com/ElemeFE/obsolete-webpack-plugin)
+  - **Browserslist**是什么？
+    - **Browserslist本质上是使用的是caniuse-lite的工具，这个工具的数据来自于caniuse的网站上**
+    - Browserslist是一个在不同的前端工具之间，共享目标浏览器和Node.js版本的配置：
+      - [Autoprefixer](https://github.com/postcss/autoprefixer)
+      - [Babel](https://github.com/babel/babel/tree/master/packages/babel-preset-env)
+      - [postcss-preset-env](https://github.com/jonathantneal/postcss-preset-env)
+      - [eslint-plugin-compat](https://github.com/amilajack/eslint-plugin-compat)
+      - [stylelint-no-unsupported-browser-features](https://github.com/ismay/stylelint-no-unsupported-browser-features)
+      - [postcss-normalize](https://github.com/jonathantneal/postcss-normalize)
+      - [obsolete-webpack-plugin](https://github.com/ElemeFE/obsolete-webpack-plugin)
 
 
 ### **浏览器查询过程**
@@ -267,7 +293,10 @@ not dead
 
 ### **命令行使用browserslist**
 
-- 我们可以直接通过命令来查询某些条件所匹配到的浏览器： `npx browserslist ">1%, last 2 version, not dead"`
+- 我们可以直接通过命令来查询某些条件所匹配到的浏览器：
+  -  `npx browserslist ">1%, last 2 version, not dead"`
+  - 会输出匹配到的浏览器
+
 
 ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.037.jpeg)
 
@@ -293,9 +322,33 @@ not dead
 
 - 我们编写了多个条件之后，多个条件之间是什么关系呢？
 
+- **表示或**：
+
+  - 表示并集
+
+  - 逗号：`>0.1%,last 2 versions,not dead`
+
+  - or：`>0.1% or last 2 versions or not dead`
+
+  - 换行：
+
+    - ```shell
+      0.1% 
+      last 2 versions 
+      not dead
+      ```
+
+
+- **表示和**：
+  - 表示交集
+  - `>0.1% and last 2 versions and not dead`
+- **表示排除：**
+  - 表示去除这个部分。
+  - `no dead`
+
 ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.041.png)
 
-## 设置目标浏览器
+## Babel设置targets
 
 ### **设置目标浏览器 browserslist**
 
@@ -303,22 +356,27 @@ not dead
   - browserslist工具
   - target属性
 
-- 之前我们已经使用了browserslist工具，我们可以对比一下不同的配置，打包的区别：
+- 之前我们已经使用了browserslist工具，我们还可以**通过babel的targets来进行配置**：
 
-![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.042.jpeg)
-
-### **设置目标浏览器 targets**
-
-- **我们也可以通过targets来进行配置：**
-
-![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.043.png)
+```js
+//babel.config.js
+module.exports = {
+  presets: [
+    ["@babel/preset-env", {
+      // 在开发中针对babel的浏览器兼容查询使用browserslist工具, 而不是设置target
+      // 因为browserslist工具, 可以在多个前端工具之间进行共享浏览器兼容性(postcss/babel)
+      targets: ">5%"
+    }],
+  ]
+}
+```
 
 - 那么，如果两个同时配置了，哪一个会生效呢？
   - **配置的targets属性会覆盖browserslist；**
   - **但是在开发中，更推荐通过browserslist来配置，因为类似于postcss工具，也会使用browserslist，进行统一浏览器的适配；**
 
 
-## **Stage-X的preset**
+## **Babel早期preset的Stage-X**
 
 - 要了解Stage-X，我们需要先了解一下TC39的组织：
   - TC39是指技术委员会（Technical Committee）第 39 号；
@@ -403,13 +461,42 @@ not dead
 ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.049.png)
 
 - **第三个值：entry**
-  - 如果我们依赖的某一个库本身使用了某些polyfill的特性，但是因为我们使用的是usage，所以之后用户浏览器可能会报错；
-  - 所以，如果你担心出现这种情况，可以使用 entry；
-  - 并且需要在入口文件中添加 `import 'core-js/stable'; import 'regenerator-runtime/runtime';`
+  
+  - 手动引入。需要要入口文件main.js中手动添加：
+  
+    - ```js
+      import 'core-js/stable';
+      import 'regenerator-runtime/runtime'
+      ```
+  
+  - 这种情况适合，我们依赖的某些npm包本身使用了某些polyfill的特性，
+  
+    - 但是因为webpack配置的babel-loader排除node-modules
+  
+    - 并且我们使用的是usage，所以之后用户浏览器可能会报错；
+  
+    - ```js
+      {
+        test:/\.jsx?$/,
+        exclude:/node_modules/,
+        use:{
+          loader:'babel-loader',
+           options:{
+             presets:["@babel/preset-env",{
+               useBuiltIns:"usage",
+               corejs:3.8
+             }]
+           }
+        }
+      }
+      ```
+  
+    - 所以，如果你担心出现这种情况，可以使用 entry；
+  
   - **这样做会根据 browserslist 目标导入所有的polyfill，但是对应的包也会变大；**
-
-
-![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.050.png) ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.051.png)
+  
+  - ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.050.png) ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.051.png)
+  
 
 ## **React的jsx支持**
 
@@ -489,12 +576,33 @@ not dead
 ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.063.jpeg)
 
 - **也就是说我们使用Babel来完成代码的转换，使用tsc来进行类型的检查。**
-- 但是，如何可以使用tsc来进行类型的检查呢？ ![](./image/Aspose.Words.2394c54b-8019-4fce-aed9-82a5b1be73af.064.png)
-  - 在这里，我在scripts中添加了两个脚本，用于类型检查； 
-    - 我们执行 `npm run type-check`可以对ts代码的类型进行检测； 
-    - 我们执行 `npm run type-check-watch`可以实时的检测类型错误； 
+
+- 但是，如何可以使用tsc来进行类型的检查呢？ 
+  
+  - **在使用webpack编译时，先使用tsc进行类型校验**
+  
+  - **在scripts中添加脚本用于类型检查；** 
+    - **执行 `npm run type-check`可以对ts代码的类型进行检测；** 
+  - **可以加上--watch时，进行实时检测**
+    - **npm run type-check-watch`可以实时的检测类型错误；** 
+  - **类型检验没问题，再进行npm run build编译**
+
+```json
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "ts-check": "tsc --noEmit",
+    "ts-check-watch": "tsc --noEmit --watch"
+  },
+```
 
 ## 作业
 
 - Babel命令的使用，plugin/preset使用
 - Babel的转换代码的原理是什么？（面试题）
+- 前端目前如何进行浏览器兼容性的配置, 它底层是如何做到的?
+  * browserlist工具
+  * caniuse-lite
+
+- 什么是polyfill, babel中如何配置polyfill来填充代码?
+- typescript代码的转换方式有哪些?它们有什么区别?
