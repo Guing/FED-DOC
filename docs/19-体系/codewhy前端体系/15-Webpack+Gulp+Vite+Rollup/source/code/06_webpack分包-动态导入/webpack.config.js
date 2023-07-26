@@ -9,7 +9,7 @@ module.exports = {
   output: {
     clean: true,
     path: path.resolve(__dirname, './build'),
-    // placeholder
+    // 对生成的入口文件进行命名
     filename: '[name]-bundle.js',
     // 单独针对分包的文件进行命名
     chunkFilename: '[name]_chunk.js'

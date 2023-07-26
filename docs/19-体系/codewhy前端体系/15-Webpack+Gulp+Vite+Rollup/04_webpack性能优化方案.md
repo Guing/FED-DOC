@@ -30,7 +30,7 @@
 
 - 但是我们也可以针对性的进行自己的项目优化；
 
-  
+  ![分包处理的优势和必要性](image/04_webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/%E5%88%86%E5%8C%85%E5%A4%84%E7%90%86%E7%9A%84%E4%BC%98%E5%8A%BF%E5%92%8C%E5%BF%85%E8%A6%81%E6%80%A7-16903378614212.png)
 
 ## **性能优化 - 代码分离**
 
@@ -52,13 +52,15 @@
   - 他们分别有自己的代码逻辑；
 
 
-![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.014.png)
+![image-20230726102328517](image/04_webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/image-20230726102328517.png)
 
 ### **Entry Dependencies(入口依赖)**
 
 - 假如我们的index.js和main.js都依赖两个库：lodash、dayjs
-  - 如果我们单纯的进行入口分离，那么打包后的两个bunlde都有会有一份lodash和dayjs；
+  - 如果我们**单纯的进行入口分离，那么打包后的两个bunlde都有会有一份lodash和dayjs**；
   - 事实上我们可以对他们进行共享；
+    - 在entry里添加一个shared（名称可以自定义）属性，并设置为需要共享的依赖库数组
+    - 在入口对象里，添加`dependOn:shared`。
 
 
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.015.png)
@@ -86,18 +88,24 @@
   - 因为动态导入通常是一定会打包成独立的文件的，所以并不会在cacheGroups中进行配置；
   - 那么它的**命名我们通常会在output中，通过 chunkFilename 属性来命名**；
 
-
-![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.016.png)
+```js
+ output: {
+    clean: true,
+    path: path.resolve(__dirname, './build'),
+    // 对生成的入口文件进行命名
+    filename: '[name]-bundle.js',
+    // 单独针对分包的文件进行命名
+    chunkFilename: '[id]-[name]_chunk.js'
+  }
+```
 
 - **但是，你会发现默认情况下我们获取到的[name] 是和id的名称保持一致的**
   - 如果我们希望修改name的值，可以**通过magic comments（魔法注释）的方式**；
 
 
-
-
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.017.png)
 
-### **代码的懒加载**
+#### **代码的懒加载**
 
 - **动态import使用最多的一个场景是懒加载（比如路由懒加载）：**
   - 封装一个component.js，返回一个component对象；
@@ -108,19 +116,24 @@
 
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.019.jpeg)
 
-## **SplitChunks**
+## optimization优化配置
+
+### **SplitChunks**
 
 - **另外一种分包的模式是splitChunk，它底层是使用SplitChunksPlugin来实现的：**
   - 因为该插件webpack已经默认安装和集成，所以我们并不需要单独安装和直接使用该插件；
   - 只需要提供SplitChunksPlugin相关的配置信息即可；
 
 - Webpack提供了SplitChunksPlugin默认的配置，我们也可以手动来修改它的配置：
-  - 比如默认配置中，chunks仅仅针对于异步（async）请求，我们也可以设置为all；
+  - **比如默认配置中，chunks仅仅针对于异步（async）请求，我们也可以设置为all；**
+  - **all就是对动态导入的和同步的都进行分包。**
+    - 比如以下除了about_chunk.js和category_chunk.js使用import动态的导入会分包。
+    - node_modules下的依赖包react,axios....也会进行打包
 
 
-![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.020.png)
+![image-20230726104807403](image/04_webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/image-20230726104807403.png)
 
-### **SplitChunks自定义配置解析**
+#### **SplitChunks自定义配置解析**
 
 - **Chunks:**
   - 默认值是async
@@ -139,33 +152,70 @@
     - name属性：拆分包的name属性；
     - filename属性：拆分包的名称，可以自己使用placeholder属性；
 
+```js
+ // 优化配置
+  optimization: {
+    // 分包插件: SplitChunksPlugin
+    splitChunks: {
+      chunks: "all",
+      // 当一个包大于指定的大小时, 继续进行拆包
+      // maxSize: 20000,
+      // // 将包拆分成不小于minSize的包
+      minSize: 10,
+      // 自己对需要进行拆包的内容进行分包
+      cacheGroups: {
+        //这里如果不生效，要修改minSize的值，
+        //因为默认的minSize是20K，所以如果utils小于20k，就算这里有配置，也不会分组。
+        //这里设置为10B
+        utils: {
+          test: /utils/,
+          filename: "[id]_utils.js"
+        },
+        vendors: {
+          // window上面 /\
+          // mac上面 /
+          //这里可以选择/node_modules/不加分隔符，但是会出现abc_node_modules这里的包也会被匹配到组里。
+          //所以这里选择加上分隔符，但是要适配window和linux两个不同的分隔符。
+          test: /[\\/]node_modules[\\/]/,
+          filename: "[id]_vendors.js"
+        }
+      }
+    },
+```
 
-### **SplitChunks自定义配置**
+![image-20230726111449301](image/04_webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/image-20230726111449301.png)
 
-- 当然，我们可以自定义更多配置，我们来了解几个非常关键的属性：
+### **注释的单独提取**
 
-![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.021.jpeg)
-
-#### **解决注释的单独提取**
-
-- **默认情况下，webpack在进行分包时，有对包中的注释进行单独提取。**
+- **默认情况下，webpack的mode设置为production时，在进行分包时，有对包中的顶部的版权相关的注释进行单独提取。**
 
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.022.png)
 
 - **这个包提取是由另一个插件默认配置的原因：**
+  - 可以通过设置为false阻止生成。
+
 
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.023.png) ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.024.png)
 
-#### **optimization.chunkIds配置**
+### **optimization.chunkIds配置**
 
 - **optimization.chunkIds配置用于告知webpack模块的id采用什么算法生成。**
+
 - 有三个比较常见的值：
   - **natural：按照数字的顺序使用id；**
-  - **named：development下的默认值，一个可读的名称的id；**
-  - **deterministic：确定性的，在不同的编译中不变的短数字id**
-    - 在webpack4中是没有这个值的；
-    - 那个时候如果使用natural，那么在一些编译发生变化时，就会有问题；
+    - 如果在使用的时候，删除一些包，那些其他内容不变的包，文件名的ID会重新生成。
+    - 其实文件名是应该不变的，不然浏览器会重新下载包。
+  
+  ![image-20230726113105206](image/04_webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/image-20230726113105206.png)
 
+  - **named：一个可读的名称的id；（development下的默认值）**
+  
+  ![image-20230726113136032](image/04_webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/image-20230726113136032.png)
+  
+  - **deterministic：确定性的，在不同的编译中不变的短数字id（production下的默认值）**
+    - 根据算法生成的确定的ID，就算重新生成，只要内容不变，ID就会不变
+    - 在webpack4中是没有这个值的；如果使用natural，那么在一些编译发生变化时，就会有问题；
+  
 - 最佳实践：
   - **开发过程中，我们推荐使用named；**
   - **打包过程中，我们推荐使用deterministic；**
