@@ -1,12 +1,44 @@
+## 总结
+
+### 一. 代码分包
+
+#### 1.1. 多入口起点
+
+#### 1.2. 动态导入分包(使用最多)
+
+#### 1.3. 自定义分包(SplitChunksPlugin)
+
+#### 1.4. chunkId名称
+
+* chunkId:
+  * named
+  * natural
+  * deterministic
+
+#### 1.5. runtime的分包
+
+#### 1.6 prefetch/preload
+
+#### 1.7. CDN服务器配置
+
+* 所有资源都放到CDN中
+* 第三方库放到CDN中
+
+### 二. 其他优化
+
+#### 2.1. shimiming
+
+* 垫片: ProvidePlugin
+* axios.default.get
+* pnpm
+
+### 2.2. CSS的提取
+
+### 2.3. Hash/ChunkHash/ContentHash
+
+### 2.4. DDL(课下自行了解)
 
 
-|**目录 content**|**1![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.007.png)**|**webpack多入口依赖**|
-| :- | - | - |
-||**2![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.008.png)**|**webpack的动态导入**|
-||**3![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.009.png)**|**SplitChunkPlugin**|
-||**4![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.010.png)**|**prefetch和preload**|
-||**5![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.011.png)**|**CDN加速服务器配置**|
-||**6![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.012.png)**|**CSS样式的单独提取**|
 
 ## **如何使用webpack性能优化？**
 
@@ -235,6 +267,7 @@
   - true/multiple：针对每个入口打包一个runtime文件； 
   - single：打包一个runtime文件； 
   - 对象：name属性决定runtimeChunk的名称； 
+- **注意：早期的vue2会抽离一个runtime文件，但是现在的框架基本都不会抽离，文件本身不大，但是会多加一个http请求。**
 
 
 ![](image/04_webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.025.png)
@@ -245,6 +278,9 @@
 - 在声明 import 时，使用下面这些内置指令，来告知浏览器：
   - **prefetch**(预获取)：将来某些导航下可能需要的资源
   - **preload**(预加载)：当前导航下可能需要资源
+- 如何使用：
+  - 在使用import时，添加魔法注释,`/* webpackPreload:true */`
+  
 
 
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.026.png)
@@ -292,40 +328,67 @@
   - 第二，在html模块中，我们需要自己加入对应的CDN服务器地址；
 
 - **第一步，我们可以通过webpack配置，来排除一些库的打包：**
-- **第二步，在html模块中，加入CDN服务器地址：**
+  - Key：排除框架的名称，比如`import _ from 'lodash'`中的`lodash`
+  - Value：为cdn提供的全局变量的名称，比如lodash的CDN提供的全局变量名就是`_`
+  - 在使用的时候，也要使用value，比如`_.cloneDeep()`
 
-![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.030.png) ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.031.png)
+
+```js
+ // 排除某些包不需要进行打包
+  externals: {
+    react: "React",
+    // key属性名: 排除的框架的名称
+    // value值: 从CDN地址请求下来的js中提供对应的名称
+    lodash: "_"
+  },
+```
+
+- **第二步，在html模块中，加入CDN服务器地址：** ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.031.png)
 
 ## **认识shimming**
 
 - shimming是一个概念，是某一类功能的统称：
   - shimming翻译过来我们称之为 垫片，相当于给我们的代码填充一些垫片来处理一些问题；
-  - 比如我们现在依赖一个第三方的库，这个第三方的库本身依赖lodash，但是默认没有对lodash进行导入（认为全局存在 lodash），那么我们就可以通过ProvidePlugin来实现shimming的效果；
-
+    - **比如我们现在依赖一个第三方的库，这个第三方的库本身依赖lodash，但是默认没有对lodash进行导入（认为全局存在 lodash）**
+    - **比如没有使用`import _ from 'lodash'`，也没有使用CDN，想通过变量`_`来使用。**
+  - 那么我们就可以通过ProvidePlugin来实现shimming的效果；
+  
 - **注意：webpack并不推荐随意的使用shimming**
   - Webpack背后的整个理念是使前端开发更加模块化；
   - 也就是说，需要编写具有封闭性的、不存在隐含依赖（比如全局变量）的彼此隔离的模块；
 
 
-### **Shimming预支全局变量**
-
-- **目前我们的lodash、dayjs都使用了CDN进行引入，所以相当于在全局是可以使用_和dayjs的***
-  - 假如一个文件中我们使用了axios，但是没有对它进行引入，那么下面的代码是会报错的；
-
-
-![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.032.png)
+### **使用Shimming预支全局变量**
 
 - **我们可以通过使用ProvidePlugin来实现shimming的效果：**
   - ProvidePlugin能够帮助我们在每个模块中，通过一个变量来获取一个package； 
-  - ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.033.png)
   - 如果webpack看到这个模块，它将在最终的bundle中引入这个模块； 
   - 另外ProvidePlugin是webpack默认的一个插件，所以不需要专门导入； 
 
-- 这段代码的本质是告诉webpack：
-  - 如果你遇到了至少一处用到 axios变量的模块实例，那请你将 axios package 引入进来，并将其提供给需要用到它的模块。
+```js
+plugins: [
+  new ProvidePlugin({
+    axios: ['axios', 'default'],
+    dayjs: 'dayjs'
+  })
+]
+```
+
+```js
+// import axios from 'axios'
+// import dayjs from 'dayjs'
+
+axios.get('http://123.207.32.32:8000/home/multidata').then(res => {
+  console.log(res)
+})
+console.log(dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'))
+```
+
+- **这段代码的本质是告诉webpack：**
+  - **如果你遇到了至少一处用到 axios变量的模块实例，那请你将 axios package 引入进来，并将其提供给需要用到它的模块。**
 
 
-## **MiniCssExtractPlugin**
+## **CSS样式的单独提取**
 
 - **MiniCssExtractPlugin可以帮助我们将css提取到一个独立的css文件中，该插件需要在webpack4+才可以使用。**
 - **首先，我们需要安装 mini-css-extract-plugin：**
@@ -333,6 +396,9 @@
 
 
 - **配置rules和plugins：**
+
+  - Style-loader是将css写入到html中，将这个loader换成MiniCssExtractPlugin.loader
+
 
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.034.jpeg)
 
@@ -356,6 +422,7 @@
   - 这个css文件在命名时，如果我们使用的是chunkhash；
   - 那么当index.js文件的内容发生变化时，css文件的命名也会发生变化；
   - 这个时候我们可以使用contenthash；
+- **注意：使用的尽量使用contenthash**
 
 
 ## **认识DLL库（了解）**
@@ -372,3 +439,13 @@
 - **注意：在升级到webpack4之后，React和Vue脚手架都移除了DLL库（下面的vue作者的回复），所以知道有这么一个概念即 可。**
 
 ![](./image/Aspose.Words.81716918-a676-4933-91b2-152c66b90168.035.png)
+
+## 作业
+
+### 一. 完成上课所有的代码练习和配置演练
+
+### 二. webpack有哪些常见的性能优化方案？说出每种优化方案是如何配置，以及优化方案的原理。
+
+* 比如分包处理
+  * 三种分包方式。
+  * 分包后浏览器在加载包时有什么优势？比如增加首屏的渲染速度等
