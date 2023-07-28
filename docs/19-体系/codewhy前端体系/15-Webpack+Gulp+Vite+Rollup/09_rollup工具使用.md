@@ -22,7 +22,9 @@
 * babel
 * terser
 
+#### 4.1. rollup的业务打包
 
+#### 4.2. 开发服务器搭建
 
 ## **认识rollup**
 
@@ -127,7 +129,7 @@
 ## **处理vue文件**
 
 - **处理vue文件我们需要使用rollup-plugin-vue插件：**
-- **但是注意：默认情况下我们安装的是vue2.x的版本，所以我这里指定了一下rollup-plugin-vue的版本；**` npm install rollup-plugin-vue @vue/compiler-sfc -D`
+- **但是注意：默认情况下我们安装的是vue3.x的版本，所以我这里指定了一下rollup-plugin-vue的版本；**` npm install rollup-plugin-vue @vue/compiler-sfc -D`
 - **使用vue的插件：**
 
 ![](./image/Aspose.Words.97259466-d2ce-4c94-81b4-b7679efebe06.029.png)
