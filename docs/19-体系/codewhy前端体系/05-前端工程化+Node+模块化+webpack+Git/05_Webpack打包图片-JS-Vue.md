@@ -1,3 +1,27 @@
+## 总结
+
+### 二. webpack打包其他资源
+
+#### 2.1. asset module type
+
+* asset/resource
+* asset/inline
+* asset
+
+#### 2.2. 打包js文件 - babel
+
+#### 2.3. 打包vue文件
+
+* vue-loader
+* 设置Plugin
+
+### 2.4. resolve配置
+
+* extensions
+* alias
+
+
+
 ## Webpack处理图片资源
 
 ### **webpack5处理文件资源-asset module type**

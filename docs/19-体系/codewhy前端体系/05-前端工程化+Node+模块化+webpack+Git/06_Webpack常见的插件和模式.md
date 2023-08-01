@@ -1,3 +1,20 @@
+## 总结
+
+### 3.1. 认识Plugin
+
+### 3.2. CleanWebpackPlugin
+
+### 3.3. HtmlWebpackPlugin
+
+### 3.4. DefinePlugin
+
+### 3.5. mode配置
+
+* development
+* production
+
+
+
 ## **Webpack插件-Plugin**
 
 - **Webpack的另一个核心是Plugin，官方有这样一段对Plugin的描述：**
@@ -135,3 +152,12 @@ output: {
 - mode配置为development或production时，所代表的其他的默认设置（红色部分）
 
 ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.025.jpeg) ![](./image/Aspose.Words.95866b9b-4faf-4384-adef-fa3ec1796fb5.026.jpeg)
+
+## 作业
+
+### 三. 什么是loader？webpack的loader是什么作用？和Plugin有什么区别？
+
+### 四. 什么是babel？babel在开发中是什么作用？
+
+### 五.webpack的开发模式和生产模式有什么区别？
+

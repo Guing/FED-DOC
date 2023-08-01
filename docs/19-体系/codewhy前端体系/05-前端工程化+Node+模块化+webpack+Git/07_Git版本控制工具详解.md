@@ -1,3 +1,300 @@
+## 总结
+
+### 2.1. 版本控制
+
+* 什么是版本控制?
+* 版本控制的历史
+* 集中式版本控制和分布式版本控制的区别
+
+### 2.2. Git的安装
+
+* 安装Git
+* Git安装的几个工具:
+  * Git bash
+  * git cmd
+  * git gui
+
+### 2.3. Git的配置
+
+* git config --global user.name ""
+* git config --global user.email ""
+
+### 2.4. 初始化仓库
+
+* 本地 git init
+* 远程 git clone
+
+### 2.5. 本地文件的状态
+
+* 未跟踪:
+* 已跟踪:
+  * 暂缓区中的文件状态;
+  * 已修改文件状态;
+  * 未修改稳健状态;
+
+* 查看文档状态
+  * git status
+
+### 2.6. 常见的操作
+
+* git add .
+* git commit -m ""
+* git commit -a -m ""
+
+### 2.7. 历史记录
+
+* git log
+* git log --prettty=oneline
+* git log --prettty=oneline --graph
+
+### 2.8. 版本回退
+
+* git reset --hard HEAD^
+* git reset --hard HEAD~100
+* git reset --hard commitid
+
+### 2.9. 远程仓库
+
+* GitHub
+* Gitee
+* gitlab: 自己搭建
+
+### 2.10. 身份认证
+
+* https的账号密码凭证
+* ssh的公钥和私钥
+
+### 2.11. 添加远程的服务器
+
+
+
+### 31. 设置上游分支(跟踪分支)
+
+```shell
+git fetch
+git branch --set-upstream-to=origin/main
+```
+
+### 3.2. 合并没有共同base分支
+
+```shell
+git merge --allow-unrelated-histories
+```
+
+
+
+### 1.3. Github的使用
+
+#### 1.3.1. GitHub的作用
+
+#### 1.3.2. GitHub查找和下载开源项目
+
+#### 1.3.3. GitHub创建远程仓库
+
+```shell
+# 初始化本地仓库
+git init
+
+# 添加远程仓库
+git remote add origin xxxx
+
+
+# 从远程仓库获取内容
+git fetch
+git branch --set-upstream-to=origin/main
+git merge --allow-unrelated-histories
+
+# git push
+git config push.default upstream
+
+# 换一种做法
+git checkout main
+```
+
+### 1.4. Gitlab的使用
+
+
+
+### 二. git tag
+
+```shell
+git tag v1.0.0
+
+git tag
+
+git tag -d v1.0.0
+
+# 将本地tag push远程仓库
+git push origin v1.0.0
+git push origin --tags
+
+# 删除远程的tag
+git push origin -d v1.0.0
+```
+
+
+
+### 三. git的原理(git如何保存内容)
+
+```shell
+git add .
+# .git/objects/00 40
+
+git commit -m "aaa"
+# .git/object/eb -> 提交信息/作者/tree
+# .git/object/aa
+# aaa.js -> 00
+# bbb.js -> 40
+```
+
+
+
+### 四. 分支结构
+
+### 4.1. 本地分支的使用
+
+创建分支
+
+```shell
+git branch testing
+git checkout testing
+# 合并
+git checkout -b testing
+```
+
+合并分支
+
+```shell
+git merge testing
+git add .
+git commit -m ""
+```
+
+查看所有的分支
+
+```shell
+git branch
+
+# 删除本地分支
+git branch -d testing
+```
+
+### 4.2. 远程分支的操作
+
+```shell
+# 初始化本地仓库
+git init
+
+# 添加远程仓库
+git remote add origin xxxx
+
+
+# 从远程仓库获取内容
+git fetch
+git branch --set-upstream-to=origin/main
+git merge --allow-unrelated-histories
+
+# git push
+git config push.default upstream
+
+# 换一种做法
+git checkout main
+```
+
+推送一个远程分支:
+
+```shell
+git push origin develop
+
+# 李四操作
+git checkout develop
+```
+
+删除远程分支
+
+```shell
+git push origin -d develop
+```
+
+### 4.3. git flow工作流
+
+第一图:
+
+* master: 记录主要的版本
+* develop: 开发版本
+* topic: 新主题
+
+第二图:
+
+* master: 记录主要的版本
+  * tag
+* hotfix: 热修复
+  * merge master
+  * merge develop
+* develop: 开发分支
+* release: 上线的分支
+  * merge master
+  * merge develop
+* feature: 新特性
+
+### 4.4. git rebase
+
+* 改变某一个分支base, 目的让log的历史记录更加的简洁
+* 黄金原则: 不要在主分支中使用rebase
+
+
+
+### 五. Git中常见的命令总结
+
+基础的命令: (必须掌握)
+
+```shell
+git clone xxxxxxxx
+
+git add .
+git commit -m "xxxx"
+
+git pull ->(git fetch + git merge)
+git push
+```
+
+进阶的命令:
+
+* main
+* develop
+* feature
+
+```shell
+git checkout develop
+# 1.检查服务器是否有origin/develop这个分支
+# 2.创建一个本地的develop分支
+# 3.让本地的develop分支自动跟踪origin/develop
+# 4.切换到develop分支
+
+git add .
+git commit -m ""
+git pull
+git push
+```
+
+高级的命令:
+
+```shell
+git tag
+
+git checkout -b develop
+git push origin develop
+
+git merge develop
+git rebase
+```
+
+
+
+
+
+
+
 ## **认识版本控制**
 
 - **什么是版本控制？**
@@ -108,7 +405,7 @@
       - 它提供了一个图形用户界面来运行 git 命令；
 
 
-    
+​    
 
 
 ### **Git的配置分类**
@@ -750,3 +1047,34 @@ git merge experiment
 
 ![](./image/Aspose.Words.ccb4f164-9542-40bc-b69d-f781c52879e8.054.jpeg)
 
+## 作业
+
+### 二. 集中式版本控制和分布式版本控制有什么区别？
+
+### 三. 开发中如何获取到Git仓库？
+
+### 四. Git中记录更新的整个过程是什么？
+
+### 五. 常见的远程仓库有哪些？如何使用？
+
+### 六. 远程仓库的验证方式有哪些？如何做到的验证？
+
+### 七. Git Tag是什么？有什么作用？
+
+### 八. 什么是Git branch？在开发中如何使用Git branch？有哪些Git flow？
+
+### 九. 如何管理远程的branch？
+
+### 十. Git rebase的作用是什么？和git merge有什么区别？
+
+### 二. Git Tag是什么？有什么作用？
+
+### 三. 什么是Git branch？在开发中如何使用Git branch？有哪些Git flow？
+
+### 四. 如何管理远程的branch？
+
+### 五. Git rebase的作用是什么？和git merge有什么区别？
+
+### 六. Git仓库管理源码的原理是什么？底层如何将他们关联起来？(了解)
+
+### 七. 总结整理git常见的命令, 并且说明在什么场景会用到这个命令

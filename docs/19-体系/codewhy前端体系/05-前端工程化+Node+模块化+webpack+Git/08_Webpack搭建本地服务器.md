@@ -1,3 +1,18 @@
+## 总结
+
+### 4.1. 使用webpack-dev-server
+
+### 4.2. HMR热模块替换
+
+### 4.3. devServer配置
+
+* host
+* port
+* open
+* compress
+
+
+
 ## Webpack-搭建服务器
 
 **为什么要搭建本地服务器？**
@@ -197,3 +212,6 @@ if (module.hot) {
   - webpack.dev.conf.js
   - webpack.prod.conf.js
 
+## 作业
+
+### webpack如何开启本地服务器，并且提高页面的更新效率（HMR）？
