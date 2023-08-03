@@ -1,5 +1,42 @@
 
 
+## 总结
+
+### 2.1. computed计算属性(重点)
+
+### 2.2. ref获取元素/组件(半个重点)
+
+### 2.3. 生命周期注册函数(重要)
+
+* beforeCreate/Created -> setup
+
+### 2.4. provide/inject
+
+### 2.5. watch/watchEffect(半个重要)
+
+* watch/watchEffect区别:
+  * 1.watch必须制定数据源, watchEffect自动收集依赖
+  * 2.watch监听到改变, 可以拿到改变前后value
+  * 3.watchEffect默认直接执行一次, watch在不设置immediate第一次是不执行
+
+### 2.6. 自定义Hook的练习(思想)
+
+#### 2.6.1. useCounter
+
+#### 2.6.2. useTitle
+
+#### 2.6.3. useScrollPosition
+
+### 2.7. script setup语法糖(重要)
+
+* defineProps
+* defineEmits
+* defineExpose
+
+
+
+
+
 ## **computed**
 
 - **在前面我们讲解过计算属性computed：当我们的某些属性是依赖其他状态时，我们可以使用计算属性来处理**
@@ -425,3 +462,29 @@ defineExpose({
 
 ![](./image/Aspose.Words.94dcc159-35e2-49a5-9892-4e6f4363402d.038.jpeg)
 
+## 作业
+
+### 六. 什么是Composition API？和之前的options API有什么区别？（面试）
+
+### 七. 如何使用setup函数，并且让数据是响应式的？
+
+### 二. ref和reactive有什么区别？开发中如何选择？
+
+### 三. 整理Composition API常见的几个函数用法
+
+* ref
+* reactive
+* computed
+* 生命周期
+* watch
+* watchEffect
+
+### 四. watch和watchEffect有什么区别？
+
+* 懒执行副作用（第一次不会直接执行）；
+
+* 更具体的说明当哪些状态发生变化时，触发侦听器的执行；
+
+* 访问侦听状态变化前后的值；
+
+### 五. 说说script setup语法糖的常见用法

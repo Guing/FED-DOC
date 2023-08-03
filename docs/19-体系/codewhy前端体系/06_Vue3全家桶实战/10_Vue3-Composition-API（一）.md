@@ -1,3 +1,55 @@
+## 总结
+
+### 0.1. 认识组合API
+
+* options API -> Composition API
+
+### 0.2. 组合API实现计数器案例
+
+### 1.1. 使用reactive定义响应式数据
+
+* 复杂类型
+
+### 1.2. 使用ref定义响应式数据
+
+* 基本类型
+* 复杂类型
+* 在template自动解包：浅层解包
+  * info = { ref: xxxx }
+
+### 1.3. 开发中选择reactive/ref
+
+### 1.4. readonly的使用
+
+#### 1.4.1. 单项数据流
+
+* Vue/React
+
+#### 14.2. readonly
+
+### 1.5. reactive函数补充
+
+* isProxy
+* isReactive
+* isReadonly
+* shallowReactive
+* shallowReadonly
+* ...
+
+### 1.6. ref函数补充
+
+* toRefs
+* toRef
+* unref
+* toRaw
+* ...
+
+### 1.7. setup中不能使用this
+
+
+
+
+
 ## **Options API的弊端**
 
 - 在Vue2中，我们编写组件的方式是Options API：
@@ -523,4 +575,6 @@ export default {
 
 
   ![](image/10_Vue3-Composition-API%EF%BC%88%E4%B8%80%EF%BC%89/Aspose.Words.58cd555b-0278-4c1b-a3eb-d2a42d8c9534.032.jpeg)
+
+## 
 
