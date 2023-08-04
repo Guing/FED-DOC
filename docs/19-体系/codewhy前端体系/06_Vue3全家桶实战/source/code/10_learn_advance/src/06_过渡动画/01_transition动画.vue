@@ -23,6 +23,7 @@ h2 {
   display: inline-block;
 }
 
+
 .why-enter-from,
 .why-leave-to {
   opacity: 0;
