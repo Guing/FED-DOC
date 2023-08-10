@@ -6,7 +6,7 @@
 
 #### 1.2. 接口类型 interface
 
-#### 1.3. 类型别和接口类型区别
+#### 1.3. 类型别名和接口类型区别
 
 * 定义非对象类型时, 肯定使用type
 * 定义对象类型的时候, 都可以
@@ -337,7 +337,7 @@ const ikun1: IKun = {
 
 ![](./image/Aspose.Words.50b828b1-af5c-4203-adee-9babccdeac0d.023.png)
 
-- **TypeScript只允许类型断言转换为 更具体 或者 不太具体 的类型版本，此规则可防止不可能的强制转换：**
+- **TypeScript只允许类型断言转换为 更具体 或者 不太具体(any/unknown) 的类型版本，此规则可防止不可能的强制转换：**
 
 ```typescript
 // 类型断言的规则: 断言只能断言成更加具体的类型, 或者 不太具体(any/unknown) 类型
@@ -345,9 +345,9 @@ const age: number = 18
 // 错误的做法
 // const age2 = age as string
 
-// TS类型检测来说是正确的, 但是这个代码本身不太正确
-const age3 = age as any
-const age4 = age3 as string
+// TS类型检测来说是正确的, 但是这个代码本身没什么意思，并且最后会报错，number没有split方法。
+const age3 = age as any  //先断言成不太具体的类型any或unknow类型
+const age4 = age3 as string //再断言成更加具体的类型。
 console.log(age4.split(" "))
 ```
 
@@ -364,8 +364,10 @@ console.log(age4.split(" "))
 - **但是，我们确定传入的参数是有值的，这个时候我们可以使用非空类型断言：**
   - 非空断言使用的是 ! ，表示可以确定某个标识符是有值的，跳过ts在编译阶段对它的检测；
 
-
 ![](./image/Aspose.Words.50b828b1-af5c-4203-adee-9babccdeac0d.027.png)
+
+- 在访问的时候，可以使用`?.`可选链，但是在设置属性的时候，不能使用`?.`可选，会报语法错误。
+  - 这个时候可以使用非空断言`!.`，要确保确实有这个属性，不然会有点危险。
 
 ```typescript
 // 定义接口
@@ -423,7 +425,7 @@ request("http://codercba.com/api/aaa", "post")
 
 // TS细节
  const info = {
-   url: "xxxx",
+   url: "htts://baidu.com",
    method: "post"
 }
 // 下面的做法是错误: info.method获取的是string类型
@@ -434,15 +436,22 @@ request(info.url, info.method as "post")
 
 // 解决方案二: 直接让info对象类型是一个字面量类型
 const info2: { url: string, method: "post" } = {
-   url: "xxxx",
+   url: "htts://baidu.com",
    method: "post"
  }
 //解决方案三：使用 as const 将info2转换为具体的字面量类型。
 const info2 = {
-  url: "xxxx",
+  url: "htts://baidu.com",
   method: "post"
 } as const
-// xxx 本身就是一个string
+//使用as const 之后，info2的类型就会变成这样。
+//属性转化为字面量类型，并且是readonly的。
+//url变成字面量类型后，也可以赋值给string类型。
+// const info2: {
+//   readonly url: "htts://baidu.com";
+//   readonly method: "post";
+// }
+
 request(info2.url, info2.method)
 ```
 
@@ -492,7 +501,8 @@ request(info2.url, info2.method)
 
 - **在JavaScript开发中，函数是重要的组成部分，并且函数可以作为一等公民（可以作为参数，也可以作为返回值进行传递）。**
 - **那么在使用函数的过程中，函数是否也可以有自己的类型呢？**
-- **我们可以编写函数类型的表达式（Function Type Expressions），来表示函数类型；**
+  - **我们可以编写函数类型的表达式（Function Type Expressions），来表示函数类型；**
+
 
 ![](./image/Aspose.Words.50b828b1-af5c-4203-adee-9babccdeac0d.037.jpeg)
 
@@ -502,22 +512,21 @@ request(info2.url, info2.method)
   - 接收两个参数的函数：num1和num2，并且都是number类型；
   - 并且这个函数是没有返回值的，所以是void；
 
-- 注意：在**某些语言中，可能参数名称num1和num2是可以省略，但是TypeScript是不可以的：**
+- **typescript对于回调函数的参数个数是不会进行检验，但是在执行回调函数时，参数个数必须和类型的参数个数一致。**
 
-![](./image/Aspose.Words.50b828b1-af5c-4203-adee-9babccdeac0d.038.png)
 
 ```typescript
-// TypeScript对于传入的函数类型的多余的参数会被忽略掉(the extra arguments are simply ignored.)
-type CalcType = (num1: number, num2: number) => number
+
+type CalcType = (num1: number, num2: number) => number //定义了两个参数
 function calc(calcFn: CalcType) {
-  calcFn(10, 20)
+  calcFn(10, 20) //执行回调的时候，必须要和类型的参数个数一致。
 }
 
-calc(function(num) {
+calc(function(num) { //回调参数个数不进行校验，可以传一个。但是参数类型要一致。
   return 123
 })
 
-// forEach栗子:
+// 例如foreach的回调函数，本来是3个参数，但是这里可以只传一个。 
 const names = ["abc", "cba", "nba"]
 names.forEach(function(item) {
   console.log(item.length)
@@ -563,6 +572,39 @@ bar(123)
 // 开发中如何选择:
 // 1.如果只是描述函数类型本身(函数可以被调用), 使用函数类型表达式(Function Type Expressions)
 // 2.如果在描述函数作为对象可以被调用, 同时也有其他属性时, 使用函数调用签名(Call Signatures)
+```
+
+- **处理函数类型时，let与const的不同行为**
+  - **当使用 `let` 声明一个变量并将一个函数赋值给它时，TypeScript 会根据函数的签名推断出变量的类型。**
+  - **当你使用 `const` 时，TypeScript 进行上下文类型推断，并直接将接口类型 `IBar` 应用于箭头函数。**
+
+```typescript
+//使用let时
+//TypeScript 推断 bar 的类型为 (num1: number) => number，这只是一个函数类型，没有包含 age 属性。
+//所以会报错
+interface IBar{
+  age:number
+  (num1:number):number
+}
+let bar:IBar = (num1:number):number=>{
+  return 123;
+}
+bar.age = 12
+```
+
+```typescript
+//使用const时
+//TypeScript 不再推断 bar 的类型为函数类型，而是直接将函数与 IBar 接口关联起来，视其为 IBar 接口的实现。
+//后面必须添加bar.age=12,以实现完整的接口
+//所以这里不会报错。
+interface IBar{
+  age:number
+  (num1:number):number
+}
+const bar:IBar = (num1:number):number=>{
+  return 123;
+}
+bar.age = 12
 ```
 
 
@@ -616,7 +658,7 @@ bar(123)
 
 - **那么这个代码应该如何去编写呢？**
   - 在TypeScript中，我们可以去编写不同的重载签名（overload signatures）来表示函数可以以不同的方式进行调用；
-  - 一般是编写两个或者以上的重载签名，再去编写一个通用的函数以及实现；
+  - **一般是编写两个或者以上的重载签名，再去编写一个通用的函数以及实现；**
 
 
 - **比如我们对sum函数进行重构：**
@@ -625,7 +667,7 @@ bar(123)
 
 ![](./image/Aspose.Words.50b828b1-af5c-4203-adee-9babccdeac0d.047.png)
 
-- **但是注意，有实现体的函数，是不能直接被调用的：**
+- **但是注意，有实现体的函数，是不能直接被调用的，即最后的any类型参数的，不能被调用：**
 
 ![](./image/Aspose.Words.50b828b1-af5c-4203-adee-9babccdeac0d.048.png)
 

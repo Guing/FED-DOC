@@ -295,7 +295,8 @@
 ![](./image/Aspose.Words.e590d212-e831-4f16-b6cb-d33018be410d.023.png)
 
 - **当然，在tslint中并不推荐使用var来声明变量：**
-- 可见，在TypeScript中并不建议再使用var关键字了，主要原因和ES6升级后let和var的区别是一样的，var是没有块级作用域 的，会引起很多的问题，这里不再展开探讨。
+  - 可见，在TypeScript中并不建议再使用var关键字了，主要原因和ES6升级后let和var的区别是一样的，var是没有块级作用域 的，会引起很多的问题，这里不再展开探讨。
+
 
 ![](./image/Aspose.Words.e590d212-e831-4f16-b6cb-d33018be410d.024.png)
 
@@ -663,6 +664,15 @@ const [count, setCount] = useState(10)
 console.log(count)
 setCount(100)
 ```
+
+```typescript
+function foo():[number,string,boolean]{ //不指定元组，则返回类型为: (string | number | boolean)[]
+  return [1,"2",false]
+}
+const [num,str,bool] = foo(); //如果这里不指定返回的是元组类型的，则num的类型就是string | number | boolean，str和bool也一样。
+```
+
+
 
 ## 作业
 

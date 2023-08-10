@@ -120,8 +120,9 @@ console.log(p1.name, p2.age)
 - **面向对象的其中一大特性就是继承，继承不仅仅可以减少我们的代码量，也是多态的使用前提。**
 - **我们使用extends关键字来实现继承，子类中使用super来访问父类。**
 - **我们来看一下Student类继承自Person：**
-- Student类可以有自己的属性和方法，并且会继承Person的属性和方法；
-- 在构造函数中，我们可以通过super来调用父类的构造方法，对父类中的属性进行初始化；
+  - Student类可以有自己的属性和方法，并且会继承Person的属性和方法；
+  - 在构造函数中，我们可以通过super来调用父类的构造方法，对父类中的属性进行初始化；
+
 
 ![](./image/Aspose.Words.9a51ec08-6409-40d1-8967-76ba9e93625a.013.jpeg) ![](./image/Aspose.Words.9a51ec08-6409-40d1-8967-76ba9e93625a.014.png)
 
@@ -413,86 +414,111 @@ const p: IPerson = {
   - 有的时候，你不能提前知道一个类型里的所有属性的名字，但是你知道这些值的特征；
   - 这种情况，你就可以用一个索引签名 (index signature) 来描述可能的值的类型；
 
+- **索引签名的格式为`[xx:number]:类型`，**
+  - 其中xx的名子随便写，一般为key或者index
+  - xx的类型只能为`string`、`number`、`symbol`、模板字符串模式以及仅由这些类型组成的联合类型
+
 
 ```typescript
-interface ICollection {
-  [index: number]: string
-  length: number
+//索引为number，一般是用来做数组
+interface IFoo{
+   [index:number]:string
 }
 
-function printCollection(collection: ICollection) {
-  for (let i = 0; i < collection.length; i++) {
-    const item = collection[i]
-    console.log(item.length)
-  }
-}
+const foo:IFoo = ["a","b","c"]
 
-const array = ["abc", "cba", "nba"]
-const tuple: [string, string] = ["why", "广州"]
-printCollection(array)
-printCollection(tuple)
+//索引为string，一般是用来做对象
+interface IBar{
+  [index:string]:string
+}
+const bar:IBar = { name:'xiaohei',age:"18" }
+
+//使用symbol和联合类型
+interface IFoo{
+  [index:symbol | string] :string
+}
+const test:IFoo = { [Symbol()]:"XIAOHEI","name":"xiaohei" }
 ```
 
-- **索引签名的类型问题**
+- **当索引签名返回的类型是any时，无论索引是string还是number，都可以赋值为数组，对象。**
+  - 由于 `any` 类型可以接受任何类型的值，所以 TypeScript 认为你可以将对象赋值给具有 `any` 类型索引签名的对象。
+  - 这是因为 `any` 类型会被认为是所有其他类型的超集，所以类型检查器不会阻止这种赋值。
+
 
 ```typescript
-interface IIndexType {
-  // 返回值类型的目的是告知通过索引去获取到的值是什么类型
-  // [index: number]: string
-  [index: string]: any
-  //[index: string]: string
+interface IBar{
+   [index:number]:any
 }
 
-// 索引签名: [index: number]: string
-// const names: IIndexType = ["abc", "cba", "nba"]
+const arr:IBar = {"1":2}
 
-// 索引签名: [index: string]: any: 没有报错
-// 1.索引要求必须是字符串类型 names[0] => names["0"]
-const names: IIndexType = ["abc", "cba", "nba"]
 
-// 索引签名: [index: string]: string: 会报错
-// 严格字面量赋值检测: ["abc", "cba", "nba"] => Array实例 => names[0] names.forEach
-// const names: IIndexType = ["abc", "cba", "nba"]
-// names["forEach"] => function
-// names["map/filter"] => function
+interface IBar{
+   [index:string]:any
+}
+
+const arr:IBar = ["1","2","3"]
 ```
 
+- **当索引签名:` [index: string]: number`，赋值为数组时会报错。**
+  - 因为返回值不是any，数组中没有string的索引，所以会报错
 
+```typescript
+interface IFoo{
+  [index:string]:number
+}
 
-- **一个索引签名的属性类型必须是string 或者是 number。**
-  - **虽然 TypeScript 可以同时支持string 和 number 类型，但数字索引的返回类型一定要是字符索引返回类型的子类型；**
+const arr:IFoo = [1,2,3];//报错。不能将类型“number[]”分配给类型“IFoo”。类型“number[]”中缺少类型“string”的索引签名。
+```
+
+- **可以支持两种类型的索引器，但从number索引返回的类型必须是从string索引返回的类型的子类型**。
+  - 这是因JS会最终将数字索引转化为字符串索引，比如`arr[0]`，也可以通过`arr["0"]`访问。为了让属性值和属性名的规则一致，所以返回的类型也需要是子类型。
+
 
 
 ```typescript
-interface IIndexType {
-  // 两个索引类型的写法
-  [index: number]: string
-  [key: string]: any
+interface Animal {
+   name: string;
+ }
+  
+ interface Dog extends Animal {
+   breed: string;
+ }
+  
+//number返回的类型是string的子类型
+ interface NotOkay {
+   [x: string]: Animal;
+   [x: number]: Dog;
+ }
+```
 
-  // 要求一:下面的写法不允许: 数字类型索引的类型, 必须是字符串类型索引的类型的 子类型
-  // 结论: 数字类型必须是比如字符串类型更加确定的类型(需要是字符串类型的子类型)
-  // 原因: 所有的数字类型都是会转成字符串类型去对象中获取内容
-  // 数字0: number|string, 当我们是一个数字的时候, 既要满足通过number去拿到的内容, 不会和string拿到的结果矛盾
-  // 数字"0": string
+- **使用字符串索引签名，会强制所有属性都与其返回类型匹配。其他属性返回的类型必须一样，或者是子类型。**
+  - 这是因为字符串索引声明它`obj.property`也可以作为`obj["property"]`
 
-  // 数字0: string
-  // 数字"0": number|string
-  // [index: number]: number|string
-  // [key: string]: string
+```typescript
+interface NumberDictionary {
+  [index: string]: number;
+  length: number; // ok
+  name: string; //报错，Property 'name' of type 'string' is not assignable to 'string' index type 'number'.
+}
+//可以改成联合类型：
+interface NumberDictionary {
+  [index: string]: number | string;
+  length: number; // ok
+  name: string; //ok
+}
+```
 
-  // 要求二: 如果索引签名中有定义其他属性, 其他属性返回的类型, 必须符合string类型返回的属性
-  // [index: number]: string
-  // [key: string]: number|string
+- **可以通过`readonly`设置，该属性为只读，不能设置**
 
-  // aaa: string
-  // bbb: boolean 错误的类型
+```typescript
+
+interface IFoo{
+  readonly [index:string]:string
 }
 
-const names: IIndexType = ["abc", "cba", "nba"]
-const item1 = names[0]
-const forEachFn = names["forEach"]
-
-names["aaa"]
+let bar:IFoo = {};
+bar.test = "123" //类型“IFoo”中的索引签名仅允许读取。
 ```
 
 

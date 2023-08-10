@@ -33,7 +33,9 @@
 
 - **如果你有一个文件，现在没有任何 import 或者 export，但是你希望它被作为模块处理，添加这行代码：**
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.013.png)
+```typescript
+export {}
+```
 
 - **这会把文件改成一个没有导出任何内容的模块，这个语法可以生效，无论你的模块目标是什么。**
 
@@ -41,9 +43,28 @@
 
 - **TypeScript 4.5 也允许单独的导入，你需要使用 type 前缀 ，表明被导入的是一个类型：**
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.014.png)
+```typescript
+//./utils/type
+interface IPerson {
+  name: string
+  age: number
+}
+
+type IDType = number | string
+
+
+
+// 导入的是类型, 推荐在类型的前面加上type关键
+import type { IDType, IPerson } from "./utils/type"
+//import  {type IDType, type IPerson } from "./utils/type"
+const id1: IDType = 111
+const p: IPerson = { name: "why", age: 18 }
+
+```
 
 - **这些可以让一个非 TypeScript 编译器比如 Babel、swc 或者 esbuild 知道什么样的导入可以被安全移除。**
+  - 推荐加上type，这样在非TS的编译器，比如Babel更好地识别导入的是类型，可以安全移除，不用进入导入的文件进行语法解析
+
 
 ![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.015.png)
 
@@ -53,8 +74,31 @@
   - 命名空间在TypeScript早期时，称之为内部模块，目的是将一个模块内部再进行作用域的划分，防止一些命名冲突的问题；
   - 虽然命名空间没有被废弃，但是由于ES 模块已经拥有了命名空间的大部分特性，因此更推荐使用 ES 模块，这样才能与JavaScript 的（发展）方向保持一致。 
 
+```typescript
+//./utils/format
+export namespace price {
+  export function format(price: string) {
+    return "¥" + price
+  }
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.016.png) ![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.017.png)
+  export const name = "price"
+}
+
+export namespace date {
+  export function format(dateString) {
+    return "2022-10-10"
+  }
+
+  const name = "date"
+}
+
+
+import { price, date } from "./utils/format";
+// 使用命名空间中的内容
+price.format("1111")
+date.format("22222")
+date.name //报错，没有export导出
+```
 
 ![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.018.png)
 
@@ -62,7 +106,9 @@
 
 - **之前我们所有的typescript中的类型，几乎都是我们自己编写的，但是我们也有用到一些其他的类型：**
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.019.png)
+```typescript
+const div =  document.querySelector("div") as HtmlDivElement
+```
 
 - **大家是否会奇怪，我们的HTMLImageElement类型来自哪里呢？甚至是document为什么可以有getElementById的方法呢？**
   - 其实这里就涉及到typescript对类型的管理和查找规则了。
@@ -101,8 +147,20 @@
 - **我们可以通过target的编译选项来配置：TypeScript通过lib根据您的target设置更改默认包含的文件来帮助解决此问题。**
   - <https://www.typescriptlang.org/tsconfig#lib>
 
-
 ![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.021.jpeg)
+
+- 比如以下，修改tsconfig.json中的lib为["es5"]，这样不包括dom，则使用document就会报错
+
+```json
+// tsconfig.json
+{
+ "lib": ["ES5"]   
+}
+```
+
+```typescript
+document.querySelectorAll()//报错。找不到名称“document”。是否需要更改目标库? 请尝试更改 “lib” 编译器选项以包括 “dom”。
+```
 
 ## **外部定义类型声明 – 第三方库**
 
@@ -122,17 +180,70 @@
 ## **外部定义类型声明 – 自定义声明**
 
 - **什么情况下需要自己来定义声明文件呢？**
-  - 情况一：我们使用的第三方库是一个纯的JavaScript库，没有对应的声明文件；比如lodash
-  - 情况二：我们给自己的代码中声明一些类型，方便在其他地方直接进行使用；
+  - 情况一：比如通过在html的script中，定义了一些全局的变量，函数，类 
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TSDemo</title>
+</head>
+<body>
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.024.png) ![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.025.png)
+  <script>
+    const whyName = "why"
+    const whyAge = 18
+    const whyHeight = 1.88
+
+    function foo(bar) {
+      return "hello world"
+    }
+
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+    }
+  </script>
+  
+</body>
+</html>
+```
+
+```typescript
+// 自定义声明- 变量/函数/类 定义类型声明
+//types/index.d.ts
+declare const whyName: string
+declare const whyAge: number
+declare const whyHeight: number
+
+declare function foo(bar: string): string
+
+declare class Person {
+  constructor(public name: string, public age: number)
+}
+```
+
+```typescript
+
+//index.ts
+console.log(whyName, whyAge, whyHeight)
+console.log(foo("why"))
+
+const p = new Person("kobe", 30)
+console.log(p.name, p.age)
+```
+
+- 情况二：我们使用的第三方库是一个纯的JavaScript库，没有对应的声明文件；比如lodash
 
 ### **declare 声明模块**
 
 - **我们也可以声明模块，比如lodash模块默认不能使用的情况，可以自己来声明这个模块：**
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.026.png)
+```typescript
+declare module "lodash" {
+  export function join(...args: any[]): any
+}
+```
 
 - **声明模块的语法: declare module '模块名' {}。**
   - 在声明模块的内部，我们可以通过export 导出对应库的类、函数等；
@@ -143,40 +254,86 @@
 - **在某些情况下，我们也可以声明文件：**
   - 比如在开发vue的过程中，默认是不识别我们的.vue文件的，那么我们就需要对其进行文件的声明；
   - 比如在开发中我们使用了 jpg 这类图片文件，默认typescript也是不支持的，也需要对其进行声明；
-
-
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.027.png)
+  - ```typescript
+    // 声明文件模块
+    declare module "*.png"
+    declare module "*.jpg"
+    declare module "*.jpeg"
+    declare module "*.svg"
+    
+    // 声明vue文件
+    declare module "*.vue" {
+      import {DefinedComponent} from 'vue'
+      const component:DefinedComponent
+      export default component
+    }
+    ```
+  
+    ```typescript
+    import KobeImage from "./img/kobe02.png"
+    // 图片文件的使用
+    const imgEl = document.createElement("img")
+    imgEl.src = KobeImage
+    document.body.append(imgEl)
+    ```
 
 ### **declare 命名空间**
 
-- **比如我们在index.html中直接引入了jQuery：**
-  - CDN地址： <https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js>
+- **比如我们在index.html中直接通过CDN引入了jQuery：**
 
-- **我们可以进行命名空间的声明：**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TSDemo</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js
+  "></script>
+</head>
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.028.png)
+</html>
+```
+
+- **直接通过script引入的，不可以使用 declare module 语法，这样是通过import导入的，而jquery不是通过import导入的，是全局的变量。**
+  - **我们可以进行命名空间的声明：**
+
+```typescript
+// 声明成模块(不合适)
+// 声明命名空间
+declare namespace $ {
+  export function ajax(settings: any): any
+}
+```
 
 - **在main.ts中就可以使用了：**
 
-![](./image/Aspose.Words.28b07a76-b46b-40c3-8c9b-562e9cc90d8a.029.png)
+```typescript
+// jquery
+$.ajax({
+  url: "http://codercba.com:8000/home/multidata",
+  success: function(res: any) {
+    console.log(res)
+  }
+})
+```
 
+## **认识tsconfig.json文件**
 
-**认识tsconfig.json文件**
+- 什么是tsconfig.json文件呢？（官方的解释）
+  - **当目录中出现了 tsconfig.json 文件，则说明该目录是 TypeScript 项目的根目录**；
+  - tsconfig.json 文件指定了编译项目所需的根目录下的文件以及编译选项。
 
-- **什么是tsconfig.json文件呢？（官方的解释）**
-- 当目录中出现了 tsconfig.json 文件，则说明该目录是 TypeScript 项目的根目录；
-- tsconfig.json 文件指定了编译项目所需的根目录下的文件以及编译选项。
-- **官方的解释有点“官方”，直接看我的解释。**
+- 官方的解释有点“官方”，直接看我的解释。
 - **tsconfig.json文件有两个作用：**
 - 作用一（主要的作用）：让TypeScript Compiler在编译的时候，知道如何去编译TypeScript代码和进行类型检测；
   - 比如是否允许不明确的this选项，是否允许隐式的any类型；
   - 将TypeScript代码编译成什么版本的JavaScript代码；
 - 作用二：让编辑器（比如VSCode）可以按照正确的方式识别TypeScript代码；
+  - 对于哪些语法进行提示、类型错误检测等等；
 
-✓ 对于哪些语法进行提示、类型错误检测等等；
 
 - **JavaScript 项目可以使用 jsconfig.json 文件，它的作用与 tsconfig.json 基本相同，只是默认启用了一些 JavaScript 相关的 编译选项。**
-- 在之前的Vue项目、React项目中我们也有使用过；
+  - 在之前的Vue项目、React项目中我们也有使用过；
+
 
 ## tsconfig配置文件解析
 

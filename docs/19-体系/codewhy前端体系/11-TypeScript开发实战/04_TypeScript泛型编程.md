@@ -52,11 +52,19 @@ type MapPerson = {
 
 - **如果我们是TypeScript的思维方式，要考虑这个参数和返回值的类型需要一致：**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.012.png)
+```typescript
+  function foo(arg:number):number{
+    return arg
+}
+```
 
 - **上面的代码虽然实现了，但是不适用于其他类型，比如string、boolean、Person等类型：**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.013.png)
+```typescript
+function foo(arg:any):any{
+  return arg
+}
+```
 
 ### **泛型实现类型参数化**
 
@@ -66,19 +74,60 @@ type MapPerson = {
 
 - **我们需要在这里使用一种特性的变量 - 类型变量（type variable），它作用于类型，而不是值：**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.014.png)
+```typescript
+function bar<Type>(arg: Type): Type {
+  return arg
+}
 
-- **这里我们可以使用两种方式来调用它：**
+```
+
+- 这里我们可以使用两种方式来调用它：
   - 方式一：通过` <类型> `的方式将类型传递给函数；
   - 方式二：通过类型推导（type argument inference），自动推到出我们传入变量的类型：
-    - 在这里会推导出它们是 字面量类型的，因为字面量类型对于我们的函数也是适用的
+    - **在这里会推导出它们是 字面量类型的，因为字面量类型对于我们的函数也是适用的**
 
+```typescript
+// 2.1. 方式一：完整的写法
+const res1 = bar<number>(123)
+const res2 = bar<string>("abc")
+const res3 = bar<{name: string}>({ name: "why" })
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.015.png) ![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.016.png)
+// 2.2. 方式二：通过类型推导
+const res4 = bar("aaaaaaaaa")
+const res5 = bar(11111111)
+```
 
 - **当然我们也可以传入多个类型：**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.017.png)
+```typescript
+function foo<T, E>(arg1: T, arg2: E) {
+}
+
+foo(10, 20)
+```
+
+- **泛型也可以传入一个默认值**
+
+```typescript
+//定义默认值
+interface IKun<Type = string> {
+  name: Type
+  age: number
+  slogan: Type
+}
+
+const ikun2: IKun<number> = {
+  name: 123,
+  age: 20,
+  slogan: 666
+}
+//不传，则默认值为string
+const ikun3: IKun = {
+  name: "kobe",
+  age: 30,
+  slogan: "坤坤加油!"
+}
+```
 
 - **平时在开发中我们可能会看到一些常用的名称：**
   - T：Type的缩写，类型
@@ -93,13 +142,39 @@ type MapPerson = {
 
 - **在定义接口的时候我们也可以使用泛型：**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.018.png) ![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.019.png)
+```typescript
+const kunkun: IKun<string> = {
+  name: "why",
+  age: 18,
+  slogan: "哈哈哈",
+};
+
+const ikun2: IKun<number> = {
+  name: 123,
+  age: 20,
+  slogan: 666,
+};
+```
 
 ### **泛型类**
 
 - **我们也可以编写一个泛型类：**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.020.jpeg)
+```typescript
+class Point<Type = number> {
+  x: Type
+  y: Type
+  constructor(x: Type, y: Type) {
+    this.x = x
+    this.y = y
+  }
+}
+
+const p1 = new Point(10, 20)
+console.log(p1.x)
+```
+
+
 
 ## 泛型约束和类型条件
 
@@ -109,19 +184,51 @@ type MapPerson = {
   - 比如string和array都是有length的，或者某些对象也是会有length属性的；
   - 那么只要是拥有length的属性都可以作为我们的参数类型，那么应该如何操作呢？
 
+```typescript
+// 2.获取传入的内容, 这个内容必须有length属性
+// Type相当于是一个变量, 用于记录本次调用的类型, 所以在整个函数的执行周期中, 一直保留着参数的类型
+function getInfo<Type extends ILength>(args: Type): Type {
+  return args
+}
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.021.jpeg)
+const info1 = getInfo("aaaa")
+const info2 = getInfo(["aaa", "bbb", "ccc"])
+const info3 = getInfo({ length: 100 })
+```
 
 - **这里表示是传入的类型必须有这个属性，也可以有其他属性，但是必须至少有这个成员。**
 - **在泛型约束中使用类型参数（Using Type Parameters in Generic Constraints）**
   - 你可以声明一个类型参数，这个类型参数被其他类型参数约束；
-
-- **举个栗子：我们希望获取一个对象给定属性名的值**
+  - **`keof`返回的是一个联合类型**
+  
+- 举个栗子：我们希望获取一个对象给定属性名的值
   - 我们需要确保我们不会获取 obj 上不存在的属性；
   - 所以我们在两个类型之间建立一个约束；
 
+```typescript
+// 传入的key类型, obj当中key的其中之一
+interface IKun {
+  name: string
+  age: number
+}
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.022.jpeg)
+type IKunKeys = keyof IKun //返回所有属性的联合类型 "name"|"age"
+
+function getObjectProperty<O, K extends keyof O>(obj: O, key: K){
+  return obj[key]
+}
+
+const info = {
+  name: "why",
+  age: 18,
+  height: 1.88
+}
+
+const name = getObjectProperty(info, "name")
+```
+
+
+
 
 ## TypeScript映射类型
 
@@ -132,11 +239,28 @@ type MapPerson = {
   - 大多数类型体操的题目也是通过映射类型完成的；
 
 - **映射类型建立在索引签名的语法上：**
-  - 映射类型，就是使用了 PropertyKeys 联合类型的泛型；
-  - 其中 PropertyKeys 多是通过 keyof 创建，然后循环遍历键名创建一个类型；
+  - 映射类型，就是使用了 PropertyKeys 联合类型的泛型；其中 PropertyKeys 多是通过 keyof 创建，然后循环遍历键名创建一个类型；
+  - **其实可以把映射类型看成一个函数，调用这个函数，就会赋值一份新的类型，比如以下的`MapType<Type>`**
+  
+- **映射类型不能使用interface定义**
+
+  
+
+```typescript
+type MapType<Type> = {
+  // 索引类型以此进行使用
+  [aaa in keyof Type]: Type[aaa]
+}
+
+interface IPerson {
+  name: string
+  age: number
+}
+type NewPerson = MapType<IPerson>
+```
 
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.023.png)
+
 
 ### **映射修饰符（Mapping Modifiers）**
 
@@ -146,11 +270,24 @@ type MapPerson = {
 
 - **你可以通过前缀 - 或者 + 删除或者添加这些修饰符，如果没有写前缀，相当于使用了 + 前缀。**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.024.png)
+```typescript
+type MapPerson<Type> = {
+  -readonly [Property in keyof Type] -?: Type[Property]
+}
+
+interface IPerson {
+  name: string
+ readonly age: number
+  height?: number
+  address?: string
+}
+
+type IPersonOptional = MapPerson<IPerson>
+```
 
 ## TypeScript条件类型
 
-- **很多时候，日常开发中我们需要基于输入的值来决定输出的值，同样我们也需要基于输入的值的类型来决定输出的值的类型。**
+- 很多时候，日常开发中我们需要基于输入的值来决定输出的值，同样我们也需要**基于输入的值的类型来决定输出的值的类型**。
   - **条件类型（Conditional types**）就是用来帮助我们描述输入类型和输出类型之间的关系。
   - 条件类型的写法有点类似于 JavaScript 中的条件表达式（condition ? trueExpression : falseExpression ）：
     - `SomeType extends OtherType ? TrueType : FalseType;`
