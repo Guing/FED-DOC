@@ -292,28 +292,63 @@ type IPersonOptional = MapPerson<IPerson>
   - 条件类型的写法有点类似于 JavaScript 中的条件表达式（condition ? trueExpression : falseExpression ）：
     - `SomeType extends OtherType ? TrueType : FalseType;`
 
+```typescript
+type IDType = number | string
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.025.jpeg)
+// 判断number是否是extendsIDType
+// const res = 2 > 3? true: false
+type ResType = boolean extends IDType? true: false
 
-### **在条件类型中推断（inter）**
+// 举个栗子: 函数的重载
+// function sum(num1: number, num2: number): number
+// function sum(num1: string, num2: string): string
 
-- **在条件类型中推断（Inferring Within Conditional Types）**
-  - 条件类型提供了 infer 关键词，可以从正在比较的类型中推断类型，然后在 true 分支里引用该推断结果；
+// 返回值的类型利用条件类型，限制成单一的number或string，这样就不会返回联合类型。
+function sum<T extends number | string>(num1: T, num2: T): T extends number? number:string
+function sum(num1, num2) {
+  return num1 + num2
+}
 
-- **比如我们现在有一个数组类型，想要获取到一个函数的参数类型和返回值类型：**
-
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.026.jpeg)
+const res = sum(20, 30)
+const res2 = sum("abc", "cba")
+```
 
 ### **分发条件类型（Distributive Conditional Types）**
 
 - **当在泛型中使用条件类型的时候，如果传入一个联合类型，就会变成 分发的（distributive）**
 
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.027.png)
+```typescript
+//原本应该是 (number|string)[]
+//使用条件类型extends，就会变成 number[]|string[]
+type ToArray<T> = T extends any ? T[]:never 
 
-- **如果我们在 ToArray 传入一个联合类型，这个条件类型会被应用到联合类型的每个成员：**
+type MyType = ToArray<number|string> 
+```
+
+- **如果我们在 `ToArray `传入一个联合类型，这个条件类型会被应用到联合类型的每个成员**：
   - 当传入`string | number`时，会遍历联合类型中的每一个成员；
   - 相当于`ToArray<string> | ToArray<number>`；
   - 所以最后的结果是：`string[] | number[]`；
+
+### **在条件类型中推断（inter）**
+
+- **在条件类型中推断（Inferring Within Conditional Types）**
+  - 条件类型提供了 infer 关键词，可以从正在比较的类型中推断类型，然后在 true 分支里引用该推断结果；
+  - **infer只能在extends中使用。**
+
+```typescript
+//获取函数返回值类型
+type getReturn<T> = T extends (...args: any[]) => infer R ? R : never;
+//获取函数的参数类型
+type getParams<T> = T extends (...args: infer P) => any ? P : never
+
+
+function foo(num:number,str:string){
+  return num;
+}
+type FooReturnType = getReturn<typeof foo> //string
+type FooParamsType = getParams<typeof foo>  //[num: number, str: string]
+```
 
 
 ## **内置工具和类型体操**
@@ -331,6 +366,38 @@ type IPersonOptional = MapPerson<IPerson>
 
 - **我们课堂上会学习TypeScript的编程能力的语法，并且通过学习内置工具来练习一些类型体操的题目。**
 
+### 语法总结
+
+- `keyof`用于获取一个类型的所有属性名（键），返回的是一个联合类型。
+  - `keyof any` 返回的类型是所有类型的属性名的联合类型
+  - `K extends keyof any` = `K extends string | number | symbol`，属性名的类型只能是 `string`、`number` 或者 `symbol`。所以这两种写法在约束上是等价的。
+
+```typescript
+interface Person {
+    name: string;
+    age: number;
+    location: string;
+}
+
+type PersonKeys = keyof Person;
+
+// PersonKeys 的类型为 "name" | "age" | "location"
+```
+
+- `in`可以用来迭代一个联合类型。
+
+```typescript
+type My = {
+    [k in string|number]:boolean
+}
+// {
+//    [x: string]: boolean;
+//    [x: number]: boolean;
+//}
+```
+
+
+
 ### **`Partial<Type>`**
 
 - **用于构造一个Type下面的所有属性都设置为可选的类型**
@@ -339,7 +406,7 @@ type IPersonOptional = MapPerson<IPerson>
 
 ### **`Required<Type>`**
 
-- 用于构造一个Type下面的所有属性全都设置为必填的类型，这个工具类型跟 Partial 相反。
+- **用于构造一个Type下面的所有属性全都设置为必填的类型，这个工具类型跟 Partial 相反。**
 
 ![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.029.jpeg)
 

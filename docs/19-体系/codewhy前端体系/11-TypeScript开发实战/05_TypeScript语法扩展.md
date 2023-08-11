@@ -16,7 +16,7 @@
 
 ### **TypeScript模块化**
 
-- **JavaScript 有一个很长的处理模块化代码的历史，TypeScript 从 2012 年开始跟进，现在已经实现支持了很多格式。但是随着 时间流逝，社区和 JavaScript 规范已经使用为名为 ES Module的格式，这也就是我们所知的 import/export 语法。**
+- **JavaScript 有一个很长的处理模块化代码的历史，TypeScript 从 2012 年开始跟进，现在已经实现支持了很多格式。但是随着 时间流逝，社区和 JavaScript 规范已经用为名为 ES Module的格式，这也就是我们所知的 import/export 语法。**
   - ES 模块在 2015 年被添加到 JavaScript 规范中，到 2020 年，大部分的 web 浏览器和 JavaScript 运行环境都已经广泛支持。
   - 所以在TypeScript中最主要使用的模块化方案就是ES Module；
 
