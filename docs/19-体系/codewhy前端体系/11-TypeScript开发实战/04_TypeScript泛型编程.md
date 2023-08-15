@@ -434,14 +434,6 @@ type My = {
 
 ![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.033.jpeg)
 
-### **`Exclude<UnionType, ExcludedMembers>`**
-
-- **用于构造一个类型，它是从UnionType联合类型里面排除了所有可以赋给ExcludedMembers的类型。**
-
-![](./image/Aspose.Words.d1177acc-b966-4daf-bd20-f788d415d1e5.034.jpeg)
-
-- **有了HYExclude，我们可以使用它来实现HYOmit。**
-
 ### **`Extract<Type, Union>`**
 
 - **用于构造一个类型，它是从Type类型里面提取了所有可以赋给Union的类型。**
