@@ -1,62 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        /* 指定子元素在哪个线开始布局 */
-        .main{
-            width:300px;
-            height:300px;
-            background:skyblue;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr;
-        }
-        .main div:nth-of-type(1){
-            background:pink;
-            /* 从第二列开始，第三列结束 */
-            grid-column-start: 2;
-            grid-column-end: 3;
-            /* 默认值：auto，不指定下面的哪个行放置的话，后面第二个元素就会自动放置到第一列。 */
-            /* grid-row-start: 1;
+      /* 指定子元素在哪个线开始布局 */
+      .main {
+        width: 300px;
+        height: 300px;
+        background: skyblue;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+      .main div:nth-of-type(1) {
+        background: pink;
+        /* 从第二列开始，第三列结束 */
+        grid-column-start: 2;
+        grid-column-end: 3;
+        /* 默认值：auto，不指定下面的哪个行放置的话，后面第二个元素就会自动放置到第一列。 */
+        /* grid-row-start: 1;
             grid-row-end: 2; */
-        }
-        .main div:nth-of-type(2){
-            background:slategray;
-        }
+      }
+      .main div:nth-of-type(2) {
+        background: slategray;
+      }
 
-        
-        /* 如果加了span ，则表示占用的个数，则不是指定位置 */
-        .main2{
-            width:300px;
-            height:300px;
-            margin-top:20px;
-            background:skyblue;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr;
-        }
-        .main2 div:nth-of-type(1){
-            background:pink;
-            /*从2开始，占2列 */
-            grid-column-start: 2;
-            grid-column-end:span 2;
-           
-        }
-  
+      /* 如果加了span ，则表示占用的个数，则不是指定位置 */
+      .main2 {
+        width: 300px;
+        height: 300px;
+        margin-top: 20px;
+        background: skyblue;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+      .main2 div:nth-of-type(1) {
+        background: pink;
+        /*从2开始，占2列 */
+        grid-column-start: 2;
+        grid-column-end: span 2;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main">
-        <div>1</div>
-        <div>2</div>
+      <div>1</div>
+      <div>2</div>
     </div>
 
     <div class="main2">
-        <div>1</div> 
+      <div>1</div>
     </div>
-</body>
+  </body>
 </html>
