@@ -1,11 +1,3 @@
-|**目录 content**|**1![](./image/Aspose.Words.f76cf699-22b2-4ea9-a6a8-42a2878ac2c5.005.png)**|**认识JSX语法**|
-| :- | - | - |
-||**2![](./image/Aspose.Words.f76cf699-22b2-4ea9-a6a8-42a2878ac2c5.006.png)**|**JSX的基本使用**|
-||**3![](./image/Aspose.Words.f76cf699-22b2-4ea9-a6a8-42a2878ac2c5.007.png)**|**JSX的事件绑定**|
-||**4![](./image/Aspose.Words.f76cf699-22b2-4ea9-a6a8-42a2878ac2c5.008.png)**|**JSX的条件渲染**|
-||**5![](./image/Aspose.Words.f76cf699-22b2-4ea9-a6a8-42a2878ac2c5.009.png)**|**JSX的列表渲染**|
-||**6![](./image/Aspose.Words.f76cf699-22b2-4ea9-a6a8-42a2878ac2c5.010.png)**|**JSX的原理和本质**|
-
 ## **认识JSX**
 
 ![](./image/Aspose.Words.f76cf699-22b2-4ea9-a6a8-42a2878ac2c5.012.png)

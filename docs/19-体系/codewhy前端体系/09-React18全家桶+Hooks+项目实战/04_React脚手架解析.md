@@ -1,10 +1,3 @@
-
-
-
-
-| <p>**目录 content**</p><p>![](./image/Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.005.png)</p> | <p>1	 **认识脚手架工具![](./image/Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.006.png)**</p><p>2	 **create-react-app![](./image/Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.007.png)**</p><p>3	 **创建React项目![](./image/Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.008.png)**</p><p>4	 **webpack的配置![](./image/Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.009.png)**</p><p>5	 **从零编写代码![](./image/Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.010.png)**</p> |
-| :----------------------------------------------------------- | ------------------------------------------------------------ |
-
 ## 认识脚手架工具
 
 ### **前端工程的复杂化**
@@ -147,5 +140,3 @@
 - **如果我们不希望直接在 root.render 中编写过多的代码，就可以单独抽取一个组件App.js：**
 
 ![](./image/Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.021.png)
-
-[ref1]: Aspose.Words.252221db-a29f-44a8-bd21-45518cf0ffdd.011.png
