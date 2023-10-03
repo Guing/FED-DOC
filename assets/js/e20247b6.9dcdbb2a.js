@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfed_doc=self.webpackChunkfed_doc||[]).push([[11850],{70574:function(e){e.exports=JSON.parse('{"permalink":"/FED-DOC/blog/tags/docusaurus","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

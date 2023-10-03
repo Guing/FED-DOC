@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfed_doc=self.webpackChunkfed_doc||[]).push([[2883],{1755:function(e){e.exports=JSON.parse('{"allTagsPath":"/FED-DOC/blog/tags","name":"hello","count":2,"permalink":"/FED-DOC/blog/tags/hello"}')}}]);
