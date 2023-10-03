@@ -162,7 +162,7 @@
 
 - **我们在绑定的函数中，可能想要使用当前对象，比如执行 this.setState 函数，就必须拿到当前对象的this**
   - 我们就需要在传入函数时，给这个函数直接绑定this
-  - 类似于下面的写法： <button onClick={this.changeText.bind(this)}>改变文本</button>
+  - 类似于下面的写法： `<button onClick={this.changeText.bind(this)}>改变文本</button>`
 
 
 ![](./image/Aspose.Words.acb9fa73-f984-440a-b16f-eb9b9f30683f.023.png) ![](./image/Aspose.Words.acb9fa73-f984-440a-b16f-eb9b9f30683f.024.png)
