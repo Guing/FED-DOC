@@ -1,0 +1,56 @@
+Progress: resolved 0, reused 1, downloaded 0, added 0
+Progress: resolved 7, reused 7, downloaded 0, added 0
+Progress: resolved 8, reused 8, downloaded 0, added 0
+Progress: resolved 136, reused 135, downloaded 0, added 0
+ WARN  deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+ WARN  deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+ WARN  deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+ WARN  deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+ WARN  deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+ WARN  deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+Progress: resolved 429, reused 427, downloaded 0, added 0
+ WARN  deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+ WARN  deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+ WARN  deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+ WARN  deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+Progress: resolved 1072, reused 1066, downloaded 1, added 0
+ WARN  deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+ WARN  deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+Packages: +6 -4
+++++++----
+Progress: resolved 1248, reused 1247, downloaded 1, added 6, done
+
+dependencies:
++ @babel/plugin-syntax-flow 7.22.5
++ @testing-library/dom 9.3.3
+
+ WARN  Issues with peer dependencies found
+.
+├─┬ @babel/plugin-syntax-flow 7.22.5
+│ └── ✕ missing peer @babel/core@^7.0.0-0
+└─┬ react-scripts 5.0.1
+  ├── ✕ missing peer typescript@"^3.2.1 || ^4"
+  ├─┬ eslint-config-react-app 7.0.1
+  │ ├── ✕ missing peer typescript@"*"
+  │ ├─┬ @typescript-eslint/eslint-plugin 5.62.0
+  │ │ ├── ✕ missing peer typescript@"*"
+  │ │ └─┬ @typescript-eslint/type-utils 5.62.0
+  │ │   ├── ✕ missing peer typescript@"*"
+  │ │   └─┬ @typescript-eslint/typescript-estree 5.62.0
+  │ │     ├── ✕ missing peer typescript@"*"
+  │ │     └─┬ tsutils 3.21.0
+  │ │       └── ✕ missing peer typescript@">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
+  │ ├─┬ @typescript-eslint/parser 5.62.0
+  │ │ └── ✕ missing peer typescript@"*"
+  │ └─┬ eslint-plugin-flowtype 8.0.3
+  │   └── ✕ missing peer @babel/plugin-transform-react-jsx@^7.14.9
+  └─┬ react-dev-utils 12.0.1
+    ├── ✕ missing peer typescript@>=2.7
+    └─┬ fork-ts-checker-webpack-plugin 6.5.3
+      └── ✕ missing peer typescript@">= 2.7"
+Peer dependencies that should be installed:
+  @babel/core@^7.0.0-0
+  @babel/plugin-transform-react-jsx@^7.14.9
+  typescript@">=3.2.1 <4.0.0 || >=4.0.0 <5.0.0"
+
+Done in 6.9s

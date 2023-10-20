@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script crossorigin src="./lib/react.js"></script>
+  <script crossorigin src="./lib/react-dom.js"></script>
+  <script crossorigin src="./lib/babel.js"></script>
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          books: [
+            {
+              id: 1,
+              name: "《算法导论》",
+              date: "2006-9",
+              price: 85.0,
+              count: 1,
+            },
+            {
+              id: 2,
+              name: "《UNIX编程艺术》",
+              date: "2006-2",
+              price: 59.0,
+              count: 1,
+            },
+            {
+              id: 3,
+              name: "《编程珠玑》",
+              date: "2008-10",
+              price: 39.0,
+              count: 1,
+            },
+            {
+              id: 4,
+              name: "《代码大全》",
+              date: "2006-3",
+              price: 128.0,
+              count: 1,
+            },
+          ],
+        };
+      }
+      addBook(row) {
+        this.setState({
+          books: this.state.books.map((item) => {
+            if (row.id === item.id) {
+              item.count++;
+            }
+            return item;
+          }),
+        });
+      }
+      removeBook(row) {
+        this.setState({
+          books: this.state.books.map((item) => {
+            if (row.id === item.id) {
+              item.count > 0 && item.count--;
+            }
+            return item;
+          }),
+        });
+      }
+      deleteBook(row) {
+        this.setState({
+          books: this.state.books.filter((item) => row.id !== item.id),
+        });
+      }
+      render() {
+        const { books } = this.state;
+        return (
+          <table>
+            <tr>
+              <th>书籍名称</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>操作</th>
+            </tr>
+            {books &&
+              books.map((item) => {
+                return (
+                  <tr key={item.id}>
+                    <th>{item.name}</th>
+                    <th>{item.date}</th>
+                    <th>{item.price}</th>
+                    <th>
+                      {" "}
+                      <button onClick={() => this.addBook(item)}>+</button>
+                      {item.count}
+                      <button
+                        onClick={() => {
+                          this.removeBook(item);
+                        }}
+                      >
+                        -
+                      </button>
+                    </th>
+                    <th>
+                      <button
+                        onClick={() => {
+                          this.deleteBook(item);
+                        }}
+                      >
+                        删除
+                      </button>
+                    </th>
+                  </tr>
+                );
+              })}
+          </table>
+        );
+      }
+    }
+    const root = ReactDOM.createRoot(document.querySelector("#root"));
+    root.render(<App />);
+  </script>
+</html>

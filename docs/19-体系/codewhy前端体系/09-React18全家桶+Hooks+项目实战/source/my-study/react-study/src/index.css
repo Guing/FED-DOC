@@ -1,0 +1,36 @@
+.flex {
+  display: flex;
+}
+.tab {
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+.tab.active {
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.my-appear {
+  opacity: 0;
+}
+.my-appear-active {
+  opacity: 1;
+  transition: all 2s ease;
+}
+
+.my-enter {
+  opacity: 0;
+}
+.my-enter-active {
+  opacity: 1;
+  transition: all 2s ease;
+}
+
+.my-exit {
+  opacity: 1;
+}
+.my-exit-active {
+  opacity: 0;
+  transition: all 2s ease;
+}

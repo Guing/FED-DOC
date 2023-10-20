@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script crossorigin src="./lib/react.js"></script>
+  <script crossorigin src="./lib/react-dom.js"></script>
+  <script crossorigin src="./lib/babel.js"></script>
+  <script type="text/babel">
+    const root = ReactDOM.createRoot(document.querySelector("#root"));
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          movies: ["星际穿越", "流浪地球", "独行月球", "大话西游", "火星救援"],
+        };
+      }
+      render() {
+        return (
+          <ul>
+            {this.state.movies.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        );
+      }
+    }
+    root.render(<App />);
+  </script>
+</html>

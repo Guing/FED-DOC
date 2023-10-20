@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script crossorigin src="./lib/react.js"></script>
+  <script crossorigin src="./lib/react-dom.js"></script>
+  <script crossorigin src="./lib/babel.js"></script>
+  <script type="text/babel">
+    const root = ReactDOM.createRoot(document.querySelector("#root"));
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          count: 0,
+          arr: ["a", "b", true],
+        };
+      }
+      inc(num1, num2, event) {
+        console.log(num1, num2, event);
+        this.setState({
+          count: this.state.count + 1,
+        });
+      }
+      cut() {
+        this.setState({
+          count: this.state.count - 1,
+        });
+      }
+      render() {
+        let my = "efd";
+        const classArr = ["a", "b"];
+        return (
+          <div>
+            <p className={`abc cda ${my}`}>当前计数：{this.state.count}</p>
+            <p className={classArr.join(" ")}>{this.state.arr}</p>
+            <div onClick={this.inc.bind(this, 1, 2)}>加</div>
+            <div
+              onClick={() => {
+                this.cut();
+              }}
+            >
+              减
+            </div>
+          </div>
+        );
+      }
+    }
+    root.render(<App />);
+  </script>
+</html>

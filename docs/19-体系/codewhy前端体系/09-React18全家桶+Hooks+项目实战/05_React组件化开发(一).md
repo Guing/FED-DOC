@@ -1,12 +1,101 @@
+## 总结
+
+### 1.1. 组件化开发概念
+
+* 组件化开发分而治之的思想
+* React组件化的划分:
+  * 类组件和函数组件
+  * 有状态组件和无状态组件
+  * 展示型组件和容器型组件
+
+### 1.2. 类组件和函数组件
+
+### 1.3. 组件的生命周期(重要)
+
+* constructor
+* render
+* componentDidMount
+* componentDidUpdate
+* componentWillUnmount
+
+### 1.4. 组件的嵌套关系
+
+### 1.5. 组件父子的通信
+
+#### 1.5.1. 父传子 props
+
+#### 1.5.2. 子传父 props => 函数
+
+* 回调函数
+
+#### 1.5.3. 类型验证propTypes/defaultProps
+
+### 1.6. 父子通信的案例练习
+
+### 1.7. React插槽效果实现
+
+#### 1.7.1. children方案
+
+#### 1.7.2. props属性
+
+#### 1.7.3. 作用域插槽
+
+* 函数回调
+
+### 1.8. Context的使用
+
+#### 1.8.1. spread props/attributes
+
+#### 1.8.2. Context基本使用
+
+* 1.创建Context
+* 2.Context.Provider提供value
+* 3.类组件 contextType = Context
+* 4.类组件 this.context
+
+#### 1.8.3. Context额外补充
+
+* 1.在函数式组件中使用Context
+  * Context.Consumer
+    * value => {}
+* 2.多个Context共享数据
+  * 类组件Context.Consumer
+* 3.defaultValue
+  * 如果使用Context, 该组件不是Context.Provider的后代组件
+  * 那么使用的defaultValue值
+
+### 1.9. setState的其他用法
+
+* setState({})
+* setState((state, props) => { return {} })
+* setState(updater, callback)
+
+### 2.0. setState是异步(批量更新)
+
+* 本次更新会加入队列中queue
+* 两个优势:
+  * 1.多个updater放在同一次更新中, 执行一次render函数, 提高性能
+  * 2.保证在state没有被更新的时候, state/props保持一致
+
+### 2.1. setState一定是异步吗?
+
+* 在React18之前
+  * setTimeout/Promise.then回调/原生DOM事件回调中是同步的
+* 在React18开始
+  * setTimeout/Promise.then回调/原生DOM事件回调中这些操作也变成批量处理
+  * flushSync(() => {  })
+
+
+
 ## React的组件化开发
 
 ### **什么是组件化开发呢？**
 
-- **组件化是一种分而治之的思想：**
+- 组件化是一种分而治之的思想：
   - 如果我们将一个页面中所有的处理逻辑全部 放在一起，处理起来就会变得非常复杂，而 且不利于后续的管理以及扩展。 
   - 但如果，我们讲一个页面拆分成一个个小的 功能块，每个功能块完成属于自己这部分独 立的功能，那么之后整个页面的管理和维护 就变得非常容易了。 
 
-- **我们需要通过组件化的思想来思考整个应用程 序：** 
+- 我们需要通过组件化的思想来思考整个应用程 序： 
   - 我们将一个完整的页面分成很多个组件； 
   - 每个组件都用于实现页面的一个功能块； 
   - 而每一个组件又可以进行细分； 
@@ -15,41 +104,41 @@
 
 ### **React的组件化**
 
-- **组件化是React的核心思想，也是我们后续课程的重点，前面我们封装的App本身就是一个组件：**
+- 组件化是React的核心思想，也是我们后续课程的重点，前面我们封装的App本身就是一个组件：
   - 组件化提供了一种抽象，让我们可以开发出一个个独立可复用的小组件来构造我们的应用。
   - 任何的应用都会被抽象成一颗组件树。
 
 
 ![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.015.png)
 
-- **组件化思想的应用：**
+- 组件化思想的应用：
   - 有了组件化的思想，我们在之后的开发中就要充分的利用它。
   - 尽可能的将页面拆分成一个个小的、可复用的组件。
   - 这样让我们的代码更加方便组织和管理，并且扩展性也更强。
 
-- **React的组件相对于Vue更加的灵活和多样，按照不同的方式可以分成很多类组件：**
-  - 根据组件的定义方式，可以分为：**函数组件(Functional Component )和类组件(Class Component)**；
-  - 根据组件内部是否有状态需要维护，可以分成：**无状态组件(Stateless Component )和有状态组件(Stateful Component)**；
-  - 根据组件的不同职责，可以分成：**展示型组件(Presentational Component)和容器型组件(Container Component)**；
+- React的组件相对于Vue更加的灵活和多样，按照不同的方式可以分成很多不同类型的组件：
+  - 根据组件的定义方式，分为：**函数组件(Functional Component )和类组件(Class Component)**；
+  - 根据组件内部是否有状态需要维护，分成：**无状态组件(Stateless Component )和有状态组件(Stateful Component)**；
+  - 根据组件的不同职责，分成：**展示型组件(Presentational Component)和容器型组件(Container Component)**；
 
 - **这些概念有很多重叠，但是他们最主要是关注数据逻辑和UI展示的分离：**
   - **函数组件、无状态组件、展示型组件主要关注UI的展示**；
   - **类组件、有状态组件、容器型组件主要关注数据逻辑**；
 
-- **当然还有很多组件的其他概念：比如异步组件、高阶组件等，我们后续再学习。**
+- 当然还有很多组件的其他概念：比如**异步组件、高阶组件**等，我们后续再学习。
 
 ### **类组件**
 
-- **类组件的定义有如下要求：**
-  - 组件的名称是大写字符开头（无论类组件还是函数组件）
-  - 类组件需要继承自 React.Component
-  - 类组件必须实现render函数
+- 类组件的定义有如下要求：
+  - **组件的名称是大写字符开头（无论类组件还是函数组件）**
+  - **类组件需要继承自 React.Component**
+  - **类组件必须实现render函数**
 
-- **在ES6之前，可以通过create-react-class 模块来定义类组件，但是目前官网建议我们使用ES6的class类定义。**
-- **使用class定义一个组件：**
-  - constructor是可选的，我们通常在constructor中初始化一些数据；
-  - this.state中维护的就是我们组件内部的数据；
-  - render() 方法是 class 组件中唯一必须实现的方法；
+- 在ES6之前，可以通过create-react-class 模块来定义类组件，但是目前官网建议我们使用ES6的class类定义。
+- 使用class定义一个组件：
+  - **constructor是可选的，我们通常在constructor中初始化一些数据；**
+  - **this.state中维护的就是我们组件内部的数据；**
+  - **render() 方法是 class 组件中唯一必须实现的方法；**
 
 
 ![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.016.png)
@@ -65,7 +154,7 @@
   - **数组或 fragments**：使得 render 方法可以返回多个元素。
   - **Portals**：可以渲染子节点到不同的 DOM 子树中。
   - **字符串或数值类型**：它们在 DOM 中会被渲染为文本节点
-  - **布尔类型或 null**：什么都不渲染。
+  - **boolean， null，undefined**：什么都不渲染。
 
 
 ### **函数组件**
@@ -75,7 +164,8 @@
   - **没有生命周期，也会被更新并挂载，但是没有生命周期函数；**
   - **this关键字不能指向组件实例（因为没有组件实例）；**
   - **没有内部状态（state）；**
-
+  - **函数返回值和类组件的render返回一样**
+  
 - 我们来定义一个函数组件：
 
 ![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.017.png)
@@ -121,19 +211,19 @@
 
 
 - **componentDidMount **
-  - `componentDidMount()` 会在组件挂载后（插入 DOM 树中）立即调用。 
+  - **`componentDidMount()` 会在组件挂载后（插入 DOM 树中）立即调用。** 
   - `componentDidMount`中通常进行哪里操作呢？
     - **依赖于DOM的操作可以在这里进行；**
     - **在此处发送网络请求就最好的地方；（官方建议）**
     - **可以在此处添加一些订阅（会在componentWillUnmount取消订阅）**；
 
 - **componentDidUpdate**
-  - componentDidUpdate() 会在更新后会被立即调用，首次渲染不会执行此方法。
+  - **componentDidUpdate() 会在更新后会被立即调用，首次渲染不会执行此方法。**
   - **当组件更新后，可以在此处对 DOM 进行操作；**
   - **如果你对更新前后的 props 进行了比较，也可以选择在此处进行网络请求；**（例如，当 props 未发生变化时，则不会执行网 络请求）。
 
 - **componentWillUnmount**
-  - componentWillUnmount() 会在组件卸载及销毁之前直接调用。
+  - **componentWillUnmount() 会在组件卸载及销毁之前直接调用**。
   - **在此方法中执行必要的清理操作；**
     - 例如，清除 timer，取消网络请求或清除在 componentDidMount() 中创建的订阅等；
 
@@ -144,32 +234,96 @@
 
 ### **不常用生命周期函数**
 
-- **除了上面介绍的生命周期函数之外，还有一些不常用 的生命周期函数：**
-  - `getDerivedStateFromProps`：
+- 除了上面介绍的生命周期函数之外，还有一些不常用 的生命周期函数：
+  - **getDerivedStateFromProps**：
     - state 的值在任何时候都依赖于 props时使用；
     - 该方法返回一个对象 来更新state； 
 
-  - `getSnapshotBeforeUpdate`：
+  - **getSnapshotBeforeUpdate**：
     - 在React更新DOM 之前回调的一个函数，可以获取DOM更新前的一 些信息（比如说滚动位置）； 
 
-  - `shouldComponentUpdate`：
+  - **shouldComponentUpdate**：
     - 该生命周期函数很常用，但是我们等待讲性能优化时再来详细讲解； 
 
 - 另外，React中还提供了一些过期的生命周期函数，这 些函数已经不推荐使用。 
   - 更详细的生命周期相关的内容，可以参考官网： [https://zh-hans.reactjs.org/docs/react - component.html](https://zh-hans.reactjs.org/docs/react-component.html)
+
+![截屏2023-10-16 15.46.17](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/%E6%88%AA%E5%B1%8F2023-10-16%2015.46.17-7442395.png)
+
+```jsx
+class HelloWorld extends React.Component {
+  // 1.构造方法: constructor
+  constructor() {
+    console.log("HelloWorld constructor")
+    super()
+
+    this.state = {
+      message: "Hello World"
+    }
+  }
+
+  changeText() {
+    this.setState({ message: "你好啊, 李银河" })
+  }
+
+  // 2.执行render函数
+  render() {
+    console.log("HelloWorld render")
+    const { message } = this.state
+
+    return (
+      <div>
+        <h2>{message}</h2>
+        <p>{message}是程序员的第一个代码!</p>
+        <button onClick={e => this.changeText()}>修改文本</button>
+      </div>
+    )
+  }
+
+  // 3.组件被渲染到DOM: 被挂载到DOM
+  componentDidMount() {
+    console.log("HelloWorld componentDidMount")
+  }
+
+  // 4.组件的DOM被更新完成： DOM发生更新
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("HelloWorld componentDidUpdate:", prevProps, prevState, snapshot)
+  }
+
+  // 5.组件从DOM中卸载掉： 从DOM移除掉
+  componentWillUnmount() {
+    console.log("HelloWorld componentWillUnmount")
+  }
+
+
+  // 不常用的生命周期补充
+  shouldComponentUpdate() {
+    return true
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log("getSnapshotBeforeUpdate")
+    return {
+      scrollPosition: 1000
+    }
+  }
+}
+```
+
+
 
 
 ## React组件间的通信
 
 ### **认识组件的嵌套**
 
-- **组件之间存在嵌套关系：**
+- 组件之间存在嵌套关系：
   - 在之前的案例中，我们只是创建了一个组件App；
   - 如果我们一个应用程序将所有的逻辑都放在一个组件中，那么这个组件就会变成非常的臃肿和难以维护；
   - 所以组件化的核心思想应该是对组件进行拆分，拆分成一个个小的组件；
   - 再将这些组件组合嵌套在一起，最终形成我们的应用程序；
 
-- **上面的嵌套逻辑如下，它们存在如下关系：**
+- 上面的嵌套逻辑如下，它们存在如下关系：
   - App组件是Header、Main、Footer组件的父组件； 
   - Main组件是Banner、ProductList组件的父组件； 
 
@@ -178,12 +332,12 @@
 
 ### **认识组件间的通信**
 
-- **在开发过程中，我们会经常遇到需要组件之间相互进行通信：**
+- 在开发过程中，我们会经常遇到需要组件之间相互进行通信：
   - 比如App可能使用了多个Header，每个地方的Header展示的内容不同，那么我们就需要使用者传递给Header一些数据，让 其进行展示；
   - 又比如我们在Main中一次性请求了Banner数据和ProductList数据，那么就需要传递给他们来进行展示；
   - 也可能是子组件中发生了事件，需要由父组件来完成某些操作，那就需要子组件向父组件传递事件；
 
-- **总之，在一个React项目中，组件之间的通信是非常重要的环节；**
+- 总之，在一个React项目中，组件之间的通信是非常重要的环节；
 - **父组件在展示子组件，可能会传递一些数据给子组件：**
   - 父组件通过 **属性=值** 的形式来传递给子组件数据；
   - 子组件通过 **props** 参数获取父组件传递过来的数据；
@@ -207,14 +361,14 @@
 
 ![](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.025.png)
 
-- 从 React v15.5 开始，React.PropTypes 已移入另一个包中：prop-types 库 
+- **从 React v15.5 开始，React.PropTypes 已移入另一个包中：prop-types 库** 
   - 更多的验证方式，可以参考官网：https://z[h-hans.reactjs.org/docs/typechecking-with-proptypes.html](https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html)
   - 比如验证数组，并且数组中包含哪些元素； 
   - 比如验证对象，并且对象中包含哪些key以及value是什么类型； 
-  - 比如某个原生是必须的，使用 requiredFunc: PropTypes.func.isRequired 
+  -  比如某个原生是必须的，使用 requiredFunc: PropTypes.func.isRequired 
 
 - **如果没有传递，我们希望有默认值呢？**
-  - 我们使用defaultProps就可以了
+  - 我们使用**defaultProps**就可以了
 
 ![](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.026.png)
 
@@ -380,9 +534,9 @@ export default TabControl
 
 - React对于这种需要插槽的情况非常灵活，有两种方案可以实现：
 
-  - 组件的children子元素；
+  - **组件的children子元素**；
 
-  - props属性传递React元素；
+  - **props属性传递React元素；**
 
 ![](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.029.png)
 
@@ -396,14 +550,70 @@ export default TabControl
 
 - **通过children实现的方案虽然可行，但是有一个弊端：**
   - **通过索引值获取传入的元素很容易出错，不能精准的获取传入的原生；**
-
+  - **children可能是一个元素，也可能是一个数组**
+  
 - **另外一个种方案就是使用 props 实现：**
   - 通过具体的属性名，可以让我们在传入和获取时更加的精准；
 
-
 ![image-20231002182539635](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/image-20231002182539635.png)
 
+### props实现作用域插槽
+
+- 在react中没有作用域插槽的概念，但是可以通过传递函数，来实现作用域插槽
+
+```jsx
+<Tabs
+   <!--传入一个函数-->
+  contentSlot={(item) => <div>{item}</div>}
+ ></Tabs>
+```
+
+```jsx
+<!--Tabs-->
+<div>
+  <!--通过调用函数，传入参数，实现作用域插槽-->
+   <div>{this.props.contentSlot(this.state.item)}</div>
+</div>
+```
+
+
+
 ## React非父子的通信
+
+### props的属性展开
+
+**如果你已经有了一个 props 对象，你可以使用展开运算符 `...` 来在 JSX 中传递整个 props 对象。**以下两个组件是等价的：
+
+```jsx
+function App1() {
+  return <Greeting firstName="Ben" lastName="Hector" />;
+}
+
+function App2() {
+  const props = {firstName: 'Ben', lastName: 'Hector'};
+  return <Greeting {...props} />;}
+```
+
+你还可以选择只保留当前组件需要接收的 props，并使用展开运算符将其他 props 传递下去。
+
+```jsx
+const Button = props => {
+  const { kind, ...other } = props;  
+  return <button className={kind} {...other} />;
+};
+
+const App = () => {
+  return (
+    <div>
+      <Button kind="primary" onClick={() => console.log("clicked!")}>
+        Hello World!
+      </Button>
+    </div>
+  );
+};
+```
+
+在上述例子中，`kind` 的 prop 会被安全的保留，它将*不会*被传递给 DOM 中的 `<button>` 元素。 所有其他的 props 会通过 `...other` 对象传递，使得这个组件的应用可以非常灵活。你可以看到它传递了一个 `onClick` 和 `children` 属性。
 
 ### **Context应用场景**
 
@@ -411,63 +621,140 @@ export default TabControl
   - 在开发中，比较常见的数据传递方式是通过props属性自上而下（由父到子）进行传递。
   - 但是对于有一些场景：比如一些数据需要在多个组件中进行共享（地区偏好、UI主题、用户登录状态、用户信息等）。
   - 如果我们在顶层的App中定义这些信息，之后一层层传递下去，那么对于一些中间层不需要数据的组件来说，是一种冗余的 操作。
-
-- 我们实现一个一层层传递的案例：
-  - 我这边顺便补充一个小的知识点：Spread [Attributes](https://zh-hans.reactjs.org/docs/jsx-in-depth.html)
-
-- 但是，如果层级更多的话，一层层传递是非常麻烦，并且代码是非常冗余的：
+    - **一层层传递，可以使用上面的props的 [属性展开](https://zh-hans.reactjs.org/docs/jsx-in-depth.html)**
+    - 但是，如果层级更多的话，一层层传递是非常麻烦，并且代码是非常冗余的：
 - React提供了一个API：Context；
   - **Context 提供了一种在组件之间共享此类值的方式，而不必显式地通过组件树的逐层传递 props；**
-  - **Context 设计目的是为了共享那些对于一个组件树而言是“全局”的数据，例如当前认证的用户、主题或首选语言；**
+  - Context 设计目的是为了**共享那些对于一个组件树而言是“全局”的数据**，例如当前认证的用户、主题或首选语言；
 
 
 ### **Context相关API**
 
 - **React.createContext**
-  - 创建一个需要共享的Context对象：
-  - 如果一个组件订阅了Context，那么这个组件会从离自身最近的那个匹配的 Provider 中读取到当前的context值；
-  - defaultValue是组件在顶层查找过程中没有找到对应的Provider，那么就使用默认值
+  - **创建一个需要共享的Context对象：**
+  - **如果一个组件订阅了Context，那么这个组件会从离自身最近的那个匹配的 Provider 中读取到当前的context值；**
+  - **defaultValue是组件在顶层查找过程中没有找到对应的Provider，那么就使用默认值**
+
+```js
+import React from 'react'
+const UserContext = React.createContext({ name: 'xiaobai', age: 10 });//参数是设置默认值
+export default UserContext;
+```
+
+```jsx
+class App extends Component {
+
+  render() {
+    return (
+      <div>
+          <UserContext.Provider value={this.state}>
+            <Home></Home>
+          </UserContext.Provider>
+        <!--不在UserContext.Provider的子元素里面，这时HomeInfo获取到的是userContext是默认值-->
+        <HomeInfo></HomeInfo>
+      </div>
+    );
+  }
+}
+```
 
 
-![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.034.png)
 
 - **Context.Provider**
-  - 每个 Context 对象都会返回一个 Provider React 组件，它允许消费组件订阅 context 的变化：
-  - Provider 接收一个 value 属性，传递给消费组件；
-    - 一个 Provider 可以和多个消费组件有对应关系；
-    - 多个 Provider 也可以嵌套使用，里层的会覆盖外层的数据；
+  - **每个 Context 对象都会返回一个 Provider React 组件，它允许消费组件订阅 context 的变化**：
+  - **Provider 接收一个 value 属性，传递给消费组件**；
+    - **一个 Provider 可以和多个消费组件有对应关系；**
+    - **多个 Provider 也可以嵌套使用，里层的会覆盖外层的数据；**
 
-  - 当 Provider 的 value 值发生变化时，它内部的所有消费组件都会重新渲染；
+  - **当 Provider 的 value 值发生变化时，它内部的所有消费组件都会重新渲染；**
 
-
-![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.035.png)
+```jsx
+class App extends Component {
+  render() {
+    return (
+      <div>
+          <UserContext.Provider value={this.state}>
+            <Home></Home>
+          </UserContext.Provider>
+      </div>
+    );
+  }
+}
+```
 
 - **Class.contextType**
-  - 挂载在 class 上的 contextType 属性会被重赋值为一个由 React.createContext() 创建的 Context 对象：
-  - 这能让你使用 this.context 来消费最近 Context 上的那个值；
-  - 你可以在任何生命周期中访问到它，包括 render 函数中；
+  - **挂载在 class 上的 contextType 属性会被重赋值为一个由 React.createContext() 创建的 Context 对象：**
+  - **这能让你使用 this.context 来消费最近 Context 上的那个值；**
+  - **你可以在任何生命周期中访问到它，包括 render 函数中；**
 
-
-![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.036.png)
+```jsx
+class Home extends Component {
+  render() {
+    return (
+      <div>
+        {this.context?.name}
+        {this.context?.age}
+      </div>
+    );
+  }
+}
+Home.contextType = UserContext;
+```
 
 - **Context.Consumer**
-  - 这里，React 组件也可以订阅到 context 变更。这能让你在 函数式组件 中完成订阅 context。
-  - 这里需要 函数作为子元素（function as child）这种做法；
-  - 这个函数接收当前的 context 值，返回一个 React 节点；
+  - 这里，React 组件也可以订阅到 context 变更。
+    - **这能让你在 函数式组件 中完成订阅 context。**
+    - **当有多个provider时，除了使用class.contextType获取到一个provider时，其他provider可以通过Context.Consumer订阅**
+  - 这里需要 **函数作为子元素（function as child）**这种做法；
+  - 这个函数**接收当前的 context 值，返回一个 React 节点**；
 
+```jsx
+export class Home extends Component {
+  render() {
+    return (
+      <div>
+        {this.context?.name}
+        {this.context?.age}
+        <!--使用其他的provider-->
+        <ConfigContext.Consumer>
+          {(value) => {
+            return (
+              <div>
+                {value.app}
+                {value.version}
+              </div>
+            );
+          }}
+        </ConfigContext.Consumer>
+      </div>
+    );
+  }
+}
+Home.contextType = UserContext;
 
-![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.037.png)
+```
 
-### **Context代码演练**
+```jsx
+//在函数组件中使用
+export default function HomeInfo() {
+  return (
+    <div>
+      homeInfo
+      <UserContext.Consumer>
+        {(value) => {
+          return (
+            <div>
+              <div>{value?.name}</div>
+              <div>{value?.age}</div>
+            </div>
+          );
+        }}
+      </UserContext.Consumer>
+    </div>
+  );
+}
 
-- **Context的基本使用**
-- **什么时候使用默认值defaultValue呢？**
-
-![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.038.png)
-
-- **什么时候使用Context.Consumer呢？**
-  - 1.当使用value的组件是一个函数式组件时；
-  - 2.当组件中需要使用多个Context时；
+```
 
 
 ## setState的使用详解
@@ -477,13 +764,106 @@ export default TabControl
 - **开发中我们并不能直接通过修改state的值来让界面发生更新：**
   - 因为我们修改了state之后，希望React根据最新的State来重新渲染界面，但是这种方式的修改React并不知道数据发生了变 化；
   - React并没有实现类似于Vue2中的Object.defineProperty或者Vue3中的Proxy的方式来监听数据的变化；
-  - 我们必须通过setState来告知React数据已经发生了变化；
+  - **我们必须通过setState来告知React数据已经发生了变化**；
 
-- **疑惑：在组件中并没有实现setState的方法，为什么可以调用呢？**
-  - 原因很简单，setState方法是从Component中继承过来的。
+- 疑惑：在组件中并没有实现setState的方法，为什么可以调用呢？
+  - 原因很简单，**setState方法是从Component中继承过来的**。
+
+### setState的三种使用方法
+
+- 基本使用
+- setState可以传入一个回调函数
+  - 好处一: 可以在回调函数中编写新的state的逻辑
+  - 好处二: 当前的回调函数会将之前的state和props传递进来
+- 在setState中传入第二个参数: callback，获取异步更新之后的结果
+
+```jsx
+export class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: "Hello World",
+    }
+  }
+
+  changeText() {
+    // 1.setState更多用法
+    // 1.基本使用
+     this.setState({
+       message: "你好啊, 李银河"
+     })
+
+    
+    // 2.setState可以传入一个回调函数
+    // 好处一: 可以在回调函数中编写新的state的逻辑
+    // 好处二: 当前的回调函数会将之前的state和props传递进来
+     this.setState((state, props) => {
+       // 1.编写一些对新的state处理逻辑
+       // 2.可以获取之前的state和props值
+       console.log(this.state.message, this.props)
+
+       return {
+         message: "你好啊, 李银河"
+       }
+     })
+
+    // 3.setState在React的事件处理中是一个异步调用
+    // 如果希望在数据更新之后(数据合并), 获取到对应的结果执行一些逻辑代码
+    // 那么可以在setState中传入第二个参数: callback
+    this.setState({ message: "你好啊, 李银河" }, () => {
+      console.log("++++++:", this.state.message)
+    })
+    console.log("------:", this.state.message)
+  }
+
+  render() {
+    const { message, counter } = this.state
+    return (
+      <div>
+        <h2>message: {message}</h2>
+        <button onClick={e => this.changeText()}>修改文本</button>
+      </div>
+    )
+  }
+}
+```
+
+- 注意，在方法二中，使用setState传入一个回调函数，**回调参数中的state并不一定和this.state是一致的**。
+  - **因为当使用多个setState时，这时this.state还没有更新，但是回调参数中的state是上一个setState合并的结果**。
+
+```jsx
+export class App extends Component {
+  state = {
+    counter: 0,
+  };
+  increment() {
+    this.setState((state, props) => {
+      console.log("this.state.counter:", this.state.counter); //0
+      console.log("state.counter:", state.counter); //0
+      return {
+        counter: state.counter + 1,
+      };
+    });
+    this.setState((state, props) => {
+      console.log("this.state.counter:", this.state.counter); //0，this.state.counter还没更新
+      console.log("state.counter:", state.counter); //1, state.counter是上一个setState的结果。
+      return {
+        counter: state.counter + 1,
+      };
+    });
+  }
+  render() {
+    return (
+      <div>
+        {this.state.counter}
+        <button onClick={() => this.increment()}>增加</button>
+      </div>
+    );
+  }
+}
+```
 
 
-![image-20231002183414711](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/image-20231002183414711.png)
 
 ### **setState异步更新**
 
@@ -499,23 +879,24 @@ export default TabControl
   - React核心成员（Redux的作者）Dan Abramov也有对应的回复，有兴趣的同学可以参考一下；
     - [https://github.com/facebook/react/issues/11527#issuecomment-360199710；](https://github.com/facebook/react/issues/11527#issuecomment-360199710ï¼)
 - **我对其回答做一个简单的总结：**
-  - setState设计为异步，可以显著的提升性能；
-  - 如果每次调用 setState都进行一次更新，那么意味着render函数会被频繁调用，界面重新渲染，这样效率是很低的；
-  - 最好的办法应该是获取到多个更新，之后进行批量更新；
-  - 如果同步更新了state，但是还没有执行render函数，那么state和props不能保持同步；
-  - state和props不能保持一致性，会在开发中产生很多的问题；
+  - **setState设计为异步，可以显著的提升性能**；
+    - 如果每次调用 setState都进行一次更新，那么意味着**render函数会被频繁调用**，界面重新渲染，这样效率是很低的；
+    - 最好的办法应该是**获取到多个更新，之后进行批量更新**；
+  - 如果**同步更新了state，但是还没有执行render函数，那么state和props不能保持同步**；
+    - **state和props不能保持一致性，会在开发中产生很多的问题**；
+    - 比如修改父组件的state，这时还没执行render函数，子组件的props还没更新，就会出现state和props不能保持一致性
 
 ### **如何获取异步的结果**
 
 - **那么如何可以获取到更新后的值呢？**
 - 方式一：setState的回调
-  - setState接受两个参数：第二个参数是一个回调函数，这个回调函数会在更新后会执行；
+  - **setState接受两个参数：第二个参数是一个回调函数，这个回调函数会在更新后会执行；**
   - 格式如下：setState(partialState, callback)
 
 
 ![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.041.png)
 
-- 当然，我们也可以在生命周期函数：
+- 当然，我们**也可以在生命周期函数，componentDidUpdate中获取最新的值**
 
 ![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.042.png)
 
@@ -523,20 +904,135 @@ export default TabControl
 
 其实分成两种情况：
 
-- 在组件生命周期或React合成事件中，setState是异步；
+- **在React18之前**
 
-- 在setTimeout或者原生dom事件中，setState是同步；
+  - **在组件生命周期或React合成事件中，setState是异步；**
 
-  ![](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.043-16962430703569.png)
+
+  - **在promise，setTimeout，原生dom事件中，setState是同步；**
+
+    ![](image/05_React%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91(%E4%B8%80)/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.043-16962430703569.png)
+
 
 ![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.044.png)
 
-**setState默认是异步的（React18之后）**
+- **在React18之后**
+  - **在React18之后，默认所有的操作都被放到了批处理中（异步处理）。**
 
-- **在React18之后，默认所有的操作都被放到了批处理中（异步处理）。**
 
 ![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.045.png)
 
-- **如果希望代码可以同步会拿到，则需要执行特殊的flushSync操作：**
+- **如果希望代码可以同步会拿到，则需要执行特殊的flushSync操作**：
 
-![](./image/Aspose.Words.b286cbd1-fee5-4d76-9620-5cec06bb1474.046.png)
+```jsx
+import { flushSync } from 'react-dom'
+
+ flushSync(() => {
+   this.setState({ message: "你好啊, 李银河" }) //变成同步
+ })
+ console.log(this.state.message)
+```
+
+## 作业
+
+### 二. React组件可以如何进行划分？分别有哪些不同的概念？
+
+- 根据定义方式
+  - 函数组件
+  - 类组件
+- 根据组件内部有无状态需要维护
+  - 无状态组件
+  - 有状态组件
+- 根据组件的不同职责
+  - 展示型组件
+  - 容器型组件
+
+- 关注UI的展示
+  - 函数组件,无状态组件,展示型组件
+- 关注数据逻辑的展示
+  - 类组件,有状态组件,容器型组件
+
+### 三. React重要的组件生命周期有哪些？分别列出他们的作用。
+
+- componentDidMount
+  - 会在组件挂载后立即调用
+  - 操作DOM
+  - 发送网络请求
+- componentDidUpdate
+  - 会在组件更新后立即调用
+  - 首次渲染不会执行此方法
+  - 可以在组件更新后操作DOM
+- conponentWillUnmount
+  - 会在组件卸载及销毁前调用
+  - 清除定时器
+  - 清除事件监听
+
+### 四. React中如何实现组件间的通信？父传子？子传父？
+
+- 父传子
+  - 在子组件通过属性传递内容
+  - 子组件通过props拿到内容
+- 子传父
+  - 通过传递函数,调用回调函数
+  - 通过函数的参数传递要传递的数据
+
+### 五. React中有插槽的概念吗？如果没有，如何实现插槽的效果呢？
+
+- 没有插槽的概念
+- 实现插槽效果的方式
+  - 直接在组件中插入children
+  - 在目标组件拿到插入的内容进行展示
+- 通过props直接将要展示的内容传递给子组件
+  - 子组件通过props直接拿到要展示的内容
+
+### 六. 非父子组件的通信有哪些方式？分别是什么作用？
+
+- 事件总线
+- 使用context
+  - 创建context
+  - 在要使用的组件,一般是根组件导入context
+  - 使用`<context.Provider>`包裹后代组件
+  - 在要使用的后代组件引入context
+    - xxxx.contextType = context
+    - 在render方法中可以通过this.context拿到传递过来的值
+
+### 面试题：React的setState是同步的还是异步的？React18中是怎么样的？
+
+* 在 React 中，可变状态通常保存在组件的 state 属性中，并且只能通过使用 setState()来更新
+
+* React的setState是异步的 -- 不要指望在调用 `setState` 之后，`this.state` 会立即映射为新的值
+
+* 在react18之前, 在setTimeout,Promise等中操作setState, 是同步操作
+
+* 在react18之后, 在setTimeout,Promise等中操作setState,是异步操作(批处理)
+
+  * 如果需要同步的处理怎么办呢? 需要执行特殊的`flushSync`操作
+
+* 为什么要将setState设计成异步的
+
+  * 首先,若是将setState设计成同步的,在`componentDidMount`中请求多个网络请求时,会堵塞后面的网络请求
+
+  ```js
+  componentDidMount() {
+    // 网络请求一 : this.setState
+    // 网络请求二 : this.setState
+    // 网络请求三 : this.setState
+    // 如果this.setState设计成同步的,会堵塞后面的网络请求
+  }
+  ```
+
+  * 一. setState设计为异步，可以显著的提升性能
+
+    * 如果每次调用 setState都进行一次更新，那么意味着render函数会被频繁调用，界面重新渲染，这样效率是很低的
+    * 最好的办法应该是**获取到多个更新，之后进行批量更新**
+
+    ```js
+    // 在一个函数中有多个setState时,
+    this.setState({}) --> 先不会更新,而是会加入到队列(queue)中 (先进先出)
+    this.setState({}) --> 也加入到队列中
+    this.setState({}) --> 也加入到队列中
+    // 这里的三个setState会被合并到队列中去
+    // 在源码内部是通过do...while从队列中取出依次执行的
+    ```
+
+  * 二: 如果同步更新了state，但是还没有执行render函数，那么state和props不能保持同步
