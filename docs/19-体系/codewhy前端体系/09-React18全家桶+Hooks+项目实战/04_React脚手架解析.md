@@ -134,6 +134,57 @@
 
 ![image-20231002162413295](image/04_React%E8%84%9A%E6%89%8B%E6%9E%B6%E8%A7%A3%E6%9E%90/image-20231002162413295.png)
 
+- 但是这种修改webpack的方法并不推荐,推荐使用 [craco](https://github.com/gsoft-inc/craco) （一个对 create-react-app 进行自定义配置的社区解决方案）
+
+  - 安装 craco 并修改 `package.json` 里的 `scripts` 属性。
+
+  - `yarn add @craco/craco`
+
+    ```diff
+    /* package.json */
+    "scripts": {
+    -   "start": "react-scripts start",
+    -   "build": "react-scripts build",
+    -   "test": "react-scripts test",
+    +   "start": "craco start",
+    +   "build": "craco build",
+    +   "test": "craco test",
+    }
+    ```
+
+  - 然后在项目根目录创建一个 `craco.config.js` 用于修改默认配置。
+
+    ```js
+    /* craco.config.js */
+    module.exports = {
+      // ...
+    };
+    ```
+
+  - 比如添加less支持
+
+    - `yarn add craco-less`
+
+    ```js
+    const CracoLessPlugin = require('craco-less');
+    
+    module.exports = {
+      plugins: [
+        {
+          plugin: CracoLessPlugin,
+          options: {
+            lessLoaderOptions: {
+              lessOptions: {
+                modifyVars: { '@primary-color': '#1DA57A' },
+                javascriptEnabled: true,
+              },
+            },
+          },
+        },
+      ],
+    };
+    ```
+
 ## 从零编写代码
 
 ### **文件结构删除**
