@@ -134,7 +134,14 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} FED-DOCS, Inc. Built with Docusaurus.`,
+                copyright: `
+      <div>
+        <div>Copyright © ${new Date().getFullYear()} FED-DOCS, Inc. Built with Docusaurus.</div>
+         <div>
+           <img width="25" height="25" src="img/icp.png" alt="图标描述" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44010602012151" rel="noreferrer" target="_blank">粤公网安备44010602012151</a>
+         </div>
+      </div>
+    ` ,
             },
             prism: {
                 theme: lightCodeTheme,
