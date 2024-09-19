@@ -25,7 +25,7 @@ function reverseSidebarItems(items) {
 }
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'IT学习笔记',
+    title: '前端开发-IT学习笔记',
     tagline: '记录学习前端和后端知识的笔记',
     url: 'https://guing.github.io',
     baseUrl: '/FED-DOC/',
@@ -139,6 +139,9 @@ const config = {
         <div>Copyright © ${new Date().getFullYear()} FED-DOCS, Inc. Built with Docusaurus.</div>
          <div>
            <img width="25" height="25" src="img/icp.png" alt="图标描述" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44010602012151" rel="noreferrer" target="_blank">粤公网安备44010602012151</a>
+         </div>
+         <div>
+         <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备17016067号-1</a>
          </div>
       </div>
     ` ,
